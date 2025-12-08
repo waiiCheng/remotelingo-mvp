@@ -16,10 +16,12 @@ export interface Job {
   id: number;
   title: string;
   company: string;
-  logo: string;
-  color: string;
+  logo?: string;
+  initials?: string;
+  logoBg?: string;
+  color?: string;
   languages: string[];
-  level: string;
+  level?: string;
   salary_min: number;
   salary_max: number;
   currency: string;

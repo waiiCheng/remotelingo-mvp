@@ -477,7 +477,7 @@ function getInitials(companyName: string): string {
 }
 
 // --- Google Sheets CSV URL ---
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnipiSuYcsDgie5R9lZ4AB01ebQJ1VQv8m-Z-EI3G47eMn5opxigZOYZdFFDtvuYonkqJ2aqrKZ32G/pub?output=csv";
+const GOOGLE_SHEET_CSV_URL: string | null = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnipiSuYcsDgie5R9lZ4AB01ebQJ1VQv8m-Z-EI3G47eMn5opxigZOYZdFFDtvuYonkqJ2aqrKZ32G/pub?output=csv";
 
 // --- Job Submission Form (Invoice Model - No Payment Required) ---
 function JobSubmissionForm({ onFinish, planName }) {
@@ -758,7 +758,7 @@ export default function RemoteLingoMVP() {
         setError(null);
 
         // PRIORITY 1: Try to fetch from Google Sheets CSV
-        if (GOOGLE_SHEET_CSV_URL && GOOGLE_SHEET_CSV_URL !== "YOUR_GOOGLE_SHEET_CSV_URL_HERE") {
+        if (GOOGLE_SHEET_CSV_URL && GOOGLE_SHEET_CSV_URL.length > 0) {
           try {
             const response = await fetch(GOOGLE_SHEET_CSV_URL);
             const csvText = await response.text();
