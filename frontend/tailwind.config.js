@@ -6,10 +6,17 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   safelist: [
-    // Use regex pattern to include all background colors we might need
-    {
-      pattern: /bg-(blue|emerald|green|purple|orange|red|yellow|indigo|teal|cyan|lime|pink|slate)-(500|600|800)/,
-    },
+    // Explicitly list all color classes used in COMPANY_COLORS array
+    'bg-blue-600',
+    'bg-emerald-500',
+    'bg-purple-600',
+    'bg-orange-500',
+    'bg-red-500',
+    'bg-slate-800',
+    'bg-teal-500',
+    'bg-indigo-600',
+    'bg-pink-600',
+    'bg-yellow-600',
   ],
   theme: {
     extend: {
