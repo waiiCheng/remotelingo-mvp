@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemoteLingo - 纯 HTML 预览版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.6s ease-out; }
+        .bg-grid-slate-100 {
+            background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
+                              linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div class="min-h-screen">
+        <!-- Status Bar -->
+        <div class="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 border-b border-slate-800 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    Crawler Status: <span class="text-emerald-400 font-mono">Active</span>
+                </span>
+                <span>Sources Scanned: <span class="text-white font-mono">142</span></span>
+            </div>
+            <div>AI Filtering Engine v1.2.0</div>
+        </div>
+
+        <!-- Header -->
+        <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16 items-center">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">RL</div>
+                        <span class="text-xl font-bold">RemoteLingo</span>
+                    </div>
+                    <button class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800">
+                        Post a Job
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <div class="bg-white relative overflow-hidden border-b border-slate-200">
+            <div class="absolute inset-0 bg-grid-slate-100 opacity-60 bg-[size:20px_20px]"></div>
+            <div class="max-w-4xl mx-auto px-4 pt-16 pb-12 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase mb-6 border border-blue-100">
+                    AI-Curated Job Feed
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">
+                    Monetize Your <span class="text-blue-600">Language Skills</span>.<br/>
+                    <span class="relative inline-block">
+                        <span class="absolute inset-x-0 bottom-2 h-3 bg-yellow-200 -z-10 opacity-60"></span>
+                        Precision Matched
+                    </span> by AI.
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+                    We scan 100+ career pages so you don't have to. Only <b>verified</b> multilingual remote roles. Zero spam.
+                </p>
+            </div>
+        </div>
+
+        <!-- Jobs -->
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-xl font-bold text-slate-900 mb-6">Latest Matches <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2 py-1 rounded-full ml-2">5</span></h2>
+
+            <div class="space-y-4">
+                <!-- Job Card 1 -->
+                <div class="bg-white rounded-xl p-6 border border-yellow-400 shadow-lg hover:shadow-xl transition">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">FEATURED</div>
+                    <div class="flex gap-5">
+                        <div class="w-16 h-16 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-2xl">TF</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-1">Senior Full Stack Engineer</h3>
+                                    <div class="text-sm text-slate-600">TechFlow EU • Direct Career Page</div>
+                                </div>
+                                <div class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-sm">€75,000 - €110,000</div>
+                            </div>
+                            <div class="flex gap-4 text-sm text-slate-500 mb-3">
+                                <span>📍 Remote (EU Timezone)</span>
+                                <span>💼 Full-time</span>
+                                <span>🕐 10m ago</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded text-xs text-slate-500 italic mb-4">
+                                🤖 Requires native Mandarin for APAC banking integration team.
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t">
+                                <div class="flex gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">Chinese (Mandarin)</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">React</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">Node.js</span>
+                                </div>
+                                <button class="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600">Apply Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition">
+                    <div class="flex gap-5">
+                        <div class="w-16 h-16 rounded-xl bg-purple-600 flex items-center justify-center text-white font-bold text-2xl">CS</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-1">Customer Success Manager (APAC)</h3>
+                                    <div class="text-sm text-slate-600">CloudScale • LinkedIn Verified</div>
+                                </div>
+                                <div class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-sm">$55,000 - $80,000</div>
+                            </div>
+                            <div class="flex gap-4 text-sm text-slate-500 mb-3">
+                                <span>📍 Remote (Global)</span>
+                                <span>💼 Contract</span>
+                                <span>🕐 45m ago</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded text-xs text-slate-500 italic mb-4">
+                                🤖 Handling enterprise clients in Seoul. B2B SaaS experience critical.
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t">
+                                <div class="flex gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">Korean</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">SaaS</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">Support</span>
+                                </div>
+                                <button class="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600">Apply Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition">
+                    <div class="flex gap-5">
+                        <div class="w-16 h-16 rounded-xl bg-red-500 flex items-center justify-center text-white font-bold text-2xl">GW</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-1">Localization Specialist & QA</h3>
+                                    <div class="text-sm text-slate-600">GameWorld • Aggregated</div>
+                                </div>
+                                <div class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-sm">€40,000 - €65,000</div>
+                            </div>
+                            <div class="flex gap-4 text-sm text-slate-500 mb-3">
+                                <span>📍 Remote (Flexible)</span>
+                                <span>💼 Freelance</span>
+                                <span>🕐 2h ago</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded text-xs text-slate-500 italic mb-4">
+                                🤖 RPG game text translation and cultural adaptation.
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t">
+                                <div class="flex gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">Japanese</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">Gaming</span>
+                                    <span class="px-2.5 py-0.5 rounded-md text-xs bg-slate-100 text-slate-600">Translation</span>
+                                </div>
+                                <button class="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600">Apply Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center bg-blue-50 border-2 border-blue-200 rounded-xl p-8">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">🚀 这是静态预览版</h3>
+                <p class="text-blue-700 mb-4">完整版本正在安装依赖中... npm install 由于网络原因较慢</p>
+                <p class="text-sm text-blue-600">完整版将包含：实时 Supabase 数据、筛选功能、弹窗交互等</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-slate-200 py-12 mt-12">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <p class="text-slate-500 text-sm">&copy; 2025 RemoteLingo. Powered by AI Precision Matching.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
