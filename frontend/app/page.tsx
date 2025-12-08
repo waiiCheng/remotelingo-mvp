@@ -763,6 +763,12 @@ export default function RemoteLingoMVP() {
             const response = await fetch(GOOGLE_SHEET_CSV_URL);
             const csvText = await response.text();
 
+            // Check if response is HTML (error page) instead of CSV
+            if (csvText.trim().startsWith('<') || csvText.includes('<!DOCTYPE') || csvText.includes('<html')) {
+              console.warn('⚠️ Google Sheets returned HTML instead of CSV, using fallback data...');
+              throw new Error('Invalid CSV format - received HTML');
+            }
+
             // Robust CSV Parser (handles quoted values correctly)
             const parseJobsFromCSV = (csvText: string) => {
               try {
