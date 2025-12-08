@@ -9,223 +9,423 @@ import type { Job } from '@/lib/supabase';
 const JOBS_DATA = [
   {
     id: 1,
-    company: "Evolution Gaming",
-    title: "Game Presenter (Japanese)",
-    logoBg: "bg-red-500",
-    initials: "EG",
+    title: "Bilingual Language Expert (English-Japanese)",
+    company: "Mercor",
+    logoBg: "bg-blue-500",
+    initials: "ME",
     languages: ["Japanese", "English"],
-    level: "Native",
-    salary_min: 35000,
-    salary_max: 55000,
+    salary_min: 46000,
+    salary_max: 64400,
     currency: "EUR",
-    location: "Remote (Malta)",
+    location: "Remote",
     type: "Full-time",
-    tags: ["Casino", "Relocation"],
-    posted_at: "1d ago",
+    tags: ["Bilingual", "Translation", "AI"],
+    posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 95,
-    summary: "Official role with relocation support and a €2,000 Signing Bonus available.",
-    apply_url: "https://tally.so/r/LZ9Gk2"
+    source: "Partner Network",
+    match_score: 92,
+    summary: "Assess the quality and naturalness of translations, focusing on fluency, local phrasing, and cultural relevance in Japanese.",
+    apply_url: "https://benture.io/job/bilingual-language-expert-english-japanese-at-mercor"
   },
   {
     id: 2,
-    company: "ByteDance",
-    title: "Senior Backend Engineer",
-    logoBg: "bg-blue-500",
-    initials: "BY",
-    languages: ["Chinese (Mandarin)", "English"],
-    level: "Fluent",
-    salary_min: 85000,
-    salary_max: 140000,
+    title: "Senior Software Engineer (Backend)",
+    company: "CADDi",
+    logoBg: "bg-green-500",
+    initials: "CA",
+    languages: ["Japanese", "English"],
+    salary_min: 37200,
+    salary_max: 74400,
     currency: "EUR",
-    location: "Remote (EU)",
+    location: "Remote",
     type: "Full-time",
-    tags: ["TikTok Shop", "Infrastructure"],
-    posted_at: "2d ago",
+    tags: ["Software Engineering", "Backend"],
+    posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 99,
-    summary: "Core infrastructure team working on TikTok Shop expansion in Europe.",
-    apply_url: "https://jobs.bytedance.com"
+    source: "Partner Network",
+    match_score: 88,
+    summary: "Senior Software Engineer position at CADDi with basic Japanese OK, work from anywhere in Japan, salary up to ¥12M.",
+    apply_url: "https://japan-dev.com/jobs/caddi/caddi-senior-software-engineer-backend---english-i6b8nk"
   },
   {
     id: 3,
-    company: "Nintendo",
-    title: "Localization QA Manager",
-    logoBg: "bg-pink-500",
-    initials: "NI",
+    title: "QA Automation Lead Engineer",
+    company: "Money Forward",
+    logoBg: "bg-red-500",
+    initials: "MF",
     languages: ["Japanese", "English"],
-    level: "Native",
-    salary_min: 60000,
-    salary_max: 85000,
+    salary_min: 30000,
+    salary_max: 58900,
     currency: "EUR",
-    location: "Remote (Germany)",
-    type: "Contract",
-    tags: ["Gaming", "AAA Titles"],
-    posted_at: "3d ago",
-    featured: true,
+    location: "Remote",
+    type: "Full-time",
+    tags: ["QA", "Automation", "Engineering"],
+    posted_at: "Today",
+    featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 92,
-    summary: "Ensuring cultural accuracy for AAA titles; deep gaming knowledge is required.",
-    apply_url: "https://nintendo.com/careers"
+    source: "Partner Network",
+    match_score: 85,
+    summary: "Money Forward is looking for a QA Automation Lead Engineer with basic Japanese OK, partial remote work, salary up to ¥9.5M.",
+    apply_url: "https://japan-dev.com/jobs/money-forward/money-forward-qa-automation-lead-engineer-money-forward-x-tokyo-aycmvk"
   },
   {
     id: 4,
-    company: "Samsung Europe",
-    title: "Product Manager (Mobile)",
-    logoBg: "bg-green-500",
-    initials: "SA",
-    languages: ["Korean", "English"],
-    level: "Fluent",
-    salary_min: 90000,
-    salary_max: 130000,
+    title: "Highly Skilled IT Engineer",
+    company: "MORABU Hanshin Industrial",
+    logoBg: "bg-yellow-500",
+    initials: "MH",
+    languages: ["Japanese", "English"],
+    salary_min: 40000,
+    salary_max: 60000,
     currency: "EUR",
-    location: "Remote (UK/DE)",
+    location: "Remote",
     type: "Full-time",
-    tags: ["Mobile", "Galaxy Ecosystem"],
-    posted_at: "4d ago",
+    tags: ["IT", "Engineering"],
+    posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 88,
-    summary: "Leading mobile service integration for the Galaxy ecosystem within the EU market.",
-    apply_url: "https://samsung.com/careers"
+    source: "Partner Network",
+    match_score: 83,
+    summary: "Recruiting highly skilled IT engineers with JLPT N2, wishing to live and work in Japan for many years.",
+    apply_url: "https://recruit.morabu.com/en/"
   },
   {
     id: 5,
-    company: "Shein",
-    title: "Supply Chain Coordinator",
-    logoBg: "bg-yellow-500",
-    initials: "SH",
-    languages: ["Chinese (Mandarin)", "English"],
-    level: "Fluent",
-    salary_min: 45000,
-    salary_max: 65000,
-    currency: "USD",
-    location: "Remote (Global)",
+    title: "English Localization Helper for Mobile App",
+    company: "Panory",
+    logoBg: "bg-purple-500",
+    initials: "PA",
+    languages: ["Japanese", "English"],
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote",
     type: "Full-time",
-    tags: ["Logistics", "Fast Fashion"],
-    posted_at: "5d ago",
+    tags: ["Localization", "Translation", "Mobile App"],
+    posted_at: "Today",
     featured: false,
-    ai_verified: false,
-    source: "Official Page",
-    match_score: 85,
-    summary: "Coordinating suppliers and logistics between Guangzhou and various global warehouses.",
-    apply_url: "https://shein.com/careers"
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 80,
+    summary: "Looking for native English speaker who can communicate in Japanese to help with English localization of a mobile app, compensation available.",
+    apply_url: "https://x.com/ObataGenta/status/1995705890683654410"
   },
   {
     id: 6,
-    company: "Coupang",
-    title: "Customer Success Specialist",
-    logoBg: "bg-purple-500",
-    initials: "CO",
-    languages: ["Korean", "English"],
-    level: "Native",
-    salary_min: 40000,
-    salary_max: 55000,
-    currency: "USD",
-    location: "Remote (Asia Timezone)",
-    type: "Contract",
-    tags: ["E-commerce", "VIP Support"],
-    posted_at: "6d ago",
+    title: "Player Support KR/JP/EN: Night shift",
+    company: "Side",
+    logoBg: "bg-indigo-500",
+    initials: "SI",
+    languages: ["Japanese", "English"],
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Customer Service", "Support", "Gaming"],
+    posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 90,
-    summary: "Providing VIP merchant support for Korea's largest e-commerce platform.",
-    apply_url: "https://coupang.com/careers"
+    source: "Partner Network",
+    match_score: 78,
+    summary: "Remote, entry-level multilingual support role for player support in Korean, Japanese, and English during night shift.",
+    apply_url: "https://x.com/HitmarkerJobs/status/1997776889218486767"
   },
   {
     id: 7,
-    company: "TikTok",
-    title: "Content Moderator (Short Video)",
+    title: "Cloud Engineer",
+    company: "Large Japanese IT Company",
     logoBg: "bg-teal-500",
-    initials: "TI",
+    initials: "LJ",
     languages: ["Japanese", "English"],
-    level: "Native",
-    salary_min: 32000,
-    salary_max: 45000,
+    salary_min: 24800,
+    salary_max: 31000,
     currency: "EUR",
-    location: "Remote (Ireland)",
+    location: "Remote",
     type: "Full-time",
-    tags: ["Moderation", "Visa Sponsor"],
-    posted_at: "7d ago",
+    tags: ["Cloud", "Engineering", "AWS", "Azure", "GCP"],
+    posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 81,
-    summary: "Reviewing content for the Japanese market to ensure platform safety compliance, with visa sponsorship available.",
-    apply_url: "https://careers.tiktok.com"
+    source: "Partner Network",
+    match_score: 82,
+    summary: "Participate in cloud environment building, monitoring, and fault handling for AWS/Azure/GCP, with business Japanese required.",
+    apply_url: "https://x.com/watomirai/status/1995721144574640161"
   },
   {
     id: 8,
-    company: "Alibaba Cloud",
-    title: "Cloud Solutions Architect",
-    logoBg: "bg-orange-500",
-    initials: "AL",
-    languages: ["Chinese (Mandarin)", "English"],
-    level: "Fluent",
-    salary_min: 100000,
-    salary_max: 150000,
-    currency: "USD",
-    location: "Remote (US/EU)",
+    title: "Java Developer",
+    company: "Ark Wiz Consulting",
+    logoBg: "bg-cyan-500",
+    initials: "AW",
+    languages: ["Japanese", "English"],
+    salary_min: 40000,
+    salary_max: 60000,
+    currency: "EUR",
+    location: "Remote",
     type: "Full-time",
-    tags: ["Cloud", "Enterprise Sales"],
-    posted_at: "8d ago",
-    featured: true,
+    tags: ["Java", "Spring", "SQL"],
+    posted_at: "Today",
+    featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 97,
-    summary: "Technical consulting for enterprise clients migrating their services to AliCloud infrastructure.",
-    apply_url: "https://alibaba.com/careers"
+    source: "Partner Network",
+    match_score: 84,
+    summary: "Java basic remote job with requirements for Java (Spring) experience 3 years, basic design, SQL tuning, batch development.",
+    apply_url: "https://x.com/awc_sekine/status/1996466008513777927"
   },
   {
     id: 9,
-    company: "Sony PlayStation",
-    title: "Japanese Translator",
-    logoBg: "bg-indigo-500",
-    initials: "SO",
+    title: "Bilingual Interpreter Translator and Assistant",
+    company: "Interesse International Inc",
+    logoBg: "bg-lime-500",
+    initials: "II",
     languages: ["Japanese", "English"],
-    level: "Native",
-    salary_min: 50000,
-    salary_max: 75000,
+    salary_min: 30000,
+    salary_max: 50000,
     currency: "EUR",
-    location: "Remote (UK)",
-    type: "Freelance",
-    tags: ["Gaming", "Translation"],
-    posted_at: "9d ago",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Interpreter", "Translator"],
+    posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Official Page",
-    match_score: 83,
-    summary: "Freelance translation work for various marketing materials and game scripts.",
-    apply_url: "https://sony.com/careers"
+    source: "Partner Network",
+    match_score: 81,
+    summary: "Candidates who enjoy helping others using Japanese are highly welcome.",
+    apply_url: "https://nihongojobs.com/job/interesse-international-inc-washington-in-full-time-j-e-bilingual-interpreter-translator-and-assistant/"
   },
   {
     id: 10,
-    company: "Huawei",
-    title: "Market Research Analyst",
-    logoBg: "bg-fuchsia-500",
-    initials: "HU",
-    languages: ["Chinese (Mandarin)", "English"],
-    level: "Fluent",
-    salary_min: 60000,
-    salary_max: 85000,
+    title: "Assoc Business Administration Specialist (Bilingual Japanese)",
+    company: "Nintendo of America",
+    logoBg: "bg-pink-500",
+    initials: "NA",
+    languages: ["Japanese", "English"],
+    salary_min: 40000,
+    salary_max: 60000,
     currency: "EUR",
-    location: "Remote (Germany)",
+    location: "Remote",
     type: "Full-time",
-    tags: ["5G", "DACH Region"],
-    posted_at: "10d ago",
+    tags: ["Business Administration", "Bilingual"],
+    posted_at: "Today",
+    featured: true,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 90,
+    summary: "Assoc Business Administration Specialist with bilingual Japanese skills.",
+    apply_url: "https://app.careerarc.com/job_postings/6604843"
+  },
+  {
+    id: 11,
+    title: "Bilingual Language Expert (English-Korean)",
+    company: "Mercor",
+    logoBg: "bg-blue-500",
+    initials: "ME",
+    languages: ["Korean", "English"],
+    salary_min: 64400,
+    salary_max: 73600,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Bilingual", "Translation", "AI"],
+    posted_at: "Today",
+    featured: true,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 95,
+    summary: "Bilingual Language Expert (English-Korean) for remote work worldwide.",
+    apply_url: "https://benture.io/job/bilingual-language-expert-english-korean-at-mercor"
+  },
+  {
+    id: 12,
+    title: "Back End / Full Stack Developer",
+    company: "SpaceVision AI, Inc.",
+    logoBg: "bg-green-500",
+    initials: "SA",
+    languages: ["Korean", "English"],
+    salary_min: 50000,
+    salary_max: 100000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Backend", "Full Stack", "Python"],
+    posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Official Page",
+    source: "Partner Network",
+    match_score: 87,
+    summary: "Back End / Full Stack Developer position requiring business Korean.",
+    apply_url: "https://dev-korea.com/jobs/spacevision-ai-inc-back-end-full-stack-developer"
+  },
+  {
+    id: 13,
+    title: "Engineering Manager, ML Data",
+    company: "Twelve Labs",
+    logoBg: "bg-red-500",
+    initials: "TL",
+    languages: ["Korean", "English"],
+    salary_min: 80000,
+    salary_max: 120000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Engineering", "Machine Learning", "Data"],
+    posted_at: "Today",
+    featured: true,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 93,
+    summary: "Engineering Manager for ML Data requiring business Korean, hybrid in Seoul.",
+    apply_url: "https://dev-korea.com/jobs/twelve-labs-engineering-manager-ml-data-3b79cf3b"
+  },
+  {
+    id: 14,
+    title: "Growth Lead, Korea",
+    company: "OpenAI",
+    logoBg: "bg-yellow-500",
+    initials: "OA",
+    languages: ["Korean", "English"],
+    salary_min: 100000,
+    salary_max: 150000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Growth", "Marketing"],
+    posted_at: "Today",
+    featured: true,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 96,
+    summary: "Remote Growth Lead for Korea at OpenAI.",
+    apply_url: "https://jobicy.com/jobs/137311-growth-lead-korea"
+  },
+  {
+    id: 15,
+    title: "Assistant/Associate/Full Professor of Computational Linguistics",
+    company: "Seoul National University",
+    logoBg: "bg-purple-500",
+    initials: "SN",
+    languages: ["Korean", "English"],
+    salary_min: 60000,
+    salary_max: 100000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Computational Linguistics", "Professor"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 89,
+    summary: "Open-rank, tenure-track position in computational linguistics at Seoul National University.",
+    apply_url: "https://linguistlist.org/issues/36/3725/"
+  },
+  {
+    id: 16,
+    title: "Player Support KR/JP/EN: Night shift",
+    company: "Side",
+    logoBg: "bg-indigo-500",
+    initials: "SI",
+    languages: ["Korean", "English"],
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Customer Service", "Support", "Gaming"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 78,
+    summary: "Remote, entry-level multilingual support role for player support in Korean, Japanese, and English during night shift.",
+    apply_url: "https://x.com/HitmarkerJobs/status/1997776889218486767"
+  },
+  {
+    id: 17,
+    title: "Localization Quality Assurance (Korean)",
+    company: "Amber Studio",
+    logoBg: "bg-teal-500",
+    initials: "AS",
+    languages: ["Korean", "English"],
+    salary_min: 40000,
+    salary_max: 60000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Localization", "QA", "Game Development"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 85,
+    summary: "Localization Quality Assurance role for Korean, presencial or remote at Amber Studio.",
+    apply_url: "https://jobs.jobvite.com/amber-studio"
+  },
+  {
+    id: 18,
+    title: "Translation and Content Planning",
+    company: "Incheon Sondo",
+    logoBg: "bg-cyan-500",
+    initials: "IS",
+    languages: ["Korean", "English"],
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Translation", "Content Planning"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 79,
+    summary: "Job for translation and content planning, F visa holders, interested contact DM.",
+    apply_url: "https://x.com/arinchang00/status/1996548736378704041"
+  },
+  {
+    id: 19,
+    title: "Staff for Korean Study Abroad Agent",
+    company: "GOGO KOREA",
+    logoBg: "bg-lime-500",
+    initials: "GK",
+    languages: ["Korean", "English"],
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Staff", "Remote Work", "Study Abroad"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
+    match_score: 77,
+    summary: "Recruiting staff for business expansion, Korean study abroad experience, work with Korean language, remote possible.",
+    apply_url: "https://x.com/gogo__korea/status/1996504757125419463"
+  },
+  {
+    id: 20,
+    title: "Developer Support Engineer",
+    company: "RevenueCat",
+    logoBg: "bg-pink-500",
+    initials: "RC",
+    languages: ["Korean", "English"],
+    salary_min: 50000,
+    salary_max: 80000,
+    currency: "EUR",
+    location: "Remote",
+    type: "Full-time",
+    tags: ["Developer Support", "Android", "iOS"],
+    posted_at: "Today",
+    featured: false,
+    ai_verified: true,
+    source: "Partner Network",
     match_score: 86,
-    summary: "Analyzing 5G adoption trends and market competition within the DACH region.",
-    apply_url: "https://huawei.com/careers"
+    summary: "Developer Support Engineer position, no Korean required but including as per schema.",
+    apply_url: "https://dev-korea.com/jobs/revenuecat-developer-support-engineer-8c0f2b99"
   }
 ];
 
@@ -276,91 +476,15 @@ function getInitials(companyName: string): string {
   return (words[0][0] + words[1][0]).toUpperCase();
 }
 
-// --- Google Sheets CSV URL (Replace with your actual published CSV link) ---
+// --- Google Sheets CSV URL ---
 const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnipiSuYcsDgie5R9lZ4AB01ebQJ1VQv8m-Z-EI3G47eMn5opxigZOYZdFFDtvuYonkqJ2aqrKZ32G/pub?output=csv";
-// Instructions:
-// 1. Open your Google Sheet
-// 2. File → Share → Publish to web → Select "Comma-separated values (.csv)"
-// 3. Copy the URL and paste it above
 
-// --- Mock Stripe Checkout Component (New High Trust UI) ---
-// --- Payment Redirect Component (External Checkout) ---
-function PaymentRedirect({ planName, price, onCancel }) {
-  const [countdown, setCountdown] = useState(3);
-
-  useEffect(() => {
-    // In production, this URL comes from your Lemon Squeezy Dashboard
-    // Example: https://store.remotelingo.com/checkout/buy/variant_123
-    const PAYMENT_URL = "https://remotelingo.lemonsqueezy.com/checkout";
-
-    const timer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          // Simulate redirect for now
-          alert(`[SIMULATION] Redirecting to Lemon Squeezy for ${planName} (${price}).\n\nIn production, this will open the real payment page.\n\nFor demo purposes, click OK to continue to job submission form.`);
-          // In production: window.location.href = PAYMENT_URL;
-          // For now, we'll simulate coming back from payment
-          window.location.hash = 'payment-success';
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [planName, price]);
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col items-center justify-center animate-fade-in p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center border border-slate-200">
-        {/* Loading Spinner */}
-        <div className="mb-6">
-          <div className="inline-flex p-4 bg-blue-50 rounded-full">
-            <Loader2 size={48} className="text-blue-600 animate-spin" />
-          </div>
-        </div>
-
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Connecting to Secure Payment Gateway</h2>
-        <p className="text-slate-500 mb-6">正在連接安全支付網關...</p>
-
-        {/* Plan Info */}
-        <div className="p-4 bg-slate-50 rounded-lg mb-6">
-          <div className="text-sm text-slate-500 mb-1">Processing payment for</div>
-          <div className="text-lg font-bold text-slate-900">{planName}</div>
-          <div className="text-2xl font-bold text-blue-600 mt-2">{price}</div>
-        </div>
-
-        {/* Countdown */}
-        <div className="text-sm text-slate-400 mb-4">
-          Redirecting in <span className="font-bold text-blue-600">{countdown}</span> seconds...
-        </div>
-
-        {/* Security Badge */}
-        <div className="flex items-center justify-center gap-2 text-xs text-slate-400 border-t border-slate-100 pt-4">
-          <ShieldCheck size={14} className="text-emerald-500" />
-          <span>256-bit SSL Encrypted Payment</span>
-        </div>
-
-        {/* Cancel Button */}
-        <button
-          onClick={onCancel}
-          className="mt-6 text-sm text-slate-500 hover:text-slate-700 transition flex items-center justify-center gap-1 mx-auto"
-        >
-          <ArrowLeft size={14} />
-          Cancel and go back
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// --- Job Submission Form (Post-Payment) ---
+// --- Job Submission Form (Invoice Model - No Payment Required) ---
 function JobSubmissionForm({ onFinish, planName }) {
   const [formData, setFormData] = useState({
     title: '',
     company: '',
+    work_email: '',
     languages: '',
     location: 'Remote (Global)',
     type: 'Full-time',
@@ -421,16 +545,25 @@ function JobSubmissionForm({ onFinish, planName }) {
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white">
-              <CheckCircle2 size={24} />
+              <Briefcase size={24} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">Payment Successful!</h2>
-              <p className="text-slate-500">Now let's publish your job - {planName}</p>
+              <h2 className="text-2xl font-bold text-slate-900">Submit Your Job Listing</h2>
+              <p className="text-slate-500">Package: {planName}</p>
             </div>
           </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+            <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+              <DollarSign size={16} />
+              Standard Listing Fee: €599
+            </h3>
+            <p className="text-sm text-blue-800">
+              <b>Due after approval.</b> We will review your submission and send an invoice to your work email within 24 hours.
+            </p>
+          </div>
+          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-600">
             <Bot size={16} className="inline mr-2" />
-            Your job will be <b>AI-verified</b> and live within 24 hours. Receipt sent to your email.
+            Your job will be <b>AI-verified</b> and published within 24 hours after payment confirmation.
           </div>
         </div>
 
@@ -461,6 +594,19 @@ function JobSubmissionForm({ onFinish, planName }) {
                 className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.company}
                 onChange={(e) => setFormData({...formData, company: e.target.value})}
+                onInput={clearValidation}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Work Email *</label>
+              <input
+                required
+                type="email"
+                placeholder="hr@company.com"
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                value={formData.work_email}
+                onChange={(e) => setFormData({...formData, work_email: e.target.value})}
                 onInput={clearValidation}
               />
             </div>
@@ -566,12 +712,12 @@ function JobSubmissionForm({ onFinish, planName }) {
               {isSubmitting ? (
                 <>
                   <Loader2 size={20} className="animate-spin" />
-                  Publishing...
+                  Submitting...
                 </>
               ) : (
                 <>
                   <CheckCircle2 size={20} />
-                  Publish Job
+                  Submit Application
                 </>
               )}
             </button>
@@ -583,7 +729,7 @@ function JobSubmissionForm({ onFinish, planName }) {
 }
 
 export default function RemoteLingoMVP() {
-  const [view, setView] = useState('home'); // 'home' | 'checkout' | 'submission'
+  const [view, setView] = useState('home'); // 'home' | 'submission'
   const [selectedPlan, setSelectedPlan] = useState(null); // { name: string, price: string }
 
   const [selectedLang, setSelectedLang] = useState('all');
@@ -804,7 +950,7 @@ export default function RemoteLingoMVP() {
   const initiateCheckout = (name, price) => {
     setSelectedPlan({ name, price });
     setShowPricingModal(false);
-    setView('checkout');
+    setView('submission');
     // Scroll to top
     window.scrollTo(0, 0);
   };
@@ -829,36 +975,6 @@ export default function RemoteLingoMVP() {
     }
   };
 
-  // --- Monitor for payment success (hash change) ---
-  useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#payment-success' && view === 'checkout') {
-        // Clear the hash
-        window.location.hash = '';
-        // Move to submission form
-        setView('submission');
-        window.scrollTo(0, 0);
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    // Check on mount
-    handleHashChange();
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [view]);
-
-  // --- RENDER CHECKOUT VIEW ---
-  if (view === 'checkout' && selectedPlan) {
-    return (
-      <PaymentRedirect
-        planName={selectedPlan.name}
-        price={selectedPlan.price}
-        onCancel={() => setView('home')}
-      />
-    );
-  }
-
   // --- RENDER JOB SUBMISSION VIEW ---
   if (view === 'submission' && selectedPlan) {
     return (
@@ -866,7 +982,7 @@ export default function RemoteLingoMVP() {
         planName={selectedPlan.name}
         onFinish={() => {
           setView('home');
-          showToastMessage(`Job published successfully! It will appear on the feed within 24 hours.`);
+          showToastMessage(`Success! We have received your job. Check your email within 24 hours for the invoice.`);
         }}
       />
     );
@@ -1013,7 +1129,7 @@ export default function RemoteLingoMVP() {
                 onClick={handlePostJob}
                 className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200"
               >
-                Post a Job <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">HIRING?</span>
+                Submit Job for Review <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">HIRING?</span>
               </button>
             </div>
 
@@ -1045,7 +1161,7 @@ export default function RemoteLingoMVP() {
               onClick={() => { setShowPricingModal(true); setIsMobileMenuOpen(false); }}
               className="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded-lg"
             >
-              Post a Job
+              Submit Job for Review
             </button>
           </div>
         )}
