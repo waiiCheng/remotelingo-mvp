@@ -728,6 +728,28 @@ function JobSubmissionForm({ onFinish, planName }) {
   );
 }
 
+// 🔥 Explicit Color Registry - Forces Tailwind JIT to compile these classes
+const BRAND_COLORS: Record<string, string> = {
+  'bg-blue-500': 'bg-blue-500',
+  'bg-blue-600': 'bg-blue-600',
+  'bg-green-500': 'bg-green-500',
+  'bg-emerald-500': 'bg-emerald-500',
+  'bg-red-500': 'bg-red-500',
+  'bg-yellow-500': 'bg-yellow-500',
+  'bg-yellow-600': 'bg-yellow-600',
+  'bg-purple-500': 'bg-purple-500',
+  'bg-purple-600': 'bg-purple-600',
+  'bg-indigo-500': 'bg-indigo-500',
+  'bg-indigo-600': 'bg-indigo-600',
+  'bg-teal-500': 'bg-teal-500',
+  'bg-cyan-500': 'bg-cyan-500',
+  'bg-lime-500': 'bg-lime-500',
+  'bg-pink-500': 'bg-pink-500',
+  'bg-pink-600': 'bg-pink-600',
+  'bg-orange-500': 'bg-orange-500',
+  'bg-slate-800': 'bg-slate-800',
+};
+
 export default function RemoteLingoMVP() {
   const [view, setView] = useState('home'); // 'home' | 'submission'
   const [selectedPlan, setSelectedPlan] = useState(null); // { name: string, price: string }
@@ -1331,7 +1353,7 @@ export default function RemoteLingoMVP() {
 
                 <div className="flex flex-col sm:flex-row gap-5">
                   {/* Dynamic Colored Logo */}
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${job.logoBg || job.color || 'bg-blue-600'} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${BRAND_COLORS[job.logoBg] || BRAND_COLORS[job.color] || 'bg-blue-600'} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
                     {job.initials || job.logo || job.company.substring(0,2)}
                   </div>
 
