@@ -728,26 +728,58 @@ function JobSubmissionForm({ onFinish, planName }) {
   );
 }
 
-// 🔥 Explicit Color Registry - Forces Tailwind JIT to compile these classes
-const BRAND_COLORS: Record<string, string> = {
-  'bg-blue-500': 'bg-blue-500',
-  'bg-blue-600': 'bg-blue-600',
-  'bg-green-500': 'bg-green-500',
-  'bg-emerald-500': 'bg-emerald-500',
-  'bg-red-500': 'bg-red-500',
-  'bg-yellow-500': 'bg-yellow-500',
-  'bg-yellow-600': 'bg-yellow-600',
-  'bg-purple-500': 'bg-purple-500',
-  'bg-purple-600': 'bg-purple-600',
-  'bg-indigo-500': 'bg-indigo-500',
-  'bg-indigo-600': 'bg-indigo-600',
-  'bg-teal-500': 'bg-teal-500',
-  'bg-cyan-500': 'bg-cyan-500',
-  'bg-lime-500': 'bg-lime-500',
-  'bg-pink-500': 'bg-pink-500',
-  'bg-pink-600': 'bg-pink-600',
-  'bg-orange-500': 'bg-orange-500',
-  'bg-slate-800': 'bg-slate-800',
+// 🔥 Broad-spectrum Color Registry - Handles all possible input formats
+const COLOR_REGISTRY: Record<string, string> = {
+  // Core color names (simple format)
+  blue: "bg-blue-500",
+  green: "bg-green-500",
+  red: "bg-red-500",
+  yellow: "bg-yellow-500",
+  purple: "bg-purple-500",
+  indigo: "bg-indigo-500",
+  teal: "bg-teal-500",
+  cyan: "bg-cyan-500",
+  lime: "bg-lime-500",
+  pink: "bg-pink-500",
+  orange: "bg-orange-500",
+  slate: "bg-slate-800",
+  emerald: "bg-emerald-500",
+
+  // Full Tailwind class names (for direct mapping)
+  "bg-blue-500": "bg-blue-500",
+  "bg-blue-600": "bg-blue-600",
+  "bg-green-500": "bg-green-500",
+  "bg-emerald-500": "bg-emerald-500",
+  "bg-red-500": "bg-red-500",
+  "bg-yellow-500": "bg-yellow-500",
+  "bg-yellow-600": "bg-yellow-600",
+  "bg-purple-500": "bg-purple-500",
+  "bg-purple-600": "bg-purple-600",
+  "bg-indigo-500": "bg-indigo-500",
+  "bg-indigo-600": "bg-indigo-600",
+  "bg-teal-500": "bg-teal-500",
+  "bg-cyan-500": "bg-cyan-500",
+  "bg-lime-500": "bg-lime-500",
+  "bg-pink-500": "bg-pink-500",
+  "bg-pink-600": "bg-pink-600",
+  "bg-orange-500": "bg-orange-500",
+  "bg-slate-800": "bg-slate-800",
+};
+
+// Data sanitizer - Normalizes any color input to valid Tailwind class
+const getSafeColorClass = (input?: string): string => {
+  if (!input) return "bg-slate-800";
+
+  // Try exact match first
+  if (COLOR_REGISTRY[input]) {
+    return COLOR_REGISTRY[input];
+  }
+
+  // Extract core color name: "bg-blue-500" -> "blue"
+  const coreColor = input.replace('bg-', '').replace(/-\d+$/, '');
+
+  // Try core color match
+  return COLOR_REGISTRY[coreColor] || "bg-slate-800";
 };
 
 export default function RemoteLingoMVP() {
@@ -1353,7 +1385,7 @@ export default function RemoteLingoMVP() {
 
                 <div className="flex flex-col sm:flex-row gap-5">
                   {/* Dynamic Colored Logo */}
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${BRAND_COLORS[job.logoBg] || BRAND_COLORS[job.color] || 'bg-blue-600'} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${getSafeColorClass(job.logoBg || job.color)} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
                     {job.initials || job.logo || job.company.substring(0,2)}
                   </div>
 
