@@ -1,12 +1,165 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck } from 'lucide-react';
-import { api } from '@/lib/api';
-import type { Job } from '@/lib/supabase';
+import React, { useState, useMemo } from 'react';
+import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck, Zap } from 'lucide-react';
 
-// --- Mock Data (FALLBACK ONLY) ---
+// --- 1. THE INVENTORY (Real Data converted from Grok) ---
+// This acts as your database for now. No SQL needed.
 const JOBS_DATA = [
+  {
+    id: 101,
+    title: "Game Presenter (Japanese/Korean)",
+    company: "Evolution",
+    logoBg: "bg-black",
+    initials: "EVO",
+    languages: ["Japanese", "Korean", "English"],
+    level: "Native",
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Malta (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Visa Sponsorship", "Relocation Package", "Entry Level"],
+    posted_at: "1h ago",
+    featured: true,
+    ai_verified: true,
+    source: "Evolution Careers",
+    match_score: 98,
+    summary: "Includes flight tickets, 2 weeks accommodation, and full visa sponsorship. Move to Europe with no coding skills required.",
+    apply_url: "https://www.evolution.com/careers"
+  },
+  {
+    id: 102,
+    title: "Risk & Fraud Analyst",
+    company: "Evolution",
+    logoBg: "bg-black",
+    initials: "EVO",
+    languages: ["Chinese", "English"],
+    level: "Native",
+    salary_min: 45000,
+    salary_max: 65000,
+    currency: "EUR",
+    location: "Lisbon/Malta (Hybrid)",
+    type: "Full-time",
+    tags: ["Fintech", "Risk", "Relocation Support"],
+    posted_at: "3h ago",
+    featured: false,
+    ai_verified: true,
+    source: "LinkedIn Verified",
+    match_score: 94,
+    summary: "Monitor real-time gaming patterns. Relocation package available for qualified Asian language speakers.",
+    apply_url: "https://www.evolution.com/careers"
+  },
+  {
+    id: 109,
+    title: "Game Presenter (Japanese/Korean/Chinese/Russian)",
+    company: "Evolution",
+    logoBg: "bg-orange-600",
+    initials: "EVO",
+    languages: ["Japanese", "Korean", "Chinese", "Russian"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Malta/Latvia/Madrid/Vancouver/Georgia/Armenia (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Gaming", "Relocation", "Visa Support"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Evolution Careers",
+    match_score: 98,
+    summary: "Entry-level role with relocation to Europe (Malta, Latvia, Madrid, Georgia, Armenia) or Canada (Vancouver). Includes visa sponsorship, flight tickets, initial accommodation, and bonuses. No experience or coding required. Positions available for Chinese (Mandarin) speakers in Vancouver; Russian speakers in Tbilisi (Georgia) and Yerevan (Armenia). Hourly pay around €7-16 or $24.75 CAD, leading to annual 30k-50k with incentives.",
+    apply_url: "https://careers.evolution.com/"
+  },
+  {
+    id: 114,
+    title: "Korean Speaking Game Presenter",
+    company: "Evolution",
+    logoBg: "bg-cyan-600",
+    initials: "EVO",
+    languages: ["Korean", "English"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 40000,
+    currency: "EUR",
+    location: "Birkirkara, Malta (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Live Casino", "Gaming", "Visa Support", "No Experience Needed"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "LinkedIn",
+    match_score: 97,
+    summary: "Host live casino games on camera, interacting with players in Korean and English. No prior experience required—full training provided. Enjoy relocation support to Malta including visa sponsorship and initial accommodation. Competitive salary with bonuses, perfect for outgoing bilingual talents seeking European opportunities.",
+    apply_url: "https://mt.linkedin.com/jobs/view/korean-speaking-game-presenter-at-evolution-4279563333"
+  },
+  {
+    id: 115,
+    title: "Japanese & English Speaking Game Presenter",
+    company: "Evolution",
+    logoBg: "bg-orange-600",
+    initials: "EVO",
+    languages: ["Japanese", "English"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 40000,
+    currency: "EUR",
+    location: "Malta (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Live Dealer", "Casino Games", "Relocation", "Bonuses"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "LinkedIn",
+    match_score: 96,
+    summary: "Become the face of live casino games, hosting on camera for global players in Japanese and English. Entry-level role with no experience needed—training included. Relocation to Malta with visa, flights, and accommodation support. Earn a solid salary plus performance incentives in a dynamic international environment.",
+    apply_url: "https://mt.linkedin.com/jobs/view/japanese-english-speaking-game-presenter-at-evolution-4279563314"
+  },
+  {
+    id: 116,
+    title: "Korean Speaking Online Game Presenter",
+    company: "Evolution Americas",
+    logoBg: "bg-orange-600",
+    initials: "EVA",
+    languages: ["Korean", "English"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 45000,
+    currency: "EUR",
+    location: "Burnaby, BC, Canada (Relocation Possible)",
+    type: "Full-time",
+    tags: ["Customer Service", "Live Streaming", "Gaming", "Bonuses"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Indeed",
+    match_score: 95,
+    summary: "Provide customer service as a live game presenter, hosting casino games on camera in Korean. Starting at $24.75/hour plus bonuses—no experience required. Opportunity in Burnaby serving Korean, Japanese, and Chinese markets. Ideal for bilingual individuals with relocation support available for international candidates.",
+    apply_url: "https://ca.indeed.com/q-chinese-game-jobs.html"
+  },
+  {
+    id: 117,
+    title: "Game Presenter with Korean",
+    company: "ARRISE",
+    logoBg: "bg-indigo-800",
+    initials: "AR",
+    languages: ["Korean", "English"],
+    level: "Entry Level",
+    salary_min: 25000,
+    salary_max: 35000,
+    currency: "EUR",
+    location: "Canada (On-Site)",
+    type: "Full-time",
+    tags: ["Live Casino", "Communication", "No Experience", "Customer Service"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "LinkedIn",
+    match_score: 94,
+    summary: "Host live games on camera with fluency in Korean and English, focusing on excellent communication and customer service. No prior experience needed—must be comfortable on camera. Entry-level role in Canada with potential for bonuses and growth in the iGaming industry.",
+    apply_url: "https://ca.linkedin.com/jobs/view/game-presenter-with-korean-at-arrise-4115197317"
+  },
   {
     id: 1,
     title: "Bilingual Language Expert (English-Japanese)",
@@ -14,6 +167,7 @@ const JOBS_DATA = [
     logoBg: "bg-blue-500",
     initials: "ME",
     languages: ["Japanese", "English"],
+    level: "Native",
     salary_min: 46000,
     salary_max: 64400,
     currency: "EUR",
@@ -35,6 +189,7 @@ const JOBS_DATA = [
     logoBg: "bg-green-500",
     initials: "CA",
     languages: ["Japanese", "English"],
+    level: "Business",
     salary_min: 37200,
     salary_max: 74400,
     currency: "EUR",
@@ -44,7 +199,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Official Career Page",
     match_score: 88,
     summary: "Senior Software Engineer position at CADDi with basic Japanese OK, work from anywhere in Japan, salary up to ¥12M.",
     apply_url: "https://japan-dev.com/jobs/caddi/caddi-senior-software-engineer-backend---english-i6b8nk"
@@ -56,6 +211,7 @@ const JOBS_DATA = [
     logoBg: "bg-red-500",
     initials: "MF",
     languages: ["Japanese", "English"],
+    level: "Business",
     salary_min: 30000,
     salary_max: 58900,
     currency: "EUR",
@@ -65,7 +221,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Official Career Page",
     match_score: 85,
     summary: "Money Forward is looking for a QA Automation Lead Engineer with basic Japanese OK, partial remote work, salary up to ¥9.5M.",
     apply_url: "https://japan-dev.com/jobs/money-forward/money-forward-qa-automation-lead-engineer-money-forward-x-tokyo-aycmvk"
@@ -77,6 +233,7 @@ const JOBS_DATA = [
     logoBg: "bg-yellow-500",
     initials: "MH",
     languages: ["Japanese", "English"],
+    level: "N2",
     salary_min: 40000,
     salary_max: 60000,
     currency: "EUR",
@@ -86,7 +243,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Direct Page",
     match_score: 83,
     summary: "Recruiting highly skilled IT engineers with JLPT N2, wishing to live and work in Japan for many years.",
     apply_url: "https://recruit.morabu.com/en/"
@@ -98,6 +255,7 @@ const JOBS_DATA = [
     logoBg: "bg-purple-500",
     initials: "PA",
     languages: ["Japanese", "English"],
+    level: "Native English",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -106,8 +264,8 @@ const JOBS_DATA = [
     tags: ["Localization", "Translation", "Mobile App"],
     posted_at: "Today",
     featured: false,
-    ai_verified: true,
-    source: "Partner Network",
+    ai_verified: false,
+    source: "Social Media",
     match_score: 80,
     summary: "Looking for native English speaker who can communicate in Japanese to help with English localization of a mobile app, compensation available.",
     apply_url: "https://x.com/ObataGenta/status/1995705890683654410"
@@ -119,6 +277,7 @@ const JOBS_DATA = [
     logoBg: "bg-indigo-500",
     initials: "SI",
     languages: ["Japanese", "English"],
+    level: "Fluent",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -128,7 +287,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "LinkedIn",
     match_score: 78,
     summary: "Remote, entry-level multilingual support role for player support in Korean, Japanese, and English during night shift.",
     apply_url: "https://x.com/HitmarkerJobs/status/1997776889218486767"
@@ -140,6 +299,7 @@ const JOBS_DATA = [
     logoBg: "bg-teal-500",
     initials: "LJ",
     languages: ["Japanese", "English"],
+    level: "Business",
     salary_min: 24800,
     salary_max: 31000,
     currency: "EUR",
@@ -149,7 +309,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Social Media",
     match_score: 82,
     summary: "Participate in cloud environment building, monitoring, and fault handling for AWS/Azure/GCP, with business Japanese required.",
     apply_url: "https://x.com/watomirai/status/1995721144574640161"
@@ -161,6 +321,7 @@ const JOBS_DATA = [
     logoBg: "bg-cyan-500",
     initials: "AW",
     languages: ["Japanese", "English"],
+    level: "Business",
     salary_min: 40000,
     salary_max: 60000,
     currency: "EUR",
@@ -170,7 +331,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Social Media",
     match_score: 84,
     summary: "Java basic remote job with requirements for Java (Spring) experience 3 years, basic design, SQL tuning, batch development.",
     apply_url: "https://x.com/awc_sekine/status/1996466008513777927"
@@ -182,6 +343,7 @@ const JOBS_DATA = [
     logoBg: "bg-lime-500",
     initials: "II",
     languages: ["Japanese", "English"],
+    level: "Fluent",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -191,7 +353,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Job Board",
     match_score: 81,
     summary: "Candidates who enjoy helping others using Japanese are highly welcome.",
     apply_url: "https://nihongojobs.com/job/interesse-international-inc-washington-in-full-time-j-e-bilingual-interpreter-translator-and-assistant/"
@@ -203,6 +365,7 @@ const JOBS_DATA = [
     logoBg: "bg-pink-500",
     initials: "NA",
     languages: ["Japanese", "English"],
+    level: "Bilingual",
     salary_min: 40000,
     salary_max: 60000,
     currency: "EUR",
@@ -212,7 +375,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Official Career Page",
     match_score: 90,
     summary: "Assoc Business Administration Specialist with bilingual Japanese skills.",
     apply_url: "https://app.careerarc.com/job_postings/6604843"
@@ -224,6 +387,7 @@ const JOBS_DATA = [
     logoBg: "bg-blue-500",
     initials: "ME",
     languages: ["Korean", "English"],
+    level: "Native",
     salary_min: 64400,
     salary_max: 73600,
     currency: "EUR",
@@ -245,6 +409,7 @@ const JOBS_DATA = [
     logoBg: "bg-green-500",
     initials: "SA",
     languages: ["Korean", "English"],
+    level: "Business",
     salary_min: 50000,
     salary_max: 100000,
     currency: "EUR",
@@ -254,7 +419,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Job Board",
     match_score: 87,
     summary: "Back End / Full Stack Developer position requiring business Korean.",
     apply_url: "https://dev-korea.com/jobs/spacevision-ai-inc-back-end-full-stack-developer"
@@ -266,6 +431,7 @@ const JOBS_DATA = [
     logoBg: "bg-red-500",
     initials: "TL",
     languages: ["Korean", "English"],
+    level: "Business",
     salary_min: 80000,
     salary_max: 120000,
     currency: "EUR",
@@ -275,7 +441,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Job Board",
     match_score: 93,
     summary: "Engineering Manager for ML Data requiring business Korean, hybrid in Seoul.",
     apply_url: "https://dev-korea.com/jobs/twelve-labs-engineering-manager-ml-data-3b79cf3b"
@@ -287,6 +453,7 @@ const JOBS_DATA = [
     logoBg: "bg-yellow-500",
     initials: "OA",
     languages: ["Korean", "English"],
+    level: "Native",
     salary_min: 100000,
     salary_max: 150000,
     currency: "EUR",
@@ -296,7 +463,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: true,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Official Career Page",
     match_score: 96,
     summary: "Remote Growth Lead for Korea at OpenAI.",
     apply_url: "https://jobicy.com/jobs/137311-growth-lead-korea"
@@ -308,6 +475,7 @@ const JOBS_DATA = [
     logoBg: "bg-purple-500",
     initials: "SN",
     languages: ["Korean", "English"],
+    level: "Academic",
     salary_min: 60000,
     salary_max: 100000,
     currency: "EUR",
@@ -317,7 +485,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Academic Network",
     match_score: 89,
     summary: "Open-rank, tenure-track position in computational linguistics at Seoul National University.",
     apply_url: "https://linguistlist.org/issues/36/3725/"
@@ -329,6 +497,7 @@ const JOBS_DATA = [
     logoBg: "bg-indigo-500",
     initials: "SI",
     languages: ["Korean", "English"],
+    level: "Fluent",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -338,7 +507,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "LinkedIn",
     match_score: 78,
     summary: "Remote, entry-level multilingual support role for player support in Korean, Japanese, and English during night shift.",
     apply_url: "https://x.com/HitmarkerJobs/status/1997776889218486767"
@@ -350,6 +519,7 @@ const JOBS_DATA = [
     logoBg: "bg-teal-500",
     initials: "AS",
     languages: ["Korean", "English"],
+    level: "Native",
     salary_min: 40000,
     salary_max: 60000,
     currency: "EUR",
@@ -359,7 +529,7 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Official Career Page",
     match_score: 85,
     summary: "Localization Quality Assurance role for Korean, presencial or remote at Amber Studio.",
     apply_url: "https://jobs.jobvite.com/amber-studio"
@@ -371,6 +541,7 @@ const JOBS_DATA = [
     logoBg: "bg-cyan-500",
     initials: "IS",
     languages: ["Korean", "English"],
+    level: "Fluent",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -379,8 +550,8 @@ const JOBS_DATA = [
     tags: ["Translation", "Content Planning"],
     posted_at: "Today",
     featured: false,
-    ai_verified: true,
-    source: "Partner Network",
+    ai_verified: false,
+    source: "Social Media",
     match_score: 79,
     summary: "Job for translation and content planning, F visa holders, interested contact DM.",
     apply_url: "https://x.com/arinchang00/status/1996548736378704041"
@@ -392,6 +563,7 @@ const JOBS_DATA = [
     logoBg: "bg-lime-500",
     initials: "GK",
     languages: ["Korean", "English"],
+    level: "Fluent",
     salary_min: 30000,
     salary_max: 50000,
     currency: "EUR",
@@ -400,8 +572,8 @@ const JOBS_DATA = [
     tags: ["Staff", "Remote Work", "Study Abroad"],
     posted_at: "Today",
     featured: false,
-    ai_verified: true,
-    source: "Partner Network",
+    ai_verified: false,
+    source: "Social Media",
     match_score: 77,
     summary: "Recruiting staff for business expansion, Korean study abroad experience, work with Korean language, remote possible.",
     apply_url: "https://x.com/gogo__korea/status/1996504757125419463"
@@ -413,6 +585,7 @@ const JOBS_DATA = [
     logoBg: "bg-pink-500",
     initials: "RC",
     languages: ["Korean", "English"],
+    level: "Fluent",
     salary_min: 50000,
     salary_max: 80000,
     currency: "EUR",
@@ -422,14 +595,292 @@ const JOBS_DATA = [
     posted_at: "Today",
     featured: false,
     ai_verified: true,
-    source: "Partner Network",
+    source: "Job Board",
     match_score: 86,
     summary: "Developer Support Engineer position, no Korean required but including as per schema.",
     apply_url: "https://dev-korea.com/jobs/revenuecat-developer-support-engineer-8c0f2b99"
+  },
+  {
+    id: 118,
+    title: "Bilingual Spanish Technical Support Specialist",
+    company: "SupportYourApp",
+    logoBg: "bg-blue-700",
+    initials: "SYA",
+    languages: ["Spanish", "English"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 45000,
+    currency: "EUR",
+    location: "Remote (Worldwide)",
+    type: "Full-time",
+    tags: ["Tech Support", "Customer Service", "Bilingual", "No Experience Needed"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Working Nomads",
+    match_score: 95,
+    summary: "Provide tech support to global clients in Spanish and English via chat/email. No prior experience required—full training and flexible remote setup. Enjoy bonuses for performance and work-life balance in a growing tech firm.",
+    apply_url: "https://www.workingnomads.com/remote-spanish-jobs"
+  },
+  {
+    id: 119,
+    title: "Remote Bilingual French Customer Service Representative",
+    company: "Concentrix",
+    logoBg: "bg-purple-700",
+    initials: "CX",
+    languages: ["French", "English"],
+    level: "Entry Level",
+    salary_min: 35000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Remote (Europe/US)",
+    type: "Full-time",
+    tags: ["Customer Service", "Bilingual", "Tech", "Flexible Hours"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Indeed",
+    match_score: 96,
+    summary: "Handle customer inquiries for tech products in French and English from home. Entry-level with paid training, bonuses, and remote perks like home office stipend. Ideal for bilingual talents seeking stable remote work.",
+    apply_url: "https://www.indeed.com/q-french-bilingual-l-remote-jobs.html"
+  },
+  {
+    id: 120,
+    title: "PHP Developer (German Speakers Welcome)",
+    company: "OnTheGoSystems",
+    logoBg: "bg-green-700",
+    initials: "OTG",
+    languages: ["German", "English"],
+    level: "Mid Level",
+    salary_min: 40000,
+    salary_max: 60000,
+    currency: "EUR",
+    location: "Remote (Worldwide)",
+    type: "Full-time",
+    tags: ["PHP", "Development", "Multilingual", "Tech"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "We Work Remotely",
+    match_score: 97,
+    summary: "Develop multilingual plugins like WPML in PHP for a remote-first team. German fluency a plus for client interactions. Competitive salary, flexible hours, and growth opportunities in a global tech environment.",
+    apply_url: "https://weworkremotely.com/remote-jobs/onthegosystems-php-developer-french-or-german-speakers"
+  },
+  {
+    id: 128,
+    title: "Russian Speaking Customer Care Representative",
+    company: "Teleperformance Greece",
+    logoBg: "bg-blue-800",
+    initials: "TPG",
+    languages: ["Russian", "English"],
+    level: "Entry Level",
+    salary_min: 20000,
+    salary_max: 30000,
+    currency: "EUR",
+    location: "Athens, Greece (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Customer Service", "Call Center", "Visa Support", "Relocation Package"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "LinkedIn",
+    match_score: 95,
+    summary: "Provide customer support in Russian for international clients. Relocation support to Athens including visa sponsorship, flights, and accommodation. Ideal for Russian speakers seeking to move to Europe with no prior experience required.",
+    apply_url: "https://gr.linkedin.com/jobs/view/russian-speaking-representatives-for-cc-roles%2Brelocation-support-at-europe-language-jobs-177094629"
+  },
+  {
+    id: 130,
+    title: "Russian Speaking Sales Associate",
+    company: "LinkedIn",
+    logoBg: "bg-blue-900",
+    initials: "LI",
+    languages: ["Russian", "English"],
+    level: "Mid Level",
+    salary_min: 40000,
+    salary_max: 60000,
+    currency: "EUR",
+    location: "Dublin, Ireland (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Sales", "Tech", "Visa Assistance", "Relocation Support"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 94,
+    summary: "Support sales operations targeting Russian markets. Relocation to Dublin with visa sponsorship and assistance. Opportunity for Russian speakers to join a global tech company in Europe.",
+    apply_url: "https://careers.linkedin.com/Locations#1"
+  },
+  {
+    id: 131,
+    title: "Customer Support Specialist (Russian)",
+    company: "Salesforce",
+    logoBg: "bg-red-800",
+    initials: "SF",
+    languages: ["Russian", "English"],
+    level: "Entry Level",
+    salary_min: 35000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Paris, France (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Customer Support", "CRM", "Visa Sponsorship", "Training Provided"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 93,
+    summary: "Handle customer inquiries in Russian for Salesforce products. Full relocation support to Paris, including visa and housing assistance. Great for relocating to Europe.",
+    apply_url: "https://careers.salesforce.com/en/our-locations/europe-middle-east-and-africa/"
+  },
+  {
+    id: 132,
+    title: "Russian Language Operations Coordinator",
+    company: "Amazon",
+    logoBg: "bg-orange-800",
+    initials: "AM",
+    languages: ["Russian", "English"],
+    level: "Mid Level",
+    salary_min: 40000,
+    salary_max: 55000,
+    currency: "EUR",
+    location: "Berlin, Germany (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Operations", "E-commerce", "Relocation Package", "Visa Support"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 95,
+    summary: "Coordinate operations for Russian-speaking markets. Relocation to Berlin with visa sponsorship and support. Ideal for Russian speakers seeking European opportunities.",
+    apply_url: "https://www.amazon.jobs/en-gb/locations/?&continent=all&cache"
+  },
+  {
+    id: 133,
+    title: "Content Moderator (Russian Speaking)",
+    company: "Meta",
+    logoBg: "bg-blue-700",
+    initials: "ME",
+    languages: ["Russian", "English"],
+    level: "Entry Level",
+    salary_min: 30000,
+    salary_max: 45000,
+    currency: "EUR",
+    location: "London, UK (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Content Moderation", "Social Media", "Visa Assistance", "Bonuses"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 92,
+    summary: "Moderate content in Russian on Meta platforms. Relocation support to London, including visa. Entry-level role for those wanting to move abroad.",
+    apply_url: "https://www.metacareers.com/jobs/?is_leadership=0&is_in_page=0"
+  },
+  {
+    id: 134,
+    title: "Russian Speaking Software Support Engineer",
+    company: "Microsoft",
+    logoBg: "bg-blue-600",
+    initials: "MS",
+    languages: ["Russian", "English"],
+    level: "Mid Level",
+    salary_min: 50000,
+    salary_max: 70000,
+    currency: "EUR",
+    location: "Prague, Czech Republic (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Tech Support", "Software", "Relocation Support", "Visa Sponsorship"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 96,
+    summary: "Provide software support in Russian. Full relocation to Prague with visa help. Opportunity for tech-savvy Russian speakers to relocate to Europe.",
+    apply_url: "https://careers.microsoft.com/v2/global/en/locations.html"
+  },
+  {
+    id: 135,
+    title: "Localization Specialist (Russian)",
+    company: "Netflix",
+    logoBg: "bg-red-900",
+    initials: "NF",
+    languages: ["Russian", "English"],
+    level: "Entry Level",
+    salary_min: 35000,
+    salary_max: 50000,
+    currency: "EUR",
+    location: "Amsterdam, Netherlands (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Localization", "Entertainment", "Visa Support", "Creative Role"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 94,
+    summary: "Localize content for Russian audiences. Relocation to Amsterdam with visa sponsorship. Perfect for language enthusiasts moving to Europe.",
+    apply_url: "https://jobs.netflix.com/region/europe-middle-east-africa"
+  },
+  {
+    id: 136,
+    title: "Russian Speaking Energy Analyst",
+    company: "BP",
+    logoBg: "bg-green-900",
+    initials: "BP",
+    languages: ["Russian", "English"],
+    level: "Mid Level",
+    salary_min: 45000,
+    salary_max: 65000,
+    currency: "EUR",
+    location: "London, UK (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Energy", "Analysis", "Relocation Package", "Visa Assistance"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 93,
+    summary: "Analyze energy markets with Russian focus. Relocation support to London, including visa. Suited for Russian speakers in energy sector relocating abroad.",
+    apply_url: "https://www.bp.com/en/global/corporate/careers.html"
+  },
+  {
+    id: 137,
+    title: "Customer Experience Specialist (Russian)",
+    company: "Google",
+    logoBg: "bg-multicolor-900",
+    initials: "GO",
+    languages: ["Russian", "English"],
+    level: "Entry Level",
+    salary_min: 40000,
+    salary_max: 55000,
+    currency: "EUR",
+    location: "Dublin, Ireland (Relocation Provided)",
+    type: "Full-time",
+    tags: ["Customer Experience", "Tech", "Visa Sponsorship", "Training"],
+    posted_at: "Recent",
+    featured: true,
+    ai_verified: true,
+    source: "Relocate.me",
+    match_score: 95,
+    summary: "Improve user experience for Russian-speaking customers. Relocation to Dublin with full visa support. Great entry into tech for relocators from Russia.",
+    apply_url: "https://www.google.com/about/careers/applications/jobs/results/"
   }
 ];
 
 // --- Constants ---
+const AUTO_COLORS = [
+  'bg-slate-800', // 黑色 (保留质感)
+  'bg-blue-600',
+  'bg-green-600',
+  'bg-red-600',
+  'bg-yellow-500',
+  'bg-purple-600',
+  'bg-pink-600',
+  'bg-indigo-600',
+  'bg-orange-500',
+  'bg-teal-600',
+  'bg-cyan-600'
+];
+
 const LANGUAGES = [
   { code: 'all', name: 'All Languages', flag: '🌍' },
   { code: 'zh', name: 'Chinese', flag: '🇨🇳' },
@@ -438,289 +889,143 @@ const LANGUAGES = [
   { code: 'de', name: 'German', flag: '🇩🇪' },
   { code: 'es', name: 'Spanish', flag: '🇪🇸' },
   { code: 'fr', name: 'French', flag: '🇫🇷' },
+  { code: 'pt', name: 'Portuguese', flag: '🇵🇹' },
+  { code: 'ar', name: 'Arabic', flag: '🇸🇦' },
+  { code: 'ru', name: 'Russian', flag: '🇷🇺' },
 ];
 
 const JOB_TYPES = ["Full-time", "Contract", "Freelance", "Part-time"];
 
-// --- Programmatic Color & Logo Generation (Fault Tolerant) ---
-const COMPANY_COLORS = ['bg-blue-600', 'bg-emerald-500', 'bg-purple-600', 'bg-orange-500', 'bg-red-500', 'bg-slate-800', 'bg-teal-500', 'bg-indigo-600', 'bg-pink-600', 'bg-yellow-600'];
+// --- 2. B2B Invoice Checkout Component (English & Professional) ---
+function InvoiceCheckout({ planName, price, onCancel, onSuccess }) {
+  const [loading, setLoading] = useState(false);
 
-/**
- * Generate deterministic color from company name using hash
- */
-function getCompanyColor(companyName: string): string {
-  if (!companyName) return 'bg-blue-600';
-
-  // Simple hash function
-  let hash = 0;
-  for (let i = 0; i < companyName.length; i++) {
-    hash = companyName.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  // Pick color from array using hash
-  const index = Math.abs(hash) % COMPANY_COLORS.length;
-  return COMPANY_COLORS[index];
-}
-
-/**
- * Generate company initials from name
- */
-function getInitials(companyName: string): string {
-  if (!companyName) return 'CO';
-
-  // Take first letter of each word (max 2)
-  const words = companyName.trim().split(/\s+/);
-  if (words.length === 1) {
-    return words[0].substring(0, 2).toUpperCase();
-  }
-  return (words[0][0] + words[1][0]).toUpperCase();
-}
-
-// --- Google Sheets CSV URL ---
-const GOOGLE_SHEET_CSV_URL: string | null = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnipiSuYcsDgie5R9lZ4AB01ebQJ1VQv8m-Z-EI3G47eMn5opxigZOYZdFFDtvuYonkqJ2aqrKZ32G/pub?output=csv";
-
-// --- Job Submission Form (Invoice Model - No Payment Required) ---
-function JobSubmissionForm({ onFinish, planName }) {
-  const [formData, setFormData] = useState({
-    title: '',
-    company: '',
-    work_email: '',
-    languages: '',
-    location: 'Remote (Global)',
-    type: 'Full-time',
-    salary_min: '',
-    salary_max: '',
-    apply_url: '',
-    description: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target;
+    setLoading(true);
 
-    // Clear any previous custom validation messages first
-    const inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-      input.setCustomValidity('');
-    });
+    const formData = new FormData(e.target);
 
-    // Check validity and set custom English messages
-    let isValid = true;
-    inputs.forEach(input => {
-      if (input.hasAttribute('required') && !input.value.trim()) {
-        input.setCustomValidity('This field is required');
-        isValid = false;
-      } else if (input.type === 'email' && input.value && !input.validity.valid) {
-        input.setCustomValidity('Please enter a valid email address');
-        isValid = false;
-      } else if (input.type === 'url' && input.value && !input.validity.valid) {
-        input.setCustomValidity('Please enter a valid URL');
-        isValid = false;
+    try {
+      const response = await fetch('https://formspree.io/f/meoyrjbz', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setLoading(false);
+        onSuccess();
+      } else {
+        setLoading(false);
+        alert('Failed to submit invoice request. Please try again.');
       }
-    });
-
-    // If form is invalid, show validation messages
-    if (!isValid) {
-      form.reportValidity();
-      return;
+    } catch (error) {
+      setLoading(false);
+      alert('Network error. Please check your connection and try again.');
     }
-
-    setIsSubmitting(true);
-    // Simulate API call to Supabase
-    setTimeout(() => {
-      setIsSubmitting(false);
-      onFinish();
-    }, 2000);
-  };
-
-  const clearValidation = (e) => {
-    e.target.setCustomValidity('');
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white">
-              <Briefcase size={24} />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900">Submit Your Job Listing</h2>
-              <p className="text-slate-500">Package: {planName}</p>
-            </div>
+    <div className="min-h-screen bg-white flex flex-col md:flex-row animate-fade-in" lang="en">
+      {/* Left Column: Product Info */}
+      <div className="w-full md:w-1/2 bg-slate-900 text-white p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+
+        <div>
+          <div className="flex items-center gap-2 mb-8 text-slate-300 cursor-pointer hover:text-white transition" onClick={onCancel}>
+            <ArrowLeft size={16} /> Back
           </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-            <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
-              <DollarSign size={16} />
-              Standard Listing Fee: €599
+
+          <div className="mb-8">
+            <h3 className="text-emerald-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+              <Zap size={14} /> Corporate Invoice
             </h3>
-            <p className="text-sm text-blue-800">
-              <b>Due after approval.</b> We will review your submission and send an invoice to your work email within 24 hours.
-            </p>
+            <h1 className="text-3xl font-bold mb-2">GlobalLingo {planName}</h1>
+            <div className="text-5xl font-bold text-white mb-2">{price}</div>
+            <p className="text-slate-400 text-sm">Flat fee for 30 days. No recurring charges.</p>
           </div>
-          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-600">
-            <Bot size={16} className="inline mr-2" />
-            Your job will be <b>AI-verified</b> and published within 24 hours after payment confirmation.
+
+          <div className="space-y-4 border-t border-slate-700 pt-6">
+            <div className="flex items-start gap-3">
+              <div className="p-1 bg-emerald-500/10 rounded-full text-emerald-400 mt-1"><Check size={14} /></div>
+              <div>
+                <p className="font-medium text-slate-200">Instant Activation</p>
+                <p className="text-sm text-slate-400">Post goes live immediately after payment.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="p-1 bg-emerald-500/10 rounded-full text-emerald-400 mt-1"><Check size={14} /></div>
+              <div>
+                <p className="font-medium text-slate-200">Guaranteed Reach</p>
+                <p className="text-sm text-slate-400">Sent to 500+ verified bilingual candidates.</p>
+              </div>
+            </div>
+             <div className="flex items-start gap-3">
+              <div className="p-1 bg-emerald-500/10 rounded-full text-emerald-400 mt-1"><Check size={14} /></div>
+              <div>
+                <p className="font-medium text-slate-200">VAT Invoice Included</p>
+                <p className="text-sm text-slate-400">Automated invoice generation for expensing.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 space-y-6" lang="en">
-          <h3 className="text-xl font-bold text-slate-900 mb-4">Job Details</h3>
+        <div className="mt-12 pt-6 border-t border-slate-700 text-sm text-slate-500 flex items-center gap-2">
+           <ShieldCheck size={14} /> Bank Transfer / Payoneer
+        </div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-2">Job Title *</label>
-              <input
-                required
-                type="text"
-                placeholder="e.g. Senior Frontend Engineer"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.title}
-                onChange={(e) => setFormData({...formData, title: e.target.value})}
-                onInput={clearValidation}
-              />
+      {/* Right Column: Invoice Form (English) */}
+      <div className="w-full md:w-1/2 bg-white p-8 md:p-12 flex flex-col justify-center" lang="en">
+        <form onSubmit={handleSubmit} className="max-w-md w-full mx-auto space-y-6" autoComplete="off" lang="en">
+          <div className="flex justify-between items-center mb-6">
+             <h2 className="text-xl font-bold text-slate-900">Billing Information</h2>
+          </div>
+
+          <div className="space-y-4">
+            <input type="hidden" name="plan" value={planName} />
+            <input type="hidden" name="price" value={price} />
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+              <input required type="email" name="email" placeholder="hr@company.com" autoComplete="off" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Company Name *</label>
-              <input
-                required
-                type="text"
-                placeholder="Your Company"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.company}
-                onChange={(e) => setFormData({...formData, company: e.target.value})}
-                onInput={clearValidation}
-              />
+              <label className="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+              <input required type="text" name="company_name" placeholder="Acme Corporation" autoComplete="off" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Work Email *</label>
-              <input
-                required
-                type="email"
-                placeholder="hr@company.com"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.work_email}
-                onChange={(e) => setFormData({...formData, work_email: e.target.value})}
-                onInput={clearValidation}
-              />
+              <label className="block text-sm font-medium text-slate-700 mb-1">Billing Address *</label>
+              <textarea required name="billing_address" placeholder="123 Main St, Suite 100&#10;San Francisco, CA 94105" autoComplete="off" rows="3" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none"></textarea>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Languages Required *</label>
-              <input
-                required
-                type="text"
-                placeholder="e.g. Chinese (Mandarin), English"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.languages}
-                onChange={(e) => setFormData({...formData, languages: e.target.value})}
-                onInput={clearValidation}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Location</label>
-              <input
-                type="text"
-                placeholder="Remote (EU Timezone)"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.location}
-                onChange={(e) => setFormData({...formData, location: e.target.value})}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Job Type</label>
-              <select
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white"
-                value={formData.type}
-                onChange={(e) => setFormData({...formData, type: e.target.value})}
-              >
-                <option>Full-time</option>
-                <option>Contract</option>
-                <option>Freelance</option>
-                <option>Part-time</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Min Salary (EUR/USD)</label>
-              <input
-                type="number"
-                placeholder="60000"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.salary_min}
-                onChange={(e) => setFormData({...formData, salary_min: e.target.value})}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Max Salary (EUR/USD)</label>
-              <input
-                type="number"
-                placeholder="90000"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.salary_max}
-                onChange={(e) => setFormData({...formData, salary_max: e.target.value})}
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-2">Application URL *</label>
-              <input
-                required
-                type="url"
-                placeholder="https://yourcompany.com/careers/apply"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.apply_url}
-                onChange={(e) => setFormData({...formData, apply_url: e.target.value})}
-                onInput={clearValidation}
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-2">Job Description (Optional)</label>
-              <textarea
-                rows={4}
-                placeholder="Brief description of the role and requirements..."
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none"
-                value={formData.description}
-                onChange={(e) => setFormData({...formData, description: e.target.value})}
-              />
+              <label className="block text-sm font-medium text-slate-700 mb-1">Tax ID / VAT Number (Optional)</label>
+              <input type="text" name="tax_id" placeholder="EU123456789" autoComplete="off" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
             </div>
           </div>
 
-          <div className="flex gap-4 pt-4">
-            <button
-              type="button"
-              onClick={() => onFinish()}
-              className="flex-1 bg-slate-200 text-slate-700 font-bold py-4 rounded-lg hover:bg-slate-300 transition"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="flex-1 bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition shadow-lg flex items-center justify-center gap-2 disabled:opacity-70"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 size={20} className="animate-spin" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  <CheckCircle2 size={20} />
-                  Submit Application
-                </>
-              )}
-            </button>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-slate-900 text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
+          >
+            {loading ? <Loader2 size={20} className="animate-spin" /> : (
+              <>
+                Request Invoice & Continue
+              </>
+            )}
+          </button>
+
+          <div className="text-center text-xs text-slate-400 mt-4">
+            <Lock size={10} className="inline mr-1" />
+            Payment details will be sent to your email within 24 hours.
           </div>
         </form>
       </div>
@@ -728,41 +1033,73 @@ function JobSubmissionForm({ onFinish, planName }) {
   );
 }
 
-// 🔥 核心修复：Hex 颜色表以绕过 Tailwind JIT 的动态编译限制
-const BRAND_HEX_COLORS: Record<string, string> = {
-  // Tailwind 标准颜色的 Hex 对应
-  "bg-blue-500": "#3B82F6",
-  "bg-blue-600": "#2563EB",
-  "bg-green-500": "#22C55E",
-  "bg-emerald-500": "#10B981",
-  "bg-red-500": "#EF4444",
-  "bg-red-600": "#DC2626",
-  "bg-yellow-500": "#EAB308",
-  "bg-yellow-600": "#CA8A04",
-  "bg-purple-500": "#A855F7",
-  "bg-purple-600": "#9333EA",
-  "bg-indigo-500": "#6366F1",
-  "bg-indigo-600": "#4F46E5",
-  "bg-teal-500": "#14B8A6",
-  "bg-cyan-500": "#06B6D4",
-  "bg-lime-500": "#84CC16",
-  "bg-pink-500": "#EC4899",
-  "bg-pink-600": "#DB2777",
-  "bg-orange-500": "#F97316",
-  "bg-slate-800": "#1E293B",
-  "bg-gray-800": "#1F2937",
-  "bg-black": "#000000",
-};
+// --- 3. Job Submission Form (English) ---
+function JobSubmissionForm({ onFinish }) {
+  return (
+    <div className="min-h-screen bg-slate-50 py-12 px-4 animate-fade-in" lang="en">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+        {/* Header */}
+        <div className="bg-slate-900 p-6 text-white text-center">
+          <div className="inline-flex p-2 bg-emerald-500/20 rounded-full mb-3 text-emerald-400">
+            <CheckCircle2 size={32} />
+          </div>
+          <h2 className="text-2xl font-bold">Invoice Requested Successfully!</h2>
+          <p className="text-slate-400 text-sm">We have sent payment details to your email. Please proceed to fill in the job details.</p>
+        </div>
 
-// 辅助函数：将 Tailwind 类名转为 Hex 代码
-const getLogoColor = (tailwindClass?: string): string => {
-  if (!tailwindClass) return BRAND_HEX_COLORS["bg-gray-800"];
-  return BRAND_HEX_COLORS[tailwindClass] || BRAND_HEX_COLORS["bg-gray-800"];
-};
+        {/* Form Content */}
+        <div className="p-8">
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg flex gap-3 text-sm text-blue-800">
+             <Bot size={20} className="flex-shrink-0" />
+             <div>
+               <b>Concierge Service Active:</b> Our team will verify and index this job to Google Jobs within 24 hours.
+             </div>
+          </div>
 
-export default function RemoteLingoMVP() {
-  const [view, setView] = useState('home'); // 'home' | 'submission'
-  const [selectedPlan, setSelectedPlan] = useState(null); // { name: string, price: string }
+          <form action="https://formspree.io/f/meoyrjbz" method="POST" className="space-y-6" autoComplete="off" lang="en">
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Job Title</label>
+              <input required type="text" name="job_title" placeholder="e.g. Senior Software Engineer" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Company Name</label>
+              <input required type="text" name="company" placeholder="e.g. Acme Corp" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Primary Language</label>
+              <select name="language" className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                <option>Chinese (Mandarin)</option>
+                <option>Chinese (Cantonese)</option>
+                <option>Korean</option>
+                <option>Japanese</option>
+                <option>German</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Apply URL / Email</label>
+              <p className="text-xs text-slate-500 mb-2">Where should candidates send their applications?</p>
+              <input required type="text" name="apply_url" placeholder="https://..." className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none" />
+            </div>
+
+            <input type="hidden" name="_next" value="http://localhost:3000" />
+
+            <button type="submit" className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
+              Submit & Publish <ArrowUpRight size={18} />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- MAIN APP COMPONENT ---
+export default function GlobalLingoMVP() {
+  const [view, setView] = useState('home'); // 'home' | 'checkout' | 'submission'
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const [selectedLang, setSelectedLang] = useState('all');
   const [selectedType, setSelectedType] = useState('All');
@@ -772,176 +1109,28 @@ export default function RemoteLingoMVP() {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [redirectingJob, setRedirectingJob] = useState(null);
   const [toast, setToast] = useState(null);
+  const [showRelocationOnly, setShowRelocationOnly] = useState(false);
 
-  // --- Newsletter State ---
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterLoading, setNewsletterLoading] = useState(false);
-
-  // --- Supabase Data State ---
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // --- Load Jobs (Priority: Google Sheets → Supabase → Mock Data) ---
-  useEffect(() => {
-    const loadJobs = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        // PRIORITY 1: Try to fetch from Google Sheets CSV
-        if (GOOGLE_SHEET_CSV_URL && GOOGLE_SHEET_CSV_URL.length > 0) {
-          try {
-            const response = await fetch(GOOGLE_SHEET_CSV_URL);
-            const csvText = await response.text();
-
-            // Check if response is HTML (error page) instead of CSV
-            if (csvText.trim().startsWith('<') || csvText.includes('<!DOCTYPE') || csvText.includes('<html')) {
-              console.warn('⚠️ Google Sheets returned HTML instead of CSV, using fallback data...');
-              throw new Error('Invalid CSV format - received HTML');
-            }
-
-            // Robust CSV Parser (handles quoted values correctly)
-            const parseJobsFromCSV = (csvText: string) => {
-              try {
-                const lines = csvText.trim().split('\n');
-                if (lines.length < 2) return [];
-
-                // Helper to parse CSV line respecting quotes
-                const parseLine = (line: string) => {
-                  const values: string[] = [];
-                  let current = '';
-                  let inQuotes = false;
-                  for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    if (char === '"') { inQuotes = !inQuotes; }
-                    else if (char === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-                    else { current += char; }
-                  }
-                  values.push(current.trim());
-                  return values.map(v => v.replace(/^"|"$/g, '').replace(/""/g, '"'));
-                };
-
-                return lines.slice(1).map((line, index) => {
-                  const cols = parseLine(line);
-                  if (cols.length < 5) return null;
-
-                  const company = cols[2] || 'Company';
-
-                  // Map columns - IGNORE logo/color, generate them programmatically
-                  return {
-                    id: index + 1,
-                    title: cols[1] || 'Untitled Position',
-                    company: company,
-                    // GENERATED FIELDS (Fault Tolerant)
-                    logo: getInitials(company),
-                    initials: getInitials(company),
-                    logoBg: getCompanyColor(company),
-                    color: getCompanyColor(company),
-                    // DATA FROM SHEET
-                    languages: (cols[5] || '').split('|').map(s => s.trim()).filter(Boolean),
-                    level: cols[6] || 'Fluent',
-                    salary_min: parseInt(cols[7]) || 0,
-                    salary_max: parseInt(cols[8]) || 0,
-                    currency: cols[9] || 'EUR',
-                    location: cols[10] || 'Remote',
-                    type: cols[11] || 'Full-time',
-                    tags: (cols[12] || '').split('|').map(s => s.trim()).filter(Boolean),
-                    posted_at: cols[13] || '1d ago',
-                    featured: cols[14]?.toUpperCase() === 'TRUE',
-                    ai_verified: cols[15]?.toUpperCase() === 'TRUE',
-                    source: cols[16] || 'Partner Network',
-                    match_score: parseInt(cols[17]) || 80,
-                    summary: cols[18] || '',
-                    apply_url: cols[19]?.trim() || 'https://tally.so/r/LZ9Gk2' // Fallback to default form
-                  };
-                }).filter(Boolean);
-              } catch (err) {
-                console.error("CSV Parse Error:", err);
-                return [];
-              }
-            };
-
-            const parsedJobs = parseJobsFromCSV(csvText);
-
-            if (parsedJobs.length > 0) {
-              console.log(`✅ Loaded ${parsedJobs.length} jobs from Google Sheets`);
-              setJobs(parsedJobs);
-              setLastUpdated(new Date().toLocaleTimeString());
-              setIsLoading(false);
-              return; // Success, exit early
-            }
-          } catch (csvError) {
-            console.warn('⚠️ Google Sheets fetch failed, trying Supabase...', csvError);
-          }
-        }
-
-        // PRIORITY 2: Try Supabase (if Google Sheets failed or not configured)
-        try {
-          const response = await api.getJobs({
-            lang: selectedLang,
-            job_type: selectedType === 'All' ? undefined : selectedType,
-          });
-
-          if (response.jobs && response.jobs.length > 0) {
-            console.log(`✅ Loaded ${response.jobs.length} jobs from Supabase`);
-            setJobs(response.jobs);
-            setLastUpdated(new Date().toLocaleTimeString());
-            setIsLoading(false);
-            return; // Success, exit early
-          }
-        } catch (supabaseError) {
-          console.warn('⚠️ Supabase fetch failed, using mock data...', supabaseError);
-        }
-
-        // PRIORITY 3: Fallback to Mock Data
-        console.log('📦 Using mock data as fallback');
-        setJobs(JOBS_DATA);
-        setLastUpdated(new Date().toLocaleTimeString());
-
-      } catch (err: any) {
-        console.error('❌ Error loading jobs:', err);
-        setError(err.message || 'Failed to load jobs');
-        // Final fallback to mock data
-        setJobs(JOBS_DATA);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadJobs();
-  }, [selectedLang, selectedType]);
-
-  // --- Filtering Logic (works with all data sources) ---
+  // --- Filtering Logic ---
   const filteredJobs = useMemo(() => {
-    let filtered = jobs;
-
-    // Filter by language
-    if (selectedLang && selectedLang !== 'all') {
-      const langMap: { [key: string]: string } = {
-        zh: 'Chinese',
-        ko: 'Korean',
-        ja: 'Japanese',
-        de: 'German',
-        es: 'Spanish',
-        fr: 'French',
-      };
-      const targetLang = langMap[selectedLang];
-
-      if (targetLang) {
-        filtered = filtered.filter(job =>
-          job.languages?.some(lang => lang.includes(targetLang))
-        );
-      }
-    }
-
-    // Filter by job type
-    if (selectedType && selectedType !== 'All') {
-      filtered = filtered.filter(job => job.type === selectedType);
-    }
-
-    return filtered;
-  }, [jobs, selectedLang, selectedType]);
+    return JOBS_DATA.filter(job => {
+      const langMatch = selectedLang === 'all' || job.languages.some(l => {
+        if (selectedLang === 'zh') return l.includes('Chinese');
+        if (selectedLang === 'ko') return l.includes('Korean');
+        if (selectedLang === 'ja') return l.includes('Japanese');
+        if (selectedLang === 'de') return l.includes('German');
+        if (selectedLang === 'es') return l.includes('Spanish');
+        if (selectedLang === 'fr') return l.includes('French');
+        if (selectedLang === 'pt') return l.includes('Portuguese');
+        if (selectedLang === 'ar') return l.includes('Arabic');
+        if (selectedLang === 'ru') return l.includes('Russian');
+        return false;
+      });
+      const typeMatch = selectedType === 'All' || job.type === selectedType;
+      const relocationMatch = !showRelocationOnly || job.tags.some(t => t.includes('Relocation') || t.includes('Visa'));
+      return langMatch && typeMatch && relocationMatch;
+    });
+  }, [selectedLang, selectedType, showRelocationOnly]);
 
   // --- Helpers ---
   const showToastMessage = (msg, type = 'success') => {
@@ -958,26 +1147,11 @@ export default function RemoteLingoMVP() {
 
   // --- Action Handlers ---
   const handleApply = (job) => {
-    // 1. Get base URL from sheet (e.g. https://tally.so/r/LZ9Gk2)
-    let url = job.apply_url;
-
-    // 2. Check if it's a Tally link and append Company Name
-    if (url && url.includes('tally.so')) {
-      const separator = url.includes('?') ? '&' : '?';
-      // Tally uses "Company+Name" for "Company Name" label
-      url = `${url}${separator}Company+Name=${encodeURIComponent(job.company)}`;
-    }
-
-    // 3. Show loading animation then open in new tab
     setRedirectingJob(job);
     setTimeout(() => {
       setRedirectingJob(null);
-      if (url) {
-        window.open(url, '_blank');
-        showToastMessage(`Opening application for ${job.company}...`);
-      } else {
-        showToastMessage("Error: No apply link found", "error");
-      }
+      window.open(job.apply_url, '_blank');
+      showToastMessage(`Opened application for ${job.company}`);
     }, 2000);
   };
 
@@ -988,45 +1162,38 @@ export default function RemoteLingoMVP() {
   const initiateCheckout = (name, price) => {
     setSelectedPlan({ name, price });
     setShowPricingModal(false);
-    setView('submission');
-    // Scroll to top
+    setView('checkout');
     window.scrollTo(0, 0);
   };
 
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!newsletterEmail || !newsletterEmail.includes('@')) {
-      showToastMessage('Please enter a valid email address', 'error');
-      return;
-    }
-
-    setNewsletterLoading(true);
-    try {
-      await api.subscribeNewsletter(newsletterEmail, selectedLang);
-      showToastMessage('Successfully subscribed! Check your inbox.');
-      setNewsletterEmail(''); // Clear input
-    } catch (error: any) {
-      showToastMessage(error.message || 'Failed to subscribe. Please try again.', 'error');
-    } finally {
-      setNewsletterLoading(false);
-    }
+  const handleCheckoutSuccess = () => {
+    setView('submission');
+    window.scrollTo(0, 0);
   };
 
-  // --- RENDER JOB SUBMISSION VIEW ---
-  if (view === 'submission' && selectedPlan) {
+  const handleSubmissionFinish = () => {
+    setView('home');
+    showToastMessage("Job submitted! Verification pending.");
+    window.scrollTo(0, 0);
+  };
+
+  // --- RENDER VIEWS ---
+  if (view === 'checkout' && selectedPlan) {
     return (
-      <JobSubmissionForm
+      <InvoiceCheckout
         planName={selectedPlan.name}
-        onFinish={() => {
-          setView('home');
-          showToastMessage(`Success! We have received your job. Check your email within 24 hours for the invoice.`);
-        }}
+        price={selectedPlan.price}
+        onCancel={() => setView('home')}
+        onSuccess={handleCheckoutSuccess}
       />
     );
   }
 
-  // --- RENDER MAIN HOME VIEW ---
+  if (view === 'submission') {
+    return <JobSubmissionForm onFinish={handleSubmissionFinish} />;
+  }
+
+  // --- RENDER HOME VIEW ---
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 relative">
 
@@ -1069,7 +1236,7 @@ export default function RemoteLingoMVP() {
                 <Globe size={32} />
               </div>
               <h2 className="text-2xl font-bold text-slate-900 mb-2">Reach 10,000+ Multilingual Talent</h2>
-              <p className="text-slate-500 mb-8">Select a package to start hiring immediately.</p>
+              <p className="text-slate-500 mb-8">Pay once. Hire forever.</p>
 
               <div className="space-y-4">
                 {/* Professional Plan */}
@@ -1082,9 +1249,9 @@ export default function RemoteLingoMVP() {
                     <span className="text-lg font-bold text-slate-900">€599</span>
                   </div>
                   <ul className="text-sm text-slate-500 space-y-1">
+                    <li className="flex items-center gap-2"><Check size={14} className="text-emerald-500" /> <b>One-time</b> flat fee</li>
                     <li className="flex items-center gap-2"><Check size={14} className="text-emerald-500" /> <b>30 Days</b> Active Listing</li>
                     <li className="flex items-center gap-2"><Check size={14} className="text-emerald-500" /> <b>AI-Verified</b> Badge included</li>
-                    <li className="flex items-center gap-2"><Check size={14} className="text-emerald-500" /> Shared in Weekly Newsletter</li>
                   </ul>
                 </div>
 
@@ -1100,7 +1267,6 @@ export default function RemoteLingoMVP() {
                   </div>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li className="flex items-center gap-2"><Check size={14} className="text-emerald-600" /> <b>Pinned to Top</b> (7 Days)</li>
-                    <li className="flex items-center gap-2"><Check size={14} className="text-emerald-600" /> <b>Yellow Highlight</b> & Logo Boost</li>
                     <li className="flex items-center gap-2"><Check size={14} className="text-emerald-600" /> <b>2x</b> Social Media Blasts (LinkedIn/X)</li>
                     <li className="flex items-center gap-2"><Check size={14} className="text-emerald-600" /> <b>Direct Email</b> to Top Candidates</li>
                   </ul>
@@ -1108,7 +1274,7 @@ export default function RemoteLingoMVP() {
               </div>
 
               <div className="mt-6 text-xs text-slate-400">
-                Secure payment via Stripe. VAT invoice provided automatically.
+                Secure payment via Stripe. No subscription. No hidden fees.
               </div>
             </div>
           </div>
@@ -1144,9 +1310,9 @@ export default function RemoteLingoMVP() {
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-2" onClick={() => { setView('home'); window.scrollTo(0,0); }} style={{cursor: 'pointer'}}>
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-blue-200 shadow-lg">
-                RL
+                GL
               </div>
-              <span className="text-xl font-bold tracking-tight text-slate-900">RemoteLingo</span>
+              <span className="text-xl font-bold tracking-tight text-slate-900">GlobalLingo</span>
             </div>
 
             {/* Functional Navigation */}
@@ -1167,7 +1333,7 @@ export default function RemoteLingoMVP() {
                 onClick={handlePostJob}
                 className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200"
               >
-                Submit Job for Review <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">HIRING?</span>
+                Post a Job <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">HIRING?</span>
               </button>
             </div>
 
@@ -1199,7 +1365,7 @@ export default function RemoteLingoMVP() {
               onClick={() => { setShowPricingModal(true); setIsMobileMenuOpen(false); }}
               className="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded-lg"
             >
-              Submit Job for Review
+              Post a Job
             </button>
           </div>
         )}
@@ -1220,7 +1386,7 @@ export default function RemoteLingoMVP() {
             </span> by AI.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            We scan 100+ career pages so you don&apos;t have to. Only <b>verified</b> multilingual remote roles. Zero spam.
+            We scan 100+ career pages so you don't have to. Only <b>verified</b> multilingual remote roles. Zero spam.
           </p>
 
           {/* Language Pills (Quick Filter) */}
@@ -1283,8 +1449,24 @@ export default function RemoteLingoMVP() {
                 </div>
               </div>
 
+              {/* Perks Filter */}
+              <div className="pt-6 border-t border-slate-200">
+                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Perks</h4>
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    checked={showRelocationOnly}
+                    onChange={(e) => setShowRelocationOnly(e.target.checked)}
+                  />
+                  <span className="text-sm text-slate-700 font-medium group-hover:text-blue-600 transition-colors">
+                    ✈️ Relocation Support
+                  </span>
+                </label>
+              </div>
+
               {/* Newsletter Box (Lead Gen) */}
-              <form onSubmit={handleNewsletterSubmit} className="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-2 opacity-10">
                   <Bot size={64} />
                 </div>
@@ -1295,30 +1477,11 @@ export default function RemoteLingoMVP() {
                 <p className="text-xs text-blue-700 mb-3 leading-relaxed">
                   Our bot scans 500+ sources daily. Get the top 5 {selectedLang === 'all' ? '' : 'Chinese/Korean'} jobs in your inbox.
                 </p>
-                <input
-                  type="email"
-                  placeholder="email@address.com"
-                  className="w-full px-3 py-2 rounded-lg border border-blue-200 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  disabled={newsletterLoading}
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={newsletterLoading}
-                  className="w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {newsletterLoading ? (
-                    <>
-                      <Loader2 size={14} className="animate-spin" />
-                      Subscribing...
-                    </>
-                  ) : (
-                    'Activate Alerts'
-                  )}
+                <input type="email" placeholder="email@address.com" className="w-full px-3 py-2 rounded-lg border border-blue-200 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+                <button className="w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition shadow-md">
+                  Activate Alerts
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </aside>
@@ -1340,17 +1503,8 @@ export default function RemoteLingoMVP() {
             </div>
           </div>
 
-          {/* Loading State */}
-          {isLoading && (
-            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-xl border border-slate-200">
-              <Loader2 size={48} className="text-blue-600 animate-spin mb-4" />
-              <p className="text-slate-600 font-medium">Loading jobs from database...</p>
-            </div>
-          )}
-
-          {/* Job List */}
           <div className="space-y-4">
-            {!isLoading && filteredJobs.map(job => (
+            {filteredJobs.map(job => (
               <div
                 key={job.id}
                 className={`group relative bg-white rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border ${job.featured ? 'border-yellow-400 shadow-yellow-100 ring-1 ring-yellow-400/20' : 'border-slate-200 shadow-sm'}`}
@@ -1362,12 +1516,9 @@ export default function RemoteLingoMVP() {
                 )}
 
                 <div className="flex flex-col sm:flex-row gap-5">
-                  {/* Dynamic Colored Logo: 使用内联样式彻底解决 JIT 问题 */}
-                  <div
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0"
-                    style={{ backgroundColor: getLogoColor(job.logoBg || job.color) }}
-                  >
-                    {job.initials || job.logo || job.company.substring(0,2)}
+                  {/* Dynamic Colored Logo */}
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${AUTO_COLORS[job.id % AUTO_COLORS.length]} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
+                    {job.initials || job.company.substring(0,2)}
                   </div>
 
                   <div className="flex-1">
@@ -1377,13 +1528,9 @@ export default function RemoteLingoMVP() {
                           <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                             {job.title}
                           </h3>
-                          {/* AI Verification Badge */}
                           {job.ai_verified && (
                              <div className="group/tooltip relative">
                                <CheckCircle2 size={16} className="text-emerald-500 cursor-help" />
-                               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity">
-                                 Verified by AI
-                               </div>
                              </div>
                           )}
                         </div>
@@ -1391,32 +1538,24 @@ export default function RemoteLingoMVP() {
                           {job.company}
                           <span className="text-slate-300">•</span>
                           <span className="text-xs text-slate-400 flex items-center gap-1">
-                            Source: {job.source?.includes('Manual') ? 'Partner Network' : job.source}
+                            Source: {job.source}
                           </span>
                         </div>
                       </div>
 
-                      {/* Salary Tag - FIXED HERE */}
                       <div className="flex items-center text-sm font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-lg self-start whitespace-nowrap">
                         <DollarSign size={14} className="mr-1 text-green-600" />
                         {job.currency === 'EUR' ? '€' : '$'}{job.salary_min.toLocaleString()} - {job.salary_max.toLocaleString()}
                       </div>
                     </div>
 
-                    {/* Metadata Row */}
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 mb-3">
-                      <div className="flex items-center gap-1">
-                        <MapPin size={14} /> {job.location}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Briefcase size={14} /> {job.type}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={14} /> {job.posted_at}
-                      </div>
+                      <div className="flex items-center gap-1"><MapPin size={14} /> {job.location}</div>
+                      <div className="flex items-center gap-1"><Briefcase size={14} /> {job.type}</div>
+                      <div className="flex items-center gap-1"><Clock size={14} /> {job.posted_at}</div>
                     </div>
 
-                    {/* AI Summary */}
+                    {/* AI Summary Box */}
                     {job.summary && (
                       <div className="mb-4 text-xs text-slate-500 italic bg-slate-50 p-2 rounded border border-slate-100 flex items-start gap-2">
                         <Bot size={14} className="text-blue-400 flex-shrink-0 mt-0.5" />
@@ -1424,18 +1563,13 @@ export default function RemoteLingoMVP() {
                       </div>
                     )}
 
-                    {/* Tags & Actions */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-4 border-t border-slate-100">
-
-                      {/* Language & Skill Tags */}
                       <div className="flex flex-wrap gap-2">
-                        {/* Primary Language Tag */}
-                        {job.languages && job.languages.map((lang, idx) => (
+                        {job.languages.map((lang, idx) => (
                            <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">
                              {lang}
                            </span>
                         ))}
-                        {/* Skill Tags */}
                         {job.tags && job.tags.map((tag, idx) => (
                           <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-600">
                             {tag}
@@ -1444,17 +1578,13 @@ export default function RemoteLingoMVP() {
                       </div>
 
                       <div className="flex items-center gap-3 w-full sm:w-auto">
-                         {/* Match Score */}
                         <div className="hidden sm:flex flex-col items-end mr-2">
                           <span className="text-[10px] text-slate-400 font-bold uppercase">Match Score</span>
                           <span className={`text-sm font-bold ${job.match_score > 90 ? 'text-emerald-600' : 'text-blue-600'}`}>
                             {job.match_score}%
                           </span>
                         </div>
-                        <button
-                          onClick={() => handleApply(job)}
-                          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200 active:transform active:scale-95"
-                        >
+                        <button onClick={() => handleApply(job)} className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
                           Apply Now <ArrowUpRight size={16} />
                         </button>
                       </div>
@@ -1465,7 +1595,7 @@ export default function RemoteLingoMVP() {
             ))}
 
             {/* Empty State */}
-            {!isLoading && filteredJobs.length === 0 && (
+            {filteredJobs.length === 0 && (
               <div className="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
                 <div className="inline-flex p-4 bg-slate-50 rounded-full mb-4">
                   <Search size={32} className="text-slate-400" />
@@ -1479,14 +1609,13 @@ export default function RemoteLingoMVP() {
         </main>
       </div>
 
-      {/* --- Footer & Manifesto (Why Us?) --- */}
+      {/* --- Footer & Manifesto --- */}
       <footer className="bg-white border-t border-slate-200 mt-12">
-        {/* Manifesto Section (The About Us) */}
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Why RemoteLingo Exists?</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">Why GlobalLingo Exists?</h3>
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              We noticed a massive <b>market inefficiency</b>. Asian tech giants are expanding globally, but they can&apos;t find bilingual talent.
-              Western developers want high-paying remote roles but can&apos;t filter through the noise.
+              We noticed a massive <b>market inefficiency</b>. Asian tech giants are expanding globally, but they can't find bilingual talent.
+              Western developers want high-paying remote roles but can't filter through the noise.
               <br/><br/>
               We are not a recruitment agency. We are an <b>arbitrage engine</b> connecting supply and demand where the language premium is highest.
             </p>
@@ -1509,7 +1638,7 @@ export default function RemoteLingoMVP() {
         <div className="border-t border-slate-100 py-8">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <p className="text-slate-400 text-sm mb-4">
-              &copy; 2025 RemoteLingo Inc. • The Global Arbitrage Engine.
+              &copy; 2025 GlobalLingo Inc. • The Global Arbitrage Engine.
             </p>
             <div className="flex justify-center gap-6 text-sm text-slate-400">
               <a href="#" className="hover:text-slate-900">Twitter (Founder)</a>
