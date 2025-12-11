@@ -375,12 +375,9 @@ export default function RemoteLingoMVP() {
 
   // --- Action Handlers ---
   const handleApply = (job) => {
-    setRedirectingJob(job);
-    setTimeout(() => {
-      setRedirectingJob(null);
-      window.open(job.apply_url, '_blank');
-      showToastMessage(`Opened application for ${job.company}`);
-    }, 2000);
+    // 直接打开，不延迟 - 避免手机浏览器阻止弹窗
+    window.open(job.apply_url, '_blank', 'noopener,noreferrer');
+    showToastMessage(`Opened application for ${job.company}`);
   };
 
   const handlePostJob = () => {
