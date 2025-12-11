@@ -622,7 +622,7 @@ export default function RemoteLingoMVP() {
           </p>
 
           {/* Language Pills (Quick Filter) */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3 relative z-20">
             {LANGUAGES.slice(1).map(lang => (
               <button
                 key={lang.code}
