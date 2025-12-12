@@ -841,13 +841,31 @@ export default function RemoteLingoMVP() {
       {/* --- Footer & Manifesto --- */}
       <footer className="bg-white border-t border-slate-200 mt-12">
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Why RemoteLingo Exists?</h3>
-            <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              We noticed a massive <b>market inefficiency</b>. Global companies are expanding across borders, but they can't find multilingual talent.
-              Bilingual professionals want high-paying remote roles but can't filter through the noise.
-              <br/><br/>
-              We are not a recruitment agency. We are an <b>arbitrage engine</b> connecting supply and demand where the language premium is highest.
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Why RemoteLingo Exists?</h2>
+
+            {/* Thesis Statement */}
+            <p className="text-slate-900 font-bold text-lg mb-4">
+              The thesis is simple: <span className="text-blue-600">Global Talent is Mispriced.</span>
             </p>
+
+            {/* Market Problem */}
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              We noticed a massive market inefficiency. Global giants in
+              <span className="font-semibold text-slate-900"> Tech & Digital Entertainment </span>
+              are expanding across borders, but struggle to find native Asian talent.
+            </p>
+
+            {/* Solution Box */}
+            <div className="bg-slate-50 border-l-4 border-blue-600 p-4 mb-6 text-left max-w-2xl mx-auto">
+              <p className="text-slate-800 font-medium mb-1">
+                We are a <span className="text-blue-700">Specialized Talent Platform</span>.
+              </p>
+              <p className="text-slate-600 text-sm">
+                Instead of traditional recruiting, we act as a <strong>Liquidity Bridge</strong> —
+                connecting verified Chinese, Japanese, and Korean professionals with
+                high-premium roles in Europe.
+              </p>
+            </div>
             <div className="flex justify-center gap-8">
                <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600 mb-1">500+</div>
