@@ -555,6 +555,14 @@ export default function RemoteLingoMVP() {
               >
                 For Talent
               </button>
+              <a
+                href="https://tally.so/r/zxjRGR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors font-semibold"
+              >
+                Join Talent Pool
+              </a>
               <button
                 onClick={() => setShowPricingModal(true)}
                 className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
@@ -587,6 +595,15 @@ export default function RemoteLingoMVP() {
             >
               For Talent
             </button>
+            <a
+              href="https://tally.so/r/zxjRGR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-left font-bold text-blue-600 p-2 hover:bg-slate-50 rounded"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Join Talent Pool
+            </a>
             <button
               onClick={() => { setShowPricingModal(true); setIsMobileMenuOpen(false); }}
               className="block w-full text-left font-medium text-slate-600 p-2 hover:bg-slate-50 rounded"

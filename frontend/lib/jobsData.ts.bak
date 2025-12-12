@@ -23,7 +23,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Native Japanese speaker needed for live studio in Malta. No coding skills required. Full relocation package included (Flight, Housing, Gym). Start immediately.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/"
   },
   {
     id: 219,
@@ -45,7 +45,7 @@ const JOBS_DATA = [
     source: "Pragmatic Play Careers",
     match_score: 96,
     summary: "Join our expanding team in Georgia. We are looking for energetic Korean speakers. We provide work permit support and temporary housing.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.pragmaticplay.com/careers/"
   },
   {
     id: 220,
@@ -67,7 +67,7 @@ const JOBS_DATA = [
     source: "TikTok Careers",
     match_score: 95,
     summary: "Review content for the Chinese market. Relocation package available for qualified candidates. Great entry-level opportunity in Tech.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.tiktok.com/"
   },
   {
     id: 221,
@@ -113,7 +113,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Includes flight tickets, 2 weeks accommodation, and full visa sponsorship. Move to Europe with no coding skills required.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.evolution.com/careers"
   },
   {
     id: 109,
@@ -135,7 +135,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Entry-level role with relocation to Europe (Malta, Latvia, Madrid, Georgia, Armenia) or Canada (Vancouver). Includes visa sponsorship, flight tickets, initial accommodation, and bonuses. No experience or coding required. Positions available for Russian speakers in Tbilisi (Georgia) and Yerevan (Armenia). Hourly pay around €7-16 or $24.75 CAD, leading to annual 30k-50k with incentives.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/"
   },
   {
     id: 114,
@@ -157,7 +157,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 97,
     summary: "Host live casino games on camera, interacting with players in Korean and English. No prior experience required—full training provided. Enjoy relocation support to Malta including visa sponsorship and initial accommodation. Competitive salary with bonuses, perfect for outgoing bilingual talents seeking European opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://mt.linkedin.com/jobs/view/korean-speaking-game-presenter-at-evolution-4279563333"
   },
   {
     id: 115,
@@ -179,7 +179,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 96,
     summary: "Become the face of live casino games, hosting on camera for global players in Japanese and English. Entry-level role with no experience needed—training included. Relocation to Malta with visa, flights, and accommodation support. Earn a solid salary plus performance incentives in a dynamic international environment.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://mt.linkedin.com/jobs/view/japanese-english-speaking-game-presenter-at-evolution-4279563314"
   },
   {
     id: 116,
@@ -201,7 +201,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 95,
     summary: "Provide customer service as a live game presenter, hosting casino games on camera in Korean. Starting at $24.75/hour plus bonuses—no experience required. Opportunity in Burnaby serving Korean, Japanese, and Chinese markets. Ideal for bilingual individuals with relocation support available for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://ca.indeed.com/q-chinese-game-jobs.html"
   },
   {
     id: 117,
@@ -949,7 +949,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Host live casino games on camera in Portuguese. No experience needed; full training provided. Relocation package includes visa sponsorship, flights, and initial accommodation. Ideal for Portuguese speakers seeking to leave Portugal for European opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/"
   },
   {
     id: 149,
@@ -1169,7 +1169,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Provide customer support in Portuguese for online casino. Entry-level with visa sponsorship, flights, and relocation assistance for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/job/744000094922009/"
   },
   {
     id: 160,
@@ -1191,7 +1191,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 94,
     summary: "Offer live support in Portuguese for gaming platforms. Relocation to Canada with visa, flights, and accommodation for Portuguese speakers seeking new opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.smartrecruiters.com/Evolution"
   },
   {
     id: 161,
@@ -1213,7 +1213,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 93,
     summary: "Handle customer inquiries in Portuguese. Full relocation support including visa and flights for those wanting to leave Portugal.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 162,
@@ -1235,7 +1235,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 92,
     summary: "Combine dealing and support roles in Portuguese. Visa sponsorship, flights, and relocation for entry-level positions.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/usa/"
   },
   {
     id: 163,
@@ -1257,7 +1257,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 91,
     summary: "Host games and provide support in Portuguese. Relocation with visa and flights for Portuguese speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 164,
@@ -1279,7 +1279,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 90,
     summary: "Ensure customer success in Portuguese. Full relocation support including visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.smartrecruiters.com/Evolution"
   },
   {
     id: 165,
@@ -1301,7 +1301,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 89,
     summary: "Support online casino equipment in Portuguese. Part-time with relocation, visa, and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/usa/"
   },
   {
     id: 166,
@@ -1323,7 +1323,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 88,
     summary: "Supervise and support in Portuguese. Relocation with visa and flights for mid-level roles.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 167,
@@ -1345,7 +1345,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 87,
     summary: "Provide research support in Portuguese. Global relocation with visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.linkedin.com/jobs/evolution-gaming-jobs-worldwide"
   },
   {
     id: 178,
@@ -1367,7 +1367,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Host live casino games in multiple languages. Entry-level role with full visa sponsorship, flights, airport pickup, and initial accommodation. Perfect for multilingual talents seeking relocation.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/"
   },
   {
     id: 179,
@@ -1767,7 +1767,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Host live casino games on camera in Portuguese. No experience needed; full training provided. Relocation package includes visa sponsorship, flights, and initial accommodation. Ideal for Portuguese speakers seeking to leave Portugal for European opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/"
   },
   {
     id: 200,
@@ -1987,7 +1987,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Provide customer support in Portuguese for online casino. Entry-level with visa sponsorship, flights, and relocation assistance for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/job/744000094922009/"
   },
   {
     id: 210,
@@ -2009,7 +2009,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 94,
     summary: "Offer live support in Portuguese for gaming platforms. Relocation to Canada with visa, flights, and accommodation for Portuguese speakers seeking new opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.smartrecruiters.com/Evolution"
   },
   {
     id: 211,
@@ -2031,7 +2031,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 93,
     summary: "Handle customer inquiries in Portuguese. Full relocation support including visa and flights for those wanting to leave Portugal.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 212,
@@ -2053,7 +2053,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 92,
     summary: "Combine dealing and support roles in Portuguese. Visa sponsorship, flights, and relocation for entry-level positions.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/usa/"
   },
   {
     id: 213,
@@ -2075,7 +2075,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 91,
     summary: "Host games and provide support in Portuguese. Relocation with visa and flights for Portuguese speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 214,
@@ -2097,7 +2097,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 90,
     summary: "Ensure customer success in Portuguese. Full relocation support including visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.smartrecruiters.com/Evolution"
   },
   {
     id: 215,
@@ -2119,7 +2119,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 89,
     summary: "Support online casino equipment in Portuguese. Part-time with relocation, visa, and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.evolution.com/usa/"
   },
   {
     id: 216,
@@ -2141,7 +2141,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 88,
     summary: "Supervise and support in Portuguese. Relocation with visa and flights for mid-level roles.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.indeed.com/q-evolution-gaming-jobs.html"
   },
   {
     id: 217,
@@ -2163,7 +2163,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 87,
     summary: "Provide research support in Portuguese. Global relocation with visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://www.linkedin.com/jobs/evolution-gaming-jobs-worldwide"
   },
 
   // === FRENCH SPEAKING POSITIONS (IDs 168-177) ===
@@ -2209,7 +2209,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 96,
     summary: "Host live games in French. No experience needed; full relocation with visa, flights, and housing for French speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://uk.indeed.com/q-visa-sponsorship-french-available-jobs.html"
   },
   {
     id: 170,
@@ -2475,7 +2475,7 @@ const JOBS_DATA = [
     source: "TikTok Careers",
     match_score: 92,
     summary: "Ensure platform safety in multiple languages. Relocation support with visa, flights, and accommodation for entry-level candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "https://careers.tiktok.com/"
   },
   {
     id: 193,
