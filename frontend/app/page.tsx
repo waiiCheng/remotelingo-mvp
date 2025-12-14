@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck, Zap, BadgeCheck } from 'lucide-react';
 import JOBS_DATA from '@/lib/jobsData';
+import { translations, Language } from '@/lib/translations';
 
 
 // --- Constants ---
@@ -329,6 +330,7 @@ export default function RemoteLingoMVP() {
   const [view, setView] = useState('home'); // 'home' | 'checkout' | 'submission' | 'success'
   const [selectedPlan, setSelectedPlan] = useState(null);
 
+  const [language, setLanguage] = useState<Language>('en');
   const [selectedLang, setSelectedLang] = useState('all');
   const [selectedType, setSelectedType] = useState('All');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -339,9 +341,21 @@ export default function RemoteLingoMVP() {
   const [toast, setToast] = useState(null);
   const [showRelocationOnly, setShowRelocationOnly] = useState(false);
 
+  const t = translations[language];
+
   // --- Filtering Logic ---
   const filteredJobs = useMemo(() => {
-    return JOBS_DATA.filter(job => {
+    let jobs = JOBS_DATA;
+
+    // Language-based filtering (EN shows all, JP shows only Japanese jobs, KR shows only Korean jobs)
+    if (language === 'jp') {
+      jobs = jobs.filter(job => job.languages.some(l => l.includes('Japanese')));
+    } else if (language === 'kr') {
+      jobs = jobs.filter(job => job.languages.some(l => l.includes('Korean')));
+    }
+
+    // Existing filters
+    return jobs.filter(job => {
       const langMatch = selectedLang === 'all' || job.languages.some(l => {
         if (selectedLang === 'zh') return l.includes('Chinese');
         if (selectedLang === 'ko') return l.includes('Korean');
@@ -358,7 +372,7 @@ export default function RemoteLingoMVP() {
       const relocationMatch = !showRelocationOnly || job.tags.some(t => t.includes('Relocation') || t.includes('Visa'));
       return langMatch && typeMatch && relocationMatch;
     });
-  }, [selectedLang, selectedType, showRelocationOnly]);
+  }, [selectedLang, selectedType, showRelocationOnly, language]);
 
   // --- Helpers ---
   const showToastMessage = (msg, type = 'success') => {
@@ -547,13 +561,27 @@ export default function RemoteLingoMVP() {
               <span className="text-xl font-bold tracking-tight text-slate-900">RemoteLingo</span>
             </div>
 
+            {/* Language Switcher */}
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200">
+              <Globe size={14} className="text-slate-500" />
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as Language)}
+                className="text-sm border-none bg-transparent cursor-pointer font-medium text-slate-700 focus:outline-none"
+              >
+                <option value="en">EN</option>
+                <option value="jp">日本語</option>
+                <option value="kr">한국어</option>
+              </select>
+            </div>
+
             {/* Functional Navigation */}
             <div className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => scrollToSection('job-feed')}
                 className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
               >
-                For Talent
+                {t.navForTalent}
               </button>
               <a
                 href="https://tally.so/r/zxjRGR"
@@ -561,19 +589,19 @@ export default function RemoteLingoMVP() {
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors font-semibold"
               >
-                Join Talent Pool
+                {t.navJoinPool}
               </a>
               <button
                 onClick={() => setShowPricingModal(true)}
                 className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
               >
-                Pricing
+                {t.navPricing}
               </button>
               <button
                 onClick={handlePostJob}
                 className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200"
               >
-                Post a Job <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">HIRING?</span>
+                {t.navPostJob} <span className="bg-slate-700 px-1.5 py-0.5 rounded text-[10px] text-blue-200">{t.navHiring}</span>
               </button>
             </div>
 
@@ -589,11 +617,25 @@ export default function RemoteLingoMVP() {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-slate-100 p-4 space-y-4 shadow-xl absolute w-full z-40">
+            {/* Language Switcher for Mobile */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-lg border border-slate-200">
+              <Globe size={14} className="text-slate-500" />
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as Language)}
+                className="text-sm border-none bg-transparent cursor-pointer font-medium text-slate-700 focus:outline-none w-full"
+              >
+                <option value="en">EN - English</option>
+                <option value="jp">JP - 日本語</option>
+                <option value="kr">KR - 한국어</option>
+              </select>
+            </div>
+
             <button
               onClick={() => { scrollToSection('job-feed'); setIsMobileMenuOpen(false); }}
               className="block w-full text-left font-medium text-slate-600 p-2 hover:bg-slate-50 rounded"
             >
-              For Talent
+              {t.navForTalent}
             </button>
             <a
               href="https://tally.so/r/zxjRGR"
@@ -602,19 +644,19 @@ export default function RemoteLingoMVP() {
               className="block w-full text-left font-bold text-blue-600 p-2 hover:bg-slate-50 rounded"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Join Talent Pool
+              {t.navJoinPool}
             </a>
             <button
               onClick={() => { setShowPricingModal(true); setIsMobileMenuOpen(false); }}
               className="block w-full text-left font-medium text-slate-600 p-2 hover:bg-slate-50 rounded"
             >
-              Pricing
+              {t.navPricing}
             </button>
             <button
               onClick={() => { setShowPricingModal(true); setIsMobileMenuOpen(false); }}
               className="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded-lg"
             >
-              Post a Job
+              {t.navPostJob}
             </button>
           </div>
         )}
@@ -625,14 +667,13 @@ export default function RemoteLingoMVP() {
         <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-[size:20px_20px]" />
         <div className="max-w-4xl mx-auto px-4 pt-16 pb-12 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6 border border-blue-100 animate-fade-in-up">
-            <Bot size={12} /> AI-Curated Job Feed
+            <Bot size={12} /> {t.aiVerified}
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-            Go Global with <span className="text-blue-600">Your Native Language</span>.
+            {t.heroTitle}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            From <b>Tech</b> to <b>Gaming & Support</b>. <br/>
-            Find Remote & Relocation jobs that value <b>your fluency</b> over your location.
+            {t.heroSubtitle}
           </p>
 
           {/* Language Pills (Quick Filter) */}
@@ -662,13 +703,13 @@ export default function RemoteLingoMVP() {
         <aside className="hidden md:block w-64 flex-shrink-0 space-y-8">
           <div>
             <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Filter size={18} /> Smart Filters
+              <Filter size={18} /> {t.smartFilters}
             </h3>
 
             <div className="space-y-6">
               {/* Job Type Filter */}
               <div>
-                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Job Type</h4>
+                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">{t.jobType}</h4>
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 cursor-pointer group">
                     <input
@@ -678,7 +719,7 @@ export default function RemoteLingoMVP() {
                       checked={selectedType === 'All'}
                       onChange={() => setSelectedType('All')}
                     />
-                    <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors">Any Type</span>
+                    <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors">{t.anyType}</span>
                   </label>
                   {JOB_TYPES.map(type => (
                     <label key={type} className="flex items-center gap-2 cursor-pointer group">
@@ -697,7 +738,7 @@ export default function RemoteLingoMVP() {
 
               {/* Perks Filter */}
               <div className="pt-6 border-t border-slate-200">
-                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Perks</h4>
+                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">{t.perks}</h4>
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <input
                     type="checkbox"
@@ -706,7 +747,7 @@ export default function RemoteLingoMVP() {
                     onChange={(e) => setShowRelocationOnly(e.target.checked)}
                   />
                   <span className="text-sm text-slate-700 font-medium group-hover:text-blue-600 transition-colors">
-                    ✈️ Relocation Support
+                    {t.relocationSupport}
                   </span>
                 </label>
               </div>
@@ -718,14 +759,14 @@ export default function RemoteLingoMVP() {
                 </div>
                 <h4 className="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
                   <Sparkles size={14} className="text-yellow-500" />
-                  Daily AI Alerts
+                  {t.dailyAlerts}
                 </h4>
                 <p className="text-xs text-blue-700 mb-3 leading-relaxed">
-                  Our bot scans 500+ sources daily. Get the top 5 {selectedLang === 'all' ? '' : 'Chinese/Korean'} jobs in your inbox.
+                  {t.newsletterDesc}
                 </p>
-                <input type="email" placeholder="email@address.com" className="w-full px-3 py-2 rounded-lg border border-blue-200 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+                <input type="email" placeholder={t.emailPlaceholder} className="w-full px-3 py-2 rounded-lg border border-blue-200 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
                 <button className="w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition shadow-md">
-                  Activate Alerts
+                  {t.activateAlerts}
                 </button>
               </div>
             </div>
@@ -736,15 +777,15 @@ export default function RemoteLingoMVP() {
         <main id="job-feed" className="flex-1 scroll-mt-24">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-              Latest Matches
+              {t.latestMatches}
               <span className="bg-slate-100 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">{filteredJobs.length}</span>
             </h2>
             <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span className="hidden sm:inline">Sorted by:</span>
+              <span className="hidden sm:inline">{t.sortedBy}</span>
               <select className="bg-transparent font-medium text-slate-900 focus:outline-none cursor-pointer">
-                <option>Newest (AI Sourced)</option>
-                <option>Highest Salary</option>
-                <option>Best Match Score</option>
+                <option>{t.sortNewest}</option>
+                <option>{t.sortHighestSalary}</option>
+                <option>{t.sortBestMatch}</option>
               </select>
             </div>
           </div>
@@ -757,7 +798,7 @@ export default function RemoteLingoMVP() {
               >
                 {job.featured && (
                   <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">
-                    FEATURED
+                    {t.featured}
                   </div>
                 )}
 
@@ -784,7 +825,7 @@ export default function RemoteLingoMVP() {
                           {job.company}
                           <span className="text-slate-300">•</span>
                           <span className="text-xs text-slate-400 flex items-center gap-1">
-                            Source: {job.source}
+                            {t.source}: {job.source}
                           </span>
                         </div>
                       </div>
@@ -825,13 +866,13 @@ export default function RemoteLingoMVP() {
 
                       <div className="flex items-center gap-3 w-full sm:w-auto">
                         <div className="hidden sm:flex flex-col items-end mr-2">
-                          <span className="text-[10px] text-slate-400 font-bold uppercase">Match Score</span>
+                          <span className="text-[10px] text-slate-400 font-bold uppercase">{t.matchScore}</span>
                           <span className={`text-sm font-bold ${job.match_score > 90 ? 'text-emerald-600' : 'text-blue-600'}`}>
                             {job.match_score}%
                           </span>
                         </div>
                         <button onClick={() => handleApply(job)} className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
-                          Apply Now <ArrowUpRight size={16} />
+                          {t.applyNow} <ArrowUpRight size={16} />
                         </button>
                       </div>
                     </div>
@@ -858,43 +899,41 @@ export default function RemoteLingoMVP() {
       {/* --- Footer & Manifesto --- */}
       <footer className="bg-white border-t border-slate-200 mt-12">
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Why RemoteLingo Exists?</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t.footerTitle}</h2>
 
             {/* Thesis Statement */}
             <p className="text-slate-900 font-bold text-lg mb-4">
-              The thesis is simple: <span className="text-blue-600">Global Talent is Mispriced.</span>
+              {t.footerThesis} <span className="text-blue-600">{t.footerThesisHighlight}</span>
             </p>
 
             {/* Market Problem */}
             <p className="text-slate-600 mb-6 leading-relaxed">
-              We noticed a massive market inefficiency. Global giants in
-              <span className="font-semibold text-slate-900"> Tech & Digital Entertainment </span>
-              are expanding across borders, but struggle to find native Asian talent.
+              {t.footerProblem}
+              <span className="font-semibold text-slate-900"> {t.footerProblemHighlight} </span>
+              {t.footerProblemEnd}
             </p>
 
             {/* Solution Box */}
             <div className="bg-slate-50 border-l-4 border-blue-600 p-4 mb-6 text-left max-w-2xl mx-auto">
               <p className="text-slate-800 font-medium mb-1">
-                We are a <span className="text-blue-700">Specialized Talent Platform</span>.
+                {t.footerSolutionTitle} <span className="text-blue-700">{t.footerSolutionHighlight}</span>.
               </p>
               <p className="text-slate-600 text-sm">
-                Instead of traditional recruiting, we act as a <strong>Liquidity Bridge</strong> —
-                connecting verified Chinese, Japanese, and Korean professionals with
-                high-premium roles in Europe.
+                {t.footerSolutionDesc} <strong>{t.footerSolutionBridge}</strong> {t.footerSolutionEnd}
               </p>
             </div>
             <div className="flex justify-center gap-8">
                <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600 mb-1">500+</div>
-                  <div className="text-sm text-slate-500 uppercase tracking-wide">Sources Scanned</div>
+                  <div className="text-sm text-slate-500 uppercase tracking-wide">{t.statsSources}</div>
                </div>
                <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600 mb-1">24h</div>
-                  <div className="text-sm text-slate-500 uppercase tracking-wide">Update Cycle</div>
+                  <div className="text-sm text-slate-500 uppercase tracking-wide">{t.statsUpdateCycle}</div>
                </div>
                <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600 mb-1">0%</div>
-                  <div className="text-sm text-slate-500 uppercase tracking-wide">Spam Tolerance</div>
+                  <div className="text-sm text-slate-500 uppercase tracking-wide">{t.statsSpamTolerance}</div>
                </div>
             </div>
         </div>
