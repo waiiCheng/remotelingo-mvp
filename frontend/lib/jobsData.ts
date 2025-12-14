@@ -22,7 +22,7 @@ const JOBS_DATA = [
     ai_verified: true,
     source: "Evolution Careers",
     match_score: 98,
-    summary: "Native Japanese speaker needed for live studio in Malta. No coding skills required. Full relocation package included (Flight, Housing, Gym). Start immediately.",
+    summary: "Native Japanese speaker needed for live studio in Malta. No coding skills required. Full relocation package included (Flight, Housing, Gym). Start immediately. 日本語での面接可能。英語能力は問いません。",
     apply_url: "https://tally.so/r/zxjRGR"
   },
   {
@@ -44,7 +44,7 @@ const JOBS_DATA = [
     ai_verified: true,
     source: "Pragmatic Play Careers",
     match_score: 96,
-    summary: "Join our expanding team in Georgia. We are looking for energetic Korean speakers. We provide work permit support and temporary housing.",
+    summary: "Join our expanding team in Georgia. We are looking for energetic Korean speakers. We provide work permit support and temporary housing. 한국어로 면접 가능하며, 영어는 초급 수준만 요구합니다.",
     apply_url: "https://tally.so/r/zxjRGR"
   },
   {
