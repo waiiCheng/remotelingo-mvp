@@ -14,6 +14,17 @@ export const translations = {
     navPostJob: "Post a Job",
     navHiring: "HIRING?",
 
+    // Language Names (for filter pills)
+    langChinese: "Chinese",
+    langKorean: "Korean",
+    langJapanese: "Japanese",
+    langGerman: "German",
+    langSpanish: "Spanish",
+    langFrench: "French",
+    langPortuguese: "Portuguese",
+    langArabic: "Arabic",
+    langRussian: "Russian",
+
     // Job Feed
     latestMatches: "Latest Matches",
     sortedBy: "Sorted by:",
@@ -80,6 +91,17 @@ export const translations = {
     navPostJob: "求人掲載",
     navHiring: "採用中?",
 
+    // Language Names (for filter pills)
+    langChinese: "中国語",
+    langKorean: "韓国語",
+    langJapanese: "日本語",
+    langGerman: "ドイツ語",
+    langSpanish: "スペイン語",
+    langFrench: "フランス語",
+    langPortuguese: "ポルトガル語",
+    langArabic: "アラビア語",
+    langRussian: "ロシア語",
+
     // Job Feed
     latestMatches: "最新マッチ",
     sortedBy: "並び替え:",
@@ -145,6 +167,17 @@ export const translations = {
     navPricing: "요금",
     navPostJob: "채용공고 등록",
     navHiring: "채용중?",
+
+    // Language Names (for filter pills)
+    langChinese: "중국어",
+    langKorean: "한국어",
+    langJapanese: "일본어",
+    langGerman: "독일어",
+    langSpanish: "스페인어",
+    langFrench: "프랑스어",
+    langPortuguese: "포르투갈어",
+    langArabic: "아랍어",
+    langRussian: "러시아어",
 
     // Job Feed
     latestMatches: "최신 매치",

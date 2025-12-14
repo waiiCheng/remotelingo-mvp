@@ -23,15 +23,15 @@ const AUTO_COLORS = [
 
 const LANGUAGES = [
   { code: 'all', name: 'All Languages', flag: '🌍' },
-  { code: 'zh', name: 'Chinese', flag: '🇨🇳' },
-  { code: 'ko', name: 'Korean', flag: '🇰🇷' },
-  { code: 'ja', name: 'Japanese', flag: '🇯🇵' },
-  { code: 'de', name: 'German', flag: '🇩🇪' },
-  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', flag: '🇫🇷' },
-  { code: 'pt', name: 'Portuguese', flag: '🇵🇹' },
-  { code: 'ar', name: 'Arabic', flag: '🇸🇦' },
-  { code: 'ru', name: 'Russian', flag: '🇷🇺' },
+  { code: 'zh', name: 'Chinese', flag: '🇨🇳', translationKey: 'langChinese' },
+  { code: 'ko', name: 'Korean', flag: '🇰🇷', translationKey: 'langKorean' },
+  { code: 'ja', name: 'Japanese', flag: '🇯🇵', translationKey: 'langJapanese' },
+  { code: 'de', name: 'German', flag: '🇩🇪', translationKey: 'langGerman' },
+  { code: 'es', name: 'Spanish', flag: '🇪🇸', translationKey: 'langSpanish' },
+  { code: 'fr', name: 'French', flag: '🇫🇷', translationKey: 'langFrench' },
+  { code: 'pt', name: 'Portuguese', flag: '🇵🇹', translationKey: 'langPortuguese' },
+  { code: 'ar', name: 'Arabic', flag: '🇸🇦', translationKey: 'langArabic' },
+  { code: 'ru', name: 'Russian', flag: '🇷🇺', translationKey: 'langRussian' },
 ];
 
 const JOB_TYPES = ["Full-time", "Contract", "Freelance", "Part-time"];
@@ -689,7 +689,7 @@ export default function RemoteLingoMVP() {
                 }`}
               >
                 <span className="text-lg">{lang.flag}</span>
-                {lang.name}
+                {lang.translationKey ? t[lang.translationKey] : lang.name}
               </button>
             ))}
           </div>
