@@ -55,7 +55,7 @@ export default function ApplyInfoPage() {
           className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-8 transition-colors group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">{t.backToJobBoard}</span>
+          <span className="text-sm font-medium">{language === 'jp' ? '求人一覧に戻る' : language === 'kr' ? '채용 목록으로 돌아가기' : 'Back to Job Board'}</span>
         </Link>
 
         {/* Main Card */}
