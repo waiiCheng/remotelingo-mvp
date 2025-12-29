@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck, Zap, BadgeCheck } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck, Zap, BadgeCheck, Gamepad2, Code, Languages, Megaphone } from 'lucide-react';
 import JOBS_DATA from '@/lib/jobsData';
 import { translations, Language } from '@/lib/translations';
+import { getLocalizedJob } from '@/lib/jobTranslations';
+import CandidatePipelineStats from '@/components/CandidatePipelineStats';
 
 
 // --- Constants ---
@@ -35,6 +37,36 @@ const LANGUAGES = [
 ];
 
 const JOB_TYPES = ["Full-time", "Contract", "Freelance", "Part-time"];
+
+// --- Helper function to get category icon (Monochromatic Professional Style) ---
+const getCategoryIcon = (job) => {
+  const title = job.title.toLowerCase();
+  const tags = job.tags.map(t => t.toLowerCase()).join(' ');
+  const combined = `${title} ${tags}`;
+
+  const iconClass = "text-slate-700"; // Professional dark slate color
+  const iconSize = 28;
+
+  // Game/Host positions
+  if (combined.includes('game') || combined.includes('presenter') || combined.includes('host') || combined.includes('dealer') || combined.includes('igaming') || combined.includes('casino')) {
+    return <Gamepad2 size={iconSize} className={iconClass} strokeWidth={1.5} />;
+  }
+  // Software/Backend positions
+  if (combined.includes('engineer') || combined.includes('developer') || combined.includes('backend') || combined.includes('software') || combined.includes('qa') || combined.includes('tech')) {
+    return <Code size={iconSize} className={iconClass} strokeWidth={1.5} />;
+  }
+  // Language/Translation positions
+  if (combined.includes('translation') || combined.includes('localization') || combined.includes('bilingual') || combined.includes('language') || combined.includes('interpreter')) {
+    return <Languages size={iconSize} className={iconClass} strokeWidth={1.5} />;
+  }
+  // Marketing/CS positions
+  if (combined.includes('marketing') || combined.includes('support') || combined.includes('customer') || combined.includes('success') || combined.includes('sales') || combined.includes('coordinator')) {
+    return <Megaphone size={iconSize} className={iconClass} strokeWidth={1.5} />;
+  }
+
+  // Default to generic briefcase icon
+  return <Briefcase size={iconSize} className={iconClass} strokeWidth={1.5} />;
+};
 
 // --- 2. B2B Invoice Checkout Component (English & Professional) ---
 function InvoiceCheckout({ planName, price, onCancel, onSuccess }) {
@@ -335,6 +367,8 @@ export default function RemoteLingoMVP() {
   const [selectedType, setSelectedType] = useState('All');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [lastUpdated, setLastUpdated] = useState("Just now");
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 10;
 
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [redirectingJob, setRedirectingJob] = useState(null);
@@ -342,6 +376,19 @@ export default function RemoteLingoMVP() {
   const [showRelocationOnly, setShowRelocationOnly] = useState(false);
 
   const t = translations[language];
+
+  // Load language preference from localStorage on mount
+  useEffect(() => {
+    const savedLang = localStorage.getItem('language') as Language;
+    if (savedLang && (savedLang === 'en' || savedLang === 'jp' || savedLang === 'kr')) {
+      setLanguage(savedLang);
+    }
+  }, []);
+
+  // Persist language preference to localStorage
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   // --- Filtering Logic ---
   const filteredJobs = useMemo(() => {
@@ -374,6 +421,18 @@ export default function RemoteLingoMVP() {
     });
   }, [selectedLang, selectedType, showRelocationOnly, language]);
 
+  // Pagination calculations
+  const totalJobs = filteredJobs.length;
+  const totalPages = Math.ceil(totalJobs / jobsPerPage);
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedLang, selectedType, showRelocationOnly, language]);
+
   // --- Helpers ---
   const showToastMessage = (msg, type = 'success') => {
     setToast({ message: msg, type });
@@ -387,11 +446,140 @@ export default function RemoteLingoMVP() {
     }
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top of job list
+    const jobListElement = document.getElementById('job-list');
+    if (jobListElement) {
+      jobListElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Helper: Get localized job title
+  const getLocalizedTitle = (job) => {
+    if ((language === 'jp' || language === 'kr') && t.jobTitles) {
+      // Try exact match first
+      if (t.jobTitles[job.title]) {
+        return t.jobTitles[job.title];
+      }
+      // Try partial match
+      for (const [key, value] of Object.entries(t.jobTitles)) {
+        if (job.title.includes(key)) {
+          return value;
+        }
+      }
+    }
+    return job.title;
+  };
+
+  // Helper: Get localized description based on category
+  const getLocalizedDescription = (job) => {
+    if (language !== 'jp' || !t.jobDescriptions) {
+      return job.summary;
+    }
+
+    // Categorize job and return appropriate template
+    const title = job.title.toLowerCase();
+    const tags = job.tags.map(t => t.toLowerCase()).join(' ');
+    const combined = `${title} ${tags}`;
+
+    if (combined.includes('game') || combined.includes('presenter') || combined.includes('casino')) {
+      return t.jobDescriptions.game;
+    }
+    if (combined.includes('language') || combined.includes('translation') || combined.includes('bilingual') || combined.includes('ai')) {
+      return t.jobDescriptions.language;
+    }
+    if (combined.includes('engineer') || combined.includes('developer') || combined.includes('backend') || combined.includes('software') || combined.includes('qa')) {
+      return t.jobDescriptions.tech;
+    }
+    if (combined.includes('support') || combined.includes('customer') || combined.includes('success')) {
+      return t.jobDescriptions.support;
+    }
+
+    return t.jobDescriptions.default;
+  };
+
+  // Helper: Get localized location
+  const getLocalizedLocation = (location) => {
+    if ((language === 'jp' || language === 'kr') && t.locationLabels) {
+      // Extract main location (e.g., "Malta (Flight + Housing Included)" -> "Malta")
+      const mainLocation = location.split('(')[0].trim();
+      const benefitsMatch = location.match(/\(([^)]+)\)/);
+      const benefits = benefitsMatch ? benefitsMatch[1] : '';
+
+      const localizedLocation = t.locationLabels[mainLocation] || mainLocation;
+
+      if (benefits && t.metadataLabels && t.metadataLabels[benefits]) {
+        const localizedBenefits = t.metadataLabels[benefits];
+        return language === 'jp'
+          ? `${localizedLocation}（${localizedBenefits}）`
+          : `${localizedLocation} (${localizedBenefits})`;
+      }
+
+      return localizedLocation;
+    }
+    return location;
+  };
+
+  // Helper: Get localized tag
+  const getLocalizedTag = (tag) => {
+    if ((language === 'jp' || language === 'kr') && t.metadataLabels && t.metadataLabels[tag]) {
+      return t.metadataLabels[tag];
+    }
+    return tag;
+  };
+
+  // Helper: Get localized job type
+  const getLocalizedType = (type) => {
+    if ((language === 'jp' || language === 'kr') && t.metadataLabels && t.metadataLabels[type]) {
+      return t.metadataLabels[type];
+    }
+    return type;
+  };
+
+  // Helper: Get localized timestamp
+  const getLocalizedTimestamp = (timestamp) => {
+    if ((language === 'jp' || language === 'kr') && t.metadataLabels) {
+      // Check for exact match first
+      if (t.metadataLabels[timestamp]) {
+        return t.metadataLabels[timestamp];
+      }
+
+      // Handle dynamic timestamps like "2h ago", "3 days ago"
+      const hourMatch = timestamp.match(/(\d+)h ago/);
+      if (hourMatch && language === 'jp') {
+        return `${hourMatch[1]}時間前`;
+      }
+
+      const dayMatch = timestamp.match(/(\d+) days? ago/);
+      if (dayMatch && language === 'jp') {
+        return `${dayMatch[1]}日前`;
+      }
+
+      const weekMatch = timestamp.match(/(\d+) weeks? ago/);
+      if (weekMatch && language === 'jp') {
+        return `${weekMatch[1]}週間前`;
+      }
+
+      const monthMatch = timestamp.match(/(\d+) months? ago/);
+      if (monthMatch && language === 'jp') {
+        return `${monthMatch[1]}ヶ月前`;
+      }
+    }
+    return timestamp;
+  };
+
   // --- Action Handlers ---
   const handleApply = (job) => {
-    // 直接打开，不延迟 - 避免手机浏览器阻止弹窗
-    window.open(job.apply_url, '_blank', 'noopener,noreferrer');
-    showToastMessage(`Opened application for ${job.company}`);
+    // Redirect to gatekeeper page with job info
+    const params = new URLSearchParams({
+      job: job.title,
+      company: job.company,
+      url: job.apply_url
+    });
+    window.location.href = `/apply-info?${params.toString()}`;
   };
 
   const handlePostJob = () => {
@@ -696,6 +884,9 @@ export default function RemoteLingoMVP() {
         </div>
       </div>
 
+      {/* --- Candidate Pipeline Stats Bar --- */}
+      <CandidatePipelineStats />
+
       {/* --- Main Content: Sidebar + Job Feed --- */}
       <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row gap-8">
 
@@ -775,10 +966,10 @@ export default function RemoteLingoMVP() {
 
         {/* Job List Feed - Added ID for Scrolling */}
         <main id="job-feed" className="flex-1 scroll-mt-24">
-          <div className="flex justify-between items-center mb-6">
+          <div id="job-list" className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               {t.latestMatches}
-              <span className="bg-slate-100 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">{filteredJobs.length}</span>
+              <span className="bg-slate-100 text-slate-600 text-xs font-bold px-2 py-1 rounded-full">{totalJobs}</span>
             </h2>
             <div className="flex items-center gap-2 text-sm text-slate-500">
               <span className="hidden sm:inline">{t.sortedBy}</span>
@@ -791,7 +982,11 @@ export default function RemoteLingoMVP() {
           </div>
 
           <div className="space-y-4">
-            {filteredJobs.map(job => (
+            {currentJobs.map(originalJob => {
+              // Apply client-side localization (data/presentation separation)
+              const job = getLocalizedJob(originalJob, language);
+
+              return (
               <div
                 key={job.id}
                 className={`group relative bg-white rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border ${job.featured ? 'border-yellow-400 shadow-yellow-100 ring-1 ring-yellow-400/20' : 'border-slate-200 shadow-sm'}`}
@@ -803,18 +998,21 @@ export default function RemoteLingoMVP() {
                 )}
 
                 <div className="flex flex-col sm:flex-row gap-5">
-                  {/* Dynamic Colored Logo */}
-                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl ${AUTO_COLORS[job.id % AUTO_COLORS.length]} flex items-center justify-center text-white font-bold text-lg sm:text-2xl shadow-inner flex-shrink-0`}>
-                    {job.initials || job.company.substring(0,2)}
+                  {/* Professional Monochromatic Icon */}
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shadow-sm flex-shrink-0">
+                    {getCategoryIcon(job)}
                   </div>
 
                   <div className="flex-1">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                             {job.title}
                           </h3>
+                          <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full whitespace-nowrap">
+                            {t.partnershipTag}
+                          </span>
                           {job.ai_verified && (
                              <div className="group/tooltip relative">
                                <CheckCircle2 size={16} className="text-emerald-500 cursor-help" />
@@ -822,11 +1020,7 @@ export default function RemoteLingoMVP() {
                           )}
                         </div>
                         <div className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-2">
-                          {job.company}
-                          <span className="text-slate-300">•</span>
-                          <span className="text-xs text-slate-400 flex items-center gap-1">
-                            {t.source}: {job.source}
-                          </span>
+                          {t.companyLabels[job.company] || job.company}
                         </div>
                       </div>
 
@@ -838,8 +1032,8 @@ export default function RemoteLingoMVP() {
 
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 mb-3">
                       <div className="flex items-center gap-1"><MapPin size={14} /> {job.location}</div>
-                      <div className="flex items-center gap-1"><Briefcase size={14} /> {job.type}</div>
-                      <div className="flex items-center gap-1"><Clock size={14} /> {job.posted_at}</div>
+                      <div className="flex items-center gap-1"><Briefcase size={14} /> {getLocalizedType(job.type)}</div>
+                      <div className="flex items-center gap-1"><Clock size={14} /> {getLocalizedTimestamp(job.posted_at)}</div>
                     </div>
 
                     {/* AI Summary Box */}
@@ -854,7 +1048,7 @@ export default function RemoteLingoMVP() {
                       <div className="flex flex-wrap gap-2">
                         {job.languages.map((lang, idx) => (
                            <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">
-                             {lang}
+                             {getLocalizedTag(lang)}
                            </span>
                         ))}
                         {job.tags && job.tags.map((tag, idx) => (
@@ -879,7 +1073,80 @@ export default function RemoteLingoMVP() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="mt-8 pt-6 border-t border-slate-200">
+                {/* Showing text */}
+                <div className="text-center text-sm text-slate-600 mb-4">
+                  {t.showing} {indexOfFirstJob + 1}-{Math.min(indexOfLastJob, totalJobs)} {t.of} {totalJobs} {t.jobs}
+                </div>
+
+                {/* Pagination buttons */}
+                <div className="flex items-center justify-center gap-2">
+                  {/* Previous button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      currentPage === 1
+                        ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-slate-400'
+                    }`}
+                  >
+                    ← {t.previous}
+                  </button>
+
+                  {/* Page numbers */}
+                  <div className="flex gap-1">
+                    {[...Array(totalPages)].map((_, index) => {
+                      const pageNum = index + 1;
+                      // Show first page, last page, current page and adjacent pages
+                      if (
+                        pageNum === 1 ||
+                        pageNum === totalPages ||
+                        (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                      ) {
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => handlePageChange(pageNum)}
+                            className={`w-10 h-10 rounded-lg font-semibold transition-all ${
+                              currentPage === pageNum
+                                ? 'bg-blue-600 text-white shadow-lg scale-105'
+                                : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-blue-400'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      } else if (
+                        pageNum === currentPage - 2 ||
+                        pageNum === currentPage + 2
+                      ) {
+                        return <span key={pageNum} className="flex items-center px-2 text-slate-400">...</span>;
+                      }
+                      return null;
+                    })}
+                  </div>
+
+                  {/* Next button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      currentPage === totalPages
+                        ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                        : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-slate-400'
+                    }`}
+                  >
+                    {t.next} →
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Empty State */}
             {filteredJobs.length === 0 && (
