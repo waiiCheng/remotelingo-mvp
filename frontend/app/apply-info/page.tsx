@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { CheckCircle2, ShieldCheck, Plane, Users, ArrowRight, ArrowLeft, AlertCircle } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Plane, Users, ArrowRight, ArrowLeft, AlertCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
-export default function ApplyInfoPage() {
+function ApplyInfoContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -208,5 +208,17 @@ export default function ApplyInfoPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ApplyInfoPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+      </div>
+    }>
+      <ApplyInfoContent />
+    </Suspense>
   );
 }

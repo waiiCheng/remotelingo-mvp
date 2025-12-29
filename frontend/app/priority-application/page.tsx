@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Loader2, Star } from 'lucide-react';
 
-export default function PriorityApplicationPage() {
+function PriorityApplicationContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -46,5 +46,17 @@ export default function PriorityApplicationPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PriorityApplicationPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-orange-600 animate-spin" />
+      </div>
+    }>
+      <PriorityApplicationContent />
+    </Suspense>
   );
 }
