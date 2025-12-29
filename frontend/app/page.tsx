@@ -486,19 +486,19 @@ export default function RemoteLingoMVP() {
     const combined = `${title} ${tags}`;
 
     if (combined.includes('game') || combined.includes('presenter') || combined.includes('casino')) {
-      return t.jobDescriptions.game;
+      return language === 'jp' ? '未経験から挑戦できる海外就職。渡航サポート完備で安心。' : language === 'kr' ? '경험 없이도 도전 가능한 해외 취업. 이주 지원 완비로 안심.' : 'Entry-level overseas career opportunity with full relocation support.';
     }
     if (combined.includes('language') || combined.includes('translation') || combined.includes('bilingual') || combined.includes('ai')) {
-      return t.jobDescriptions.language;
+      return language === 'jp' ? 'AIモデルの回答品質を評価・修正するお仕事です。ネイティブレベルの日本語力が必須です。' : language === 'kr' ? 'AI 모델의 응답 품질을 평가·수정하는 업무입니다. 원어민 수준의 언어 능력이 필수입니다.' : 'Evaluate and refine AI model responses. Native-level language proficiency required.';
     }
     if (combined.includes('engineer') || combined.includes('developer') || combined.includes('backend') || combined.includes('software') || combined.includes('qa')) {
-      return t.jobDescriptions.tech;
+      return language === 'jp' ? '日本発のグローバル製造業プラットフォーム開発。Go/Rust/Python経験者優遇。' : language === 'kr' ? '일본 기반 글로벌 제조업 플랫폼 개발. Go/Rust/Python 경험자 우대.' : 'Global manufacturing platform development. Experience with Go/Rust/Python preferred.';
     }
     if (combined.includes('support') || combined.includes('customer') || combined.includes('success')) {
-      return t.jobDescriptions.support;
+      return language === 'jp' ? 'グローバル企業でのカスタマーサポート業務。母国語を活かして活躍できます。' : language === 'kr' ? '글로벌 기업의 고객 지원 업무. 모국어를 활용하여 활약할 수 있습니다.' : 'Customer support role at global companies. Leverage your native language skills.';
     }
 
-    return t.jobDescriptions.default;
+    return language === 'jp' ? '詳細は応募フォームをご確認ください。' : language === 'kr' ? '자세한 내용은 지원 양식을 확인해 주세요.' : 'Please refer to the application form for details.';
   };
 
   // Helper: Get localized location
