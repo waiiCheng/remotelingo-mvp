@@ -23,7 +23,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Native Japanese speaker needed for live studio in Malta. No coding skills required. Full relocation package included (Flight, Housing, Gym). Start immediately. 日本語での面接可能。英語能力は問いません。",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 219,
@@ -45,7 +45,7 @@ const JOBS_DATA = [
     source: "Pragmatic Play Careers",
     match_score: 96,
     summary: "Join our expanding team in Georgia. We are looking for energetic Korean speakers. We provide work permit support and temporary housing. 한국어로 면접 가능하며, 영어는 초급 수준만 요구합니다.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 220,
@@ -67,7 +67,7 @@ const JOBS_DATA = [
     source: "TikTok Careers",
     match_score: 95,
     summary: "Review content for the Chinese market. Relocation package available for qualified candidates. Great entry-level opportunity in Tech.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 221,
@@ -113,7 +113,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Entry-level role with relocation to Europe (Malta, Latvia, Madrid, Georgia, Armenia) or Canada (Vancouver). Includes visa sponsorship, flight tickets, initial accommodation, and bonuses. No experience or coding required. Positions available for Russian speakers in Tbilisi (Georgia) and Yerevan (Armenia). Hourly pay around €7-16 or $24.75 CAD, leading to annual 30k-50k with incentives.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 116,
@@ -135,7 +135,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 95,
     summary: "Provide customer service as a live game presenter, hosting casino games on camera in Korean. Starting at $24.75/hour plus bonuses—no experience required. Opportunity in Burnaby serving Korean, Japanese, and Chinese markets. Ideal for bilingual individuals with relocation support available for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 117,
@@ -883,7 +883,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Host live casino games on camera in Portuguese. No experience needed; full training provided. Relocation package includes visa sponsorship, flights, and initial accommodation. Ideal for Portuguese speakers seeking to leave Portugal for European opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 149,
@@ -1103,7 +1103,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Provide customer support in Portuguese for online casino. Entry-level with visa sponsorship, flights, and relocation assistance for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 160,
@@ -1125,7 +1125,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 94,
     summary: "Offer live support in Portuguese for gaming platforms. Relocation to Canada with visa, flights, and accommodation for Portuguese speakers seeking new opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 161,
@@ -1147,7 +1147,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 93,
     summary: "Handle customer inquiries in Portuguese. Full relocation support including visa and flights for those wanting to leave Portugal.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 162,
@@ -1169,7 +1169,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 92,
     summary: "Combine dealing and support roles in Portuguese. Visa sponsorship, flights, and relocation for entry-level positions.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 163,
@@ -1191,7 +1191,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 91,
     summary: "Host games and provide support in Portuguese. Relocation with visa and flights for Portuguese speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 164,
@@ -1213,7 +1213,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 90,
     summary: "Ensure customer success in Portuguese. Full relocation support including visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 165,
@@ -1235,7 +1235,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 89,
     summary: "Support online casino equipment in Portuguese. Part-time with relocation, visa, and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 166,
@@ -1257,7 +1257,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 88,
     summary: "Supervise and support in Portuguese. Relocation with visa and flights for mid-level roles.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 167,
@@ -1279,7 +1279,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 87,
     summary: "Provide research support in Portuguese. Global relocation with visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 178,
@@ -1301,7 +1301,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Host live casino games in multiple languages. Entry-level role with full visa sponsorship, flights, airport pickup, and initial accommodation. Perfect for multilingual talents seeking relocation.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 179,
@@ -1701,7 +1701,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Host live casino games on camera in Portuguese. No experience needed; full training provided. Relocation package includes visa sponsorship, flights, and initial accommodation. Ideal for Portuguese speakers seeking to leave Portugal for European opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 200,
@@ -1921,7 +1921,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Provide customer support in Portuguese for online casino. Entry-level with visa sponsorship, flights, and relocation assistance for international candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 210,
@@ -1943,7 +1943,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 94,
     summary: "Offer live support in Portuguese for gaming platforms. Relocation to Canada with visa, flights, and accommodation for Portuguese speakers seeking new opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 211,
@@ -1965,7 +1965,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 93,
     summary: "Handle customer inquiries in Portuguese. Full relocation support including visa and flights for those wanting to leave Portugal.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 212,
@@ -1987,7 +1987,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 92,
     summary: "Combine dealing and support roles in Portuguese. Visa sponsorship, flights, and relocation for entry-level positions.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 213,
@@ -2009,7 +2009,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 91,
     summary: "Host games and provide support in Portuguese. Relocation with visa and flights for Portuguese speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 214,
@@ -2031,7 +2031,7 @@ const JOBS_DATA = [
     source: "SmartRecruiters",
     match_score: 90,
     summary: "Ensure customer success in Portuguese. Full relocation support including visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 215,
@@ -2053,7 +2053,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 89,
     summary: "Support online casino equipment in Portuguese. Part-time with relocation, visa, and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 216,
@@ -2075,7 +2075,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 88,
     summary: "Supervise and support in Portuguese. Relocation with visa and flights for mid-level roles.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 217,
@@ -2097,7 +2097,7 @@ const JOBS_DATA = [
     source: "LinkedIn",
     match_score: 87,
     summary: "Provide research support in Portuguese. Global relocation with visa and flights.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
 
   // === FRENCH SPEAKING POSITIONS (IDs 168-177) ===
@@ -2143,7 +2143,7 @@ const JOBS_DATA = [
     source: "Indeed",
     match_score: 96,
     summary: "Host live games in French. No experience needed; full relocation with visa, flights, and housing for French speakers moving abroad.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 170,
@@ -2409,7 +2409,7 @@ const JOBS_DATA = [
     source: "TikTok Careers",
     match_score: 92,
     summary: "Ensure platform safety in multiple languages. Relocation support with visa, flights, and accommodation for entry-level candidates.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 193,
@@ -2565,7 +2565,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "Manage high-value VIP clients with uncapped commission structure. Base salary €40-55k plus performance bonuses. Full relocation package to Malta including visa sponsorship, flights, and accommodation. Proven track record in client management required.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 223,
@@ -2587,7 +2587,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Monitor and prevent fraudulent activities in live gaming environment. Entry-level position with full training provided. Relocation package includes visa sponsorship, flights, and initial accommodation in Malta. Analytical mindset required.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 224,
@@ -2609,7 +2609,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Provide customer support in Japanese for Asian markets. Premium salary for native Japanese speakers (€28-34k). Full relocation to Malta with visa sponsorship, flights, and accommodation. Basic English required. 日本語での面接可能。",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 225,
@@ -2631,7 +2631,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 94,
     summary: "Manual card shuffling role in live casino studio. No experience needed - full training provided. Entry-level salary €19-24k with full relocation package (visa, flights, accommodation). Perfect first job abroad in Malta.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 226,
@@ -2653,7 +2653,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Coordinate live studio operations and manage game presenters. €32-42k salary with relocation to Malta including visa sponsorship, flights, and housing. Experience in operations or broadcasting preferred.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 227,
@@ -2675,7 +2675,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Create engaging content for global iGaming platform. €30-45k depending on experience. Relocation package to Malta with visa sponsorship, flights, and accommodation. Native English speaker preferred.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
 
   // === MASTER POPULATION: 18 GAME PRESENTER FISSION VARIANTS (IDs 228-245) ===
@@ -2700,7 +2700,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 99,
     summary: "Entry-level position for Japanese speakers in Malta. Monthly salary €1,800-€2,200 during training. Flight, accommodation, and gym included. No coding required. Japanese interviews available. Basic English level acceptable.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 229,
@@ -2722,7 +2722,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 99,
     summary: "Complete beginner-friendly casino dealer role. Monthly salary €1,800-€2,200. Free accommodation, flights, gym, and cafeteria. Apply in Japanese only. English will be taught during training.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 230,
@@ -2744,7 +2744,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Japanese game presenter role in Latvia. Monthly salary €1,800-€2,200. Complete beginner-friendly. 3-month training period, full flights and accommodation. Japanese interviews available.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 231,
@@ -2766,7 +2766,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Japanese casino host trainee in Tbilisi, Georgia. Monthly salary €1,800-€2,200. Full flight, accommodation, and visa support. Apply in Japanese only. English not required.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 232,
@@ -2788,7 +2788,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "Japanese live dealer trainee in Vancouver, Canada. Monthly salary €1,800-€2,200 (CAD equivalent). Flight, accommodation, and work permit fully supported. Beginners welcome.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 233,
@@ -2810,7 +2810,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "Multilingual game host trainee in Madrid, Spain. Monthly salary €1,800-€2,200. Japanese, Korean, or Russian required. Full flight, accommodation, and visa support.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
 
   // VARIANT B GROUP: Money/Senior Focus (6 listings)
@@ -2834,7 +2834,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Experienced high-income position. Annual salary €35,000-€48,000 (bonuses included). Night shift and attendance allowances. Malta-based. Flight and housing support. Promotion opportunities available.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 235,
@@ -2856,7 +2856,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Top salary for experienced dealers - €50,000 annual (incentives included). Night/weekend/attendance bonuses. Malta-based. Flight and housing support. Team leader promotion track available.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 236,
@@ -2878,7 +2878,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "Senior Japanese game host in Latvia. Annual salary €38,000-€45,000. Experienced candidates preferred. Incentives, housing allowance, and flight included. Management candidate track.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 237,
@@ -2900,7 +2900,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "High-income position for experienced candidates. Annual salary €40,000-€50,000 + incentives. Choose from Malta, Latvia, Madrid, Vancouver, or Georgia. Strong career path.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 238,
@@ -2922,7 +2922,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 99,
     summary: "VIP table specialist - Japanese senior dealer. Annual salary €42,000-€52,000 + tips & bonuses. Malta-based. Experienced candidates preferred. Flight and accommodation included. Management candidate.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 239,
@@ -2944,7 +2944,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Expert Japanese game host in Vancouver, Canada. Annual salary €40,000-€48,000 (CAD equivalent). Experienced candidates preferred. Work permit, flight, and accommodation included. Promotion opportunities.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
 
   // VARIANT C GROUP: Speed/Express Focus (6 listings)
@@ -2968,7 +2968,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 98,
     summary: "Urgent! Move to Malta in as fast as 2 weeks. Annual salary €30,000-€40,000. Visa processing support, flight, and initial accommodation fully covered. Japanese native required. Basic English acceptable.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 241,
@@ -2990,7 +2990,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 97,
     summary: "Same-day online interviews available. Job offer within 1 week. Annual salary €30,000-€40,000. Malta-based. Full visa, flight, and accommodation support. Apply in Japanese only.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 242,
@@ -3012,7 +3012,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Latvia - urgent hiring. Annual salary €28,000-€38,000. Same-day interview to 2-week deployment. Full visa, flight, and accommodation support. Japanese native speakers welcome.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 243,
@@ -3034,7 +3034,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 96,
     summary: "Interview within 1 week. Annual salary €30,000-€45,000. Choose from Malta, Latvia, Madrid, Georgia, or Vancouver. Full visa, flight, and initial accommodation support.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 244,
@@ -3056,7 +3056,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Tbilisi, Georgia - urgent hiring. Annual salary €28,000-€38,000. Same-day interview to 2-week deployment possible. Full visa, flight, and accommodation support. Apply in Japanese only.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   },
   {
     id: 245,
@@ -3078,7 +3078,7 @@ const JOBS_DATA = [
     source: "Evolution Careers",
     match_score: 95,
     summary: "Vancouver, Canada - urgent hiring. Annual salary €30,000-€40,000 (CAD equivalent). Job offer within 1 week, deployment in 2 weeks. Full work permit, flight, and accommodation support.",
-    apply_url: "https://tally.so/r/zxjRGR"
+    apply_url: "/apply"
   }
 ];
 
