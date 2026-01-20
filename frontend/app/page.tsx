@@ -573,13 +573,37 @@ export default function RemoteLingoMVP() {
 
   // --- Action Handlers ---
   const handleApply = (job) => {
-    // Redirect to gatekeeper page with job info
-    const params = new URLSearchParams({
-      job: job.title,
-      company: job.company,
-      url: job.apply_url
-    });
-    window.location.href = `/apply-info?${params.toString()}`;
+    // Check if this is an iGaming / gambling industry position
+    const title = job.title.toLowerCase();
+    const company = job.company.toLowerCase();
+    const tags = job.tags.map(t => t.toLowerCase()).join(' ');
+    const combined = `${title} ${company} ${tags}`;
+
+    const isGamblingJob =
+      combined.includes('game presenter') ||
+      combined.includes('game host') ||
+      combined.includes('casino') ||
+      combined.includes('igaming') ||
+      combined.includes('dealer') ||
+      combined.includes('live game');
+
+    if (isGamblingJob) {
+      // iGaming positions: Redirect to custom application form
+      const params = new URLSearchParams({
+        job: job.title,
+        company: job.company,
+        url: job.apply_url
+      });
+      window.location.href = `/apply-info?${params.toString()}`;
+    } else {
+      // All other positions: Redirect to original job URL
+      if (job.apply_url && job.apply_url !== '/apply') {
+        window.open(job.apply_url, '_blank');
+      } else {
+        // Fallback if no valid URL
+        showToastMessage('No application URL available', 'error');
+      }
+    }
   };
 
   const handlePostJob = () => {
