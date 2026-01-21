@@ -573,7 +573,7 @@ export default function RemoteLingoMVP() {
 
   // --- Action Handlers ---
   const handleApply = (job) => {
-    // Check if this is an iGaming / gambling industry position
+    // Check if this is an iGaming / gambling industry position OR premium FX/Finance position
     const title = job.title.toLowerCase();
     const company = job.company.toLowerCase();
     const tags = job.tags.map(t => t.toLowerCase()).join(' ');
@@ -587,8 +587,17 @@ export default function RemoteLingoMVP() {
       combined.includes('dealer') ||
       combined.includes('live game');
 
-    if (isGamblingJob) {
-      // iGaming positions: Redirect to custom application form
+    const isPremiumFinanceJob =
+      combined.includes('exness') ||
+      combined.includes('xm') ||
+      combined.includes('ic markets') ||
+      combined.includes('fx trading') ||
+      combined.includes('forex') ||
+      combined.includes('retention agent') ||
+      (combined.includes('account manager') && combined.includes('financial'));
+
+    if (isGamblingJob || isPremiumFinanceJob) {
+      // iGaming & Premium Finance positions: Redirect to custom application form
       const params = new URLSearchParams({
         job: job.title,
         company: job.company,
