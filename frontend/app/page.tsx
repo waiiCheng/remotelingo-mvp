@@ -25,15 +25,15 @@ const AUTO_COLORS = [
 
 const LANGUAGES = [
   { code: 'all', name: 'All Languages', flag: '🌍' },
-  { code: 'zh', name: 'Chinese', flag: '🇨🇳', translationKey: 'langChinese' },
-  { code: 'ko', name: 'Korean', flag: '🇰🇷', translationKey: 'langKorean' },
   { code: 'ja', name: 'Japanese', flag: '🇯🇵', translationKey: 'langJapanese' },
+  { code: 'ko', name: 'Korean', flag: '🇰🇷', translationKey: 'langKorean' },
   { code: 'de', name: 'German', flag: '🇩🇪', translationKey: 'langGerman' },
   { code: 'es', name: 'Spanish', flag: '🇪🇸', translationKey: 'langSpanish' },
   { code: 'fr', name: 'French', flag: '🇫🇷', translationKey: 'langFrench' },
   { code: 'pt', name: 'Portuguese', flag: '🇵🇹', translationKey: 'langPortuguese' },
   { code: 'ar', name: 'Arabic', flag: '🇸🇦', translationKey: 'langArabic' },
   { code: 'ru', name: 'Russian', flag: '🇷🇺', translationKey: 'langRussian' },
+  { code: 'zh', name: 'Chinese', flag: '🇨🇳', translationKey: 'langChinese' },
 ];
 
 const JOB_TYPES = ["Full-time", "Contract", "Freelance", "Part-time"];
@@ -959,9 +959,35 @@ export default function RemoteLingoMVP() {
             </div>
             <button
               onClick={() => {
-                setSelectedLang('all');
-                const fxJobs = document.querySelector('[data-company*="Exness"]') || document.querySelector('[data-company*="XM"]');
-                if (fxJobs) fxJobs.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Scroll to job list section
+                const jobList = document.getElementById('job-feed');
+                if (jobList) {
+                  jobList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Wait for scroll to complete, then highlight FX jobs
+                setTimeout(() => {
+                  // Find all job cards
+                  const allJobCards = document.querySelectorAll('[data-company]');
+
+                  // Find first priority FX job (Exness or XM)
+                  const fxJob = Array.from(allJobCards).find(card =>
+                    card.getAttribute('data-status') === 'priority' &&
+                    (card.getAttribute('data-company')?.includes('Exness') ||
+                     card.getAttribute('data-company')?.includes('XM'))
+                  );
+
+                  if (fxJob) {
+                    // Scroll to the FX job
+                    fxJob.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Add a temporary highlight effect
+                    fxJob.classList.add('ring-4', 'ring-orange-400', 'ring-offset-2');
+                    setTimeout(() => {
+                      fxJob.classList.remove('ring-4', 'ring-orange-400', 'ring-offset-2');
+                    }, 3000);
+                  }
+                }, 800);
               }}
               className="flex-shrink-0 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
             >
@@ -1073,6 +1099,8 @@ export default function RemoteLingoMVP() {
               return (
               <div
                 key={job.id}
+                data-company={job.company}
+                data-status={job.status}
                 className={`group relative bg-white rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border ${job.featured ? 'border-yellow-400 shadow-yellow-100 ring-1 ring-yellow-400/20' : 'border-slate-200 shadow-sm'}`}
               >
                 {job.featured && (
