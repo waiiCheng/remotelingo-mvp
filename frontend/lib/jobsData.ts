@@ -2,53 +2,133 @@
 // --- 1. THE INVENTORY (Real Data converted from Grok) ---
 // This acts as your database for now. No SQL needed.
 const JOBS_DATA = [
-  // === MAGNET JOBS - High-Attraction Positions for Lead Generation ===
+  // === MAGNET JOBS - Premium High-Attraction Positions for Lead Generation ===
+
+  // Job 1: The Tech Giant Dream
   {
     id: 501,
-    title: "Account Manager - Japanese Market (Via RemoteLingo Partnership)",
-    company: "Amazon (Global E-Commerce Leader)",
+    title: "Enterprise Account Manager (Japanese)",
+    company: "Amazon AWS",
     logoBg: "bg-orange-600",
-    initials: "AMZN",
+    initials: "AWS",
     languages: ["Japanese", "English"],
-    level: "Mid-Senior Level",
+    level: "Senior Level",
     salary_min: 120000,
     salary_max: 150000,
     currency: "USD",
-    location: "Seattle, USA (Relocation Assistance)",
+    location: "Seattle, USA (Visa Sponsorship Available)",
     type: "Full-time",
-    tags: ["Japanese", "E-Commerce", "Tech", "Visa Sponsorship", "FAANG"],
-    posted_at: "6h ago",
+    tags: ["Japanese", "Cloud Computing", "Enterprise", "H1B Visa", "FAANG"],
+    posted_at: "3h ago",
     featured: true,
     ai_verified: true,
-    status: "priority",
+    status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 99,
-    summary: "Amazon is seeking a Japanese-speaking Account Manager for their Asia-Pacific expansion. Manage key enterprise clients, drive growth strategies. Benefits: $120k-$150k base + stock options, H1-B visa sponsorship, relocation package, comprehensive health insurance. ベースサラリー$120k-$150k + ストックオプション。H1-Bビザサポート有り。",
-    apply_url: "https://tally.so/r/zxjRGR"
+    summary: "Manage key accounts for Amazon Web Services. Requires native Japanese. H1B sponsorship provided for top talent. ネイティブ日本語必須。H1Bビザスポンサー提供。年収$120,000-$150,000。",
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
+
+  // Job 2: The Fashion Dream
+  {
+    id: 504,
+    title: "Client Advisor - Japanese Speaker",
+    company: "Gucci",
+    logoBg: "bg-red-700",
+    initials: "GUC",
+    languages: ["Japanese", "English"],
+    level: "Mid Level",
+    salary_min: 35000,
+    salary_max: 50000,
+    currency: "GBP",
+    location: "London, UK (Mayfair)",
+    type: "Full-time",
+    tags: ["Japanese", "Luxury Retail", "Fashion", "VIP Client", "Commission"],
+    posted_at: "5h ago",
+    featured: true,
+    ai_verified: true,
+    status: "urgent",
+    source: "RemoteLingo Exclusive",
+    match_score: 98,
+    summary: "Work at Gucci's flagship store. Assist VIP Japanese clientele. Experience in luxury retail required. 高級小売経験必須。年収£35,000-£50,000 + コミッション。",
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
+  },
+
+  // Job 3: The Paris Dream
+  {
+    id: 505,
+    title: "Retail Merchandising Manager",
+    company: "LVMH Group",
+    logoBg: "bg-indigo-700",
+    initials: "LVMH",
+    languages: ["Japanese", "English", "French"],
+    level: "Manager Level",
+    salary_min: 45000,
+    salary_max: 60000,
+    currency: "EUR",
+    location: "Paris, France",
+    type: "Full-time",
+    tags: ["Japanese", "Luxury", "Merchandising", "LVMH", "Fashion"],
+    posted_at: "1d ago",
+    featured: true,
+    ai_verified: true,
+    status: "urgent",
+    source: "RemoteLingo Exclusive",
+    match_score: 97,
+    summary: "Join the world's leading luxury group. Oversee merchandising strategies for Japanese market. 世界最大級のラグジュアリーグループ。年収€45,000-€60,000。",
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
+  },
+
+  // Job 4: The Digital Nomad Dream
+  {
+    id: 506,
+    title: "Policy Escalation Specialist (YouTube)",
+    company: "Google",
+    logoBg: "bg-blue-600",
+    initials: "GOOG",
+    languages: ["Japanese", "English"],
+    level: "Mid Level",
+    salary_min: 60000,
+    salary_max: 80000,
+    currency: "USD",
+    location: "Remote (Singapore/Tokyo Base)",
+    type: "Full-time",
+    tags: ["Japanese", "YouTube", "Policy", "Remote", "FAANG"],
+    posted_at: "12h ago",
+    featured: true,
+    ai_verified: true,
+    status: "urgent",
+    source: "RemoteLingo Exclusive",
+    match_score: 96,
+    summary: "Handle high-priority content policy issues for YouTube Japan. Remote-friendly culture. フルリモート可。年収$60,000-$80,000。",
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
+  },
+
+  // Job 5: The FinTech Dream
   {
     id: 502,
-    title: "Compliance Analyst - Japanese Speaking (Via RemoteLingo Partnership)",
-    company: "PayPal (FinTech Innovation Leader)",
+    title: "Compliance Analyst (Japanese)",
+    company: "PayPal",
     logoBg: "bg-blue-700",
     initials: "PYPL",
     languages: ["Japanese", "English"],
     level: "Mid Level",
     salary_min: 60000,
-    salary_max: 75000,
+    salary_max: 80000,
     currency: "EUR",
-    location: "Remote (EU Timezone)",
+    location: "Remote (Europe Based)",
     type: "Full-time",
     tags: ["Japanese", "FinTech", "Compliance", "Remote", "PayPal"],
-    posted_at: "1d ago",
+    posted_at: "8h ago",
     featured: true,
     ai_verified: true,
-    status: "priority",
+    status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 98,
-    summary: "Join PayPal's compliance team to support Japanese market operations. Monitor transactions, ensure regulatory adherence, collaborate with APAC teams. Fully remote within EU timezone. Benefits: €60k-€75k, performance bonus, private health insurance, 30 days annual leave. フルリモート・EU拠点。€60k-€75k + パフォーマンスボーナス。",
-    apply_url: "https://tally.so/r/zxjRGR"
+    summary: "Risk and compliance role for PayPal's Japanese operations. 100% Remote work from anywhere in Europe. 欧州拠点フルリモート。年収€60,000-€80,000。",
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
+
   {
     id: 503,
     title: "Business Development Manager - Japanese Market (Via RemoteLingo Partnership)",
