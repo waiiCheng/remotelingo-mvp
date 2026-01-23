@@ -24,7 +24,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 99,
-    summary: "Manage key accounts for Amazon Web Services. Requires native Japanese. H1B sponsorship provided for top talent. ネイティブ日本語必須。H1Bビザスポンサー提供。年収$120,000-$150,000。",
+    summary: {
+      en: "Manage key accounts for Amazon Web Services. Requires native Japanese. H1B sponsorship provided for top talent.",
+      jp: "ネイティブ日本語必須。H1Bビザスポンサー提供。年収$120,000-$150,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -48,7 +51,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 96,
-    summary: "Handle high-priority content policy issues for YouTube Japan. Remote-friendly culture. フルリモート可。年収$60,000-$80,000。",
+    summary: {
+      en: "Handle high-priority content policy issues for YouTube Japan. Remote-friendly culture.",
+      jp: "フルリモート可。年収$60,000-$80,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -74,7 +80,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 98,
-    summary: "Work at Gucci's flagship store. Assist VIP Japanese clientele. Experience in luxury retail required. 高級小売経験必須。年収£35,000-£50,000 + コミッション。",
+    summary: {
+      en: "Work at Gucci's flagship store. Assist VIP Japanese clientele. Experience in luxury retail required.",
+      jp: "高級小売経験必須。年収£35,000-£50,000 + コミッション。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -98,7 +107,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 97,
-    summary: "Join the world's leading luxury group. Oversee merchandising strategies for Japanese market. 世界最大級のラグジュアリーグループ。年収€45,000-€60,000。",
+    summary: {
+      en: "Join the world's leading luxury group. Oversee merchandising strategies for Japanese market.",
+      jp: "世界最大級のラグジュアリーグループ。年収€45,000-€60,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -124,7 +136,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 98,
-    summary: "Risk and compliance role for PayPal's Japanese operations. 100% Remote work from anywhere in Europe. 欧州拠点フルリモート。年収€60,000-€80,000。",
+    summary: {
+      en: "Risk and compliance role for PayPal's Japanese operations. 100% Remote work from anywhere in Europe.",
+      jp: "欧州拠点フルリモート。年収€60,000-€80,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -148,7 +163,10 @@ const JOBS_DATA = [
     status: "priority",
     source: "RemoteLingo Exclusive",
     match_score: 97,
-    summary: "Fast-growing London FinTech seeking BD Manager to expand into Japanese market. Benefits: £50k-£65k base + uncapped commission, Tier 2 visa sponsorship, equity options. 年収£50k-£65k + 無制限コミッション。",
+    summary: {
+      en: "Fast-growing London FinTech seeking BD Manager to expand into Japanese market. Benefits: £50k-£65k base + uncapped commission, Tier 2 visa sponsorship, equity options.",
+      jp: "年収£50k-£65k + 無制限コミッション。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -172,7 +190,10 @@ const JOBS_DATA = [
     status: "priority",
     source: "Exness Careers",
     match_score: 99,
-    summary: "Join the world's #1 retail forex broker. Manage premium Japanese client accounts. Full package: Company car, private medical insurance, children's school fees covered. 月給€2,500-€4,500 + 会社車 + 医療保険完備。",
+    summary: {
+      en: "Join the world's #1 retail forex broker. Manage premium Japanese client accounts. Full package: Company car, private medical insurance, children's school fees covered.",
+      jp: "月給€2,500-€4,500 + 会社車 + 医療保険完備。"
+    },
     apply_url: "https://www.jobsinforex.com/jobs/forex-jobs-in-Limassol/"
   },
 
@@ -196,7 +217,10 @@ const JOBS_DATA = [
     status: "priority",
     source: "XM Careers",
     match_score: 97,
-    summary: "Support and grow premium Japanese client portfolios in a global FinTech environment. Benefits: 月給€2,500-€4,500 + performance commission, 13th-month salary, private health insurance. 高額コミッション制。",
+    summary: {
+      en: "Support and grow premium Japanese client portfolios in a global FinTech environment. Benefits: Monthly salary €2,500-€4,500 + performance commission, 13th-month salary, private health insurance.",
+      jp: "高額コミッション制。"
+    },
     apply_url: "https://www.cypruswork.com/jobs/?categories%5B%5D=Forex"
   },
 
@@ -219,7 +243,10 @@ const JOBS_DATA = [
     ai_verified: true,
     source: "IC Markets Careers",
     match_score: 95,
-    summary: "Excellent entry into financial technology. Support Japanese traders on global platform. Benefits: Relocation bonus, free daily breakfast & lunch, private medical insurance, 22 days annual leave. 未経験可。毎日無料食事付き。",
+    summary: {
+      en: "Excellent entry into financial technology. Support Japanese traders on global platform. Benefits: Relocation bonus, free daily breakfast & lunch, private medical insurance, 22 days annual leave.",
+      jp: "未経験可。毎日無料食事付き。"
+    },
     apply_url: "https://www.alpha.jobs/jobs/194256897-client-relationship-manager-japanese-speaker"
   },
 
@@ -245,7 +272,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 96,
-    summary: "Review and ensure content quality for TikTok Japan. Work with global teams on content policy. Relocation support to Singapore provided. シンガポール移住サポート有り。年収$50,000-$70,000。",
+    summary: {
+      en: "Review and ensure content quality for TikTok Japan. Work with global teams on content policy. Relocation support to Singapore provided.",
+      jp: "シンガポール移住サポート有り。年収$50,000-$70,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -269,7 +299,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 95,
-    summary: "Drive Alibaba Cloud expansion into Japanese enterprise market. EU-based role with Japan travel. Benefits: €55k-€75k + performance bonus, relocation to Amsterdam. アムステルダム拠点。年収€55,000-€75,000。",
+    summary: {
+      en: "Drive Alibaba Cloud expansion into Japanese enterprise market. EU-based role with Japan travel. Benefits: €55k-€75k + performance bonus, relocation to Amsterdam.",
+      jp: "アムステルダム拠点。年収€55,000-€75,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -295,7 +328,10 @@ const JOBS_DATA = [
     status: "delayed",
     source: "Evolution Careers",
     match_score: 92,
-    summary: "Host live interactive shows for Japanese audiences from Malta studio. No prior experience required - full training provided. Benefits: Flight, accommodation, work permit included. 日本語ネイティブ必須。未経験可。年収€25,000-€35,000。",
+    summary: {
+      en: "Host live interactive shows for Japanese audiences from Malta studio. No prior experience required - full training provided. Benefits: Flight, accommodation, work permit included.",
+      jp: "日本語ネイティブ必須。未経験可。年収€25,000-€35,000。"
+    },
     apply_url: "/apply"
   },
 
@@ -319,7 +355,10 @@ const JOBS_DATA = [
     status: "delayed",
     source: "Evolution Careers",
     match_score: 90,
-    summary: "Support live broadcasting operations for Japanese market. Technical training provided. Excellent entry into media production. Benefits: Full relocation package, 30 days annual leave. 未経験歓迎。研修完備。年収€24,000-€30,000。",
+    summary: {
+      en: "Support live broadcasting operations for Japanese market. Technical training provided. Excellent entry into media production. Benefits: Full relocation package, 30 days annual leave.",
+      jp: "未経験歓迎。研修完備。年収€24,000-€30,000。"
+    },
     apply_url: "/apply"
   },
 
@@ -343,7 +382,10 @@ const JOBS_DATA = [
     status: "delayed",
     source: "Evolution Careers",
     match_score: 93,
-    summary: "Manage high-value Japanese VIP clients in premium live entertainment environment. Performance bonuses available. Benefits: Housing allowance, private health insurance, relocation support. VIP対応経験者優遇。年収€30,000-€40,000 + ボーナス。",
+    summary: {
+      en: "Manage high-value Japanese VIP clients in premium live entertainment environment. Performance bonuses available. Benefits: Housing allowance, private health insurance, relocation support.",
+      jp: "VIP対応経験者優遇。年収€30,000-€40,000 + ボーナス。"
+    },
     apply_url: "/apply"
   },
 
@@ -369,7 +411,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 97,
-    summary: "Lead localization strategy for Netflix Japan content. Manage subtitling, dubbing, and cultural adaptation. Fully remote role. リモート勤務可。年収$70,000-$95,000。",
+    summary: {
+      en: "Lead localization strategy for Netflix Japan content. Manage subtitling, dubbing, and cultural adaptation. Fully remote role.",
+      jp: "リモート勤務可。年収$70,000-$95,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -393,7 +438,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 96,
-    summary: "Drive product strategy for Spotify Japan. Collaborate with Tokyo team on local features. Full relocation to Stockholm provided. ストックホルム移住パッケージ付き。年収$80,000-$110,000。",
+    summary: {
+      en: "Drive product strategy for Spotify Japan. Collaborate with Tokyo team on local features. Full relocation to Stockholm provided.",
+      jp: "ストックホルム移住パッケージ付き。年収$80,000-$110,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -417,7 +465,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 95,
-    summary: "Analyze Japanese market trends for Microsoft Cloud services. Support Azure expansion in Japan. H1B visa sponsorship available. H1Bビザサポート有り。年収$65,000-$85,000。",
+    summary: {
+      en: "Analyze Japanese market trends for Microsoft Cloud services. Support Azure expansion in Japan. H1B visa sponsorship available.",
+      jp: "H1Bビザサポート有り。年収$65,000-$85,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -441,7 +492,11 @@ const JOBS_DATA = [
     status: "priority",
     source: "RemoteLingo Exclusive",
     match_score: 94,
-    summary: "Bridge communication between Korean HQ and Japanese markets. Tech industry interpretation and translation. EU-based role with Japan travel. 韓国語・日本語バイリンガル必須。年収€45,000-€60,000。",
+    summary: {
+      en: "Bridge communication between Korean HQ and Japanese markets. Tech industry interpretation and translation. EU-based role with Japan travel.",
+      jp: "韓国語・日本語バイリンガル必須。年収€45,000-€60,000。",
+      kr: "한국어·일본어 바이링구얼 필수. 연봉 €45,000-€60,000."
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -465,7 +520,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 98,
-    summary: "Lead UX research for Meta's Japanese user base. Design studies, analyze behavior, inform product decisions. H1B sponsorship provided. H1Bビザサポート。年収$100,000-$130,000。",
+    summary: {
+      en: "Lead UX research for Meta's Japanese user base. Design studies, analyze behavior, inform product decisions. H1B sponsorship provided.",
+      jp: "H1Bビザサポート。年収$100,000-$130,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -489,7 +547,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 96,
-    summary: "Manage Japanese enterprise accounts for Salesforce CRM platform. High-value B2B sales role with uncapped commission. Visa support available. 年収$90,000-$120,000 + 無制限コミッション。",
+    summary: {
+      en: "Manage Japanese enterprise accounts for Salesforce CRM platform. High-value B2B sales role with uncapped commission. Visa support available.",
+      jp: "年収$90,000-$120,000 + 無制限コミッション。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -513,7 +574,10 @@ const JOBS_DATA = [
     status: "priority",
     source: "RemoteLingo Exclusive",
     match_score: 94,
-    summary: "Create and optimize Japanese content strategy for Airbnb's global platform. Work with hosts and guests in Japan market. Fully remote position. フルリモート。年収$70,000-$90,000。",
+    summary: {
+      en: "Create and optimize Japanese content strategy for Airbnb's global platform. Work with hosts and guests in Japan market. Fully remote position.",
+      jp: "フルリモート。年収$70,000-$90,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   },
 
@@ -537,7 +601,10 @@ const JOBS_DATA = [
     status: "urgent",
     source: "RemoteLingo Exclusive",
     match_score: 95,
-    summary: "Build strategic partnerships for Stripe's payment platform in Japan and APAC. Singapore-based role with Japan travel. Full relocation support. シンガポール勤務。年収$85,000-$115,000。",
+    summary: {
+      en: "Build strategic partnerships for Stripe's payment platform in Japan and APAC. Singapore-based role with Japan travel. Full relocation support.",
+      jp: "シンガポール勤務。年収$85,000-$115,000。"
+    },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   }
 ];

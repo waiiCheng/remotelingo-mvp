@@ -30,7 +30,11 @@ export interface Job {
   ai_verified: boolean;
   source: string;
   match_score: number;
-  summary?: string;
+  summary?: string | {
+    en: string;
+    jp: string;
+    kr?: string;
+  };
   created_at?: string;
   updated_at?: string;
 }

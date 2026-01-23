@@ -6,9 +6,17 @@ import { Job } from '@/lib/api';
 
 interface JobCardProps {
   job: Job;
+  language?: 'en' | 'jp' | 'kr'; // Add language prop
 }
 
-export default function JobCard({ job }: JobCardProps) {
+export default function JobCard({ job, language = 'en' }: JobCardProps) {
+  // Helper function to get localized summary
+  const getSummary = () => {
+    if (!job.summary) return '';
+    if (typeof job.summary === 'string') return job.summary;
+    return job.summary[language] || job.summary.en || '';
+  };
+
   return (
     <div
       className={`group relative bg-white rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border ${
@@ -82,7 +90,7 @@ export default function JobCard({ job }: JobCardProps) {
           {job.summary && (
             <div className="mb-4 text-xs text-slate-500 italic bg-slate-50 p-2 rounded border border-slate-100 flex items-start gap-2">
               <Bot size={14} className="text-blue-400 flex-shrink-0 mt-0.5" />
-              {job.summary}
+              {getSummary()}
             </div>
           )}
 

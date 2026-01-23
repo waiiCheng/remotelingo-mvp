@@ -477,7 +477,9 @@ export default function RemoteLingoMVP() {
   // Helper: Get localized description based on category
   const getLocalizedDescription = (job) => {
     if (language !== 'jp' || !t.jobDescriptions) {
-      return job.summary;
+      return typeof job.summary === 'string'
+        ? job.summary
+        : (job.summary?.[language] || job.summary?.en || '');
     }
 
     // Categorize job and return appropriate template
@@ -1088,7 +1090,9 @@ export default function RemoteLingoMVP() {
                     {job.summary && (
                       <div className="mb-4 text-xs text-slate-500 italic bg-slate-50 p-2 rounded border border-slate-100 flex items-start gap-2">
                         <Bot size={14} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                        {job.summary}
+                        {typeof job.summary === 'string'
+                          ? job.summary
+                          : (job.summary[language] || job.summary.en || '')}
                       </div>
                     )}
 
