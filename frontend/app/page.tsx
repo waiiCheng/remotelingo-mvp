@@ -587,7 +587,9 @@ export default function RemoteLingoMVP() {
       combined.includes('casino') ||
       combined.includes('igaming') ||
       combined.includes('dealer') ||
-      combined.includes('live game');
+      combined.includes('live game') ||
+      combined.includes('broadcasting host') ||
+      combined.includes('creedroomz');
 
     const isPremiumFinanceJob =
       combined.includes('exness') ||
@@ -595,8 +597,10 @@ export default function RemoteLingoMVP() {
       combined.includes('ic markets') ||
       combined.includes('fx trading') ||
       combined.includes('forex') ||
+      combined.includes('fx broker') ||
       combined.includes('retention agent') ||
-      (combined.includes('account manager') && combined.includes('financial'));
+      (combined.includes('account manager') && combined.includes('financial')) ||
+      (combined.includes('relationship manager') && combined.includes('fintech'));
 
     if (isGamblingJob || isPremiumFinanceJob) {
       // iGaming & Premium Finance positions: Redirect to custom application form
