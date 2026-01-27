@@ -606,6 +606,66 @@ const JOBS_DATA = [
       jp: "シンガポール勤務。年収$85,000-$115,000。"
     },
     apply_url: "https://tally.so/r/zxjRGR?ref=premium"
+  },
+
+  // === TIER 7: KOREAN STRATEGIC MANDATES ===
+
+  // THE CASH COW - Real Mandate (CreedRoomz/Armenia)
+  {
+    id: 801,
+    title: "Korean Live Broadcasting Host (Media & Gaming)",
+    company: "CreedRoomz (International Studio)",
+    logoBg: "bg-purple-700",
+    initials: "CR",
+    languages: ["Korean", "English"],
+    level: "Entry Level",
+    salary_min: 2000,
+    salary_max: 2800,
+    currency: "USD",
+    location: "Yerevan, Armenia (Full Relocation Package)",
+    type: "Full-time",
+    tags: ["Korean", "Broadcasting", "OverseasLife", "HighSavings", "EntryLevel", "Zero Living Cost"],
+    posted_at: "2h ago",
+    featured: true,
+    ai_verified: true,
+    status: "urgent",
+    source: "RemoteLingo Exclusive",
+    match_score: 99,
+    summary: {
+      en: "$2,000 NET Base Salary + Performance Bonus. 100% DISPOSABLE INCOME - FREE Luxury Accommodation (Premium Apartment) + FREE Catering (3 Meals/Day). No rent, no food bills. Flight ticket & visa sponsorship covered. Perfect for those who want to maximize savings while living abroad.",
+      jp: "月給$2,000（手取り）+ ボーナス。家賃・食費ゼロ。高級アパート + 3食付き。貯金に最適。",
+      kr: "월급 $2,000 순수입 + 성과급. 🏠 무료 고급 아파트 + 🍽️ 하루 3식 무료 제공. 생활비 제로 = 월급 100% 저축 가능! 항공권·비자 지원. 해외에서 돈 모으고 싶은 분께 최적."
+    },
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
+  },
+
+  // THE BAIT - Shadow Mandate (FX/Cyprus)
+  {
+    id: 802,
+    title: "Korean VIP Relationship Manager (FinTech)",
+    company: "Global Top-Tier FX Broker (Confidential)",
+    logoBg: "bg-emerald-800",
+    initials: "FX",
+    languages: ["Korean", "English"],
+    level: "Mid-Senior Level",
+    salary_min: 3500,
+    salary_max: 5000,
+    currency: "EUR",
+    location: "Limassol, Cyprus (Visa Sponsorship)",
+    type: "Full-time",
+    tags: ["Korean", "FinTech", "HighCommission", "Cyprus", "VisaSponsorship", "VIP Client"],
+    posted_at: "1d ago",
+    featured: true,
+    ai_verified: true,
+    status: "priority",
+    source: "RemoteLingo Exclusive",
+    match_score: 97,
+    summary: {
+      en: "Manage High-Net-Worth Korean portfolios for a regulated European financial institution. €3,500-€5,000 base + UNLIMITED commission potential. Seeking candidates with sales/retention DNA and financial background. Premium relocation package to Cyprus.",
+      jp: "欧州規制金融機関でVIP韓国顧客を担当。月給€3,500-€5,000 + 無制限コミッション。",
+      kr: "유럽 규제 금융기관에서 한국 VIP 고객 관리. 월급 €3,500-€5,000 + 무제한 커미션. 영업/금융 경력자 우대. 키프로스 이주 패키지 제공."
+    },
+    apply_url: "https://tally.so/r/zxjRGR?ref=premium"
   }
 ];
 
