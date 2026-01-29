@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import { Search, MapPin, Globe, DollarSign, Clock, Briefcase, ChevronRight, CheckCircle2, Menu, X, Filter, Bot, Sparkles, RefreshCw, ExternalLink, ArrowUpRight, XCircle, CreditCard, Check, Loader2, Lock, ArrowLeft, ShieldCheck, Zap, BadgeCheck, Gamepad2, Code, Languages, Megaphone } from 'lucide-react';
 import JOBS_DATA from '@/lib/jobsData';
 import { translations, Language } from '@/lib/translations';
@@ -1048,9 +1049,11 @@ export default function RemoteLingoMVP() {
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                       <div>
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                            {job.title}
-                          </h3>
+                          <Link href={`/jobs/${job.id}`}>
+                            <h3 className="text-lg sm:text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors cursor-pointer">
+                              {job.title}
+                            </h3>
+                          </Link>
                           <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full whitespace-nowrap">
                             {t.partnershipTag}
                           </span>
