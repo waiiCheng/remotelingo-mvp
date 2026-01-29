@@ -21,6 +21,10 @@ dist/
 .env.local
 .env.production
 
+# Google Service Account (NEVER COMMIT THIS)
+service-account.json
+*service-account*.json
+
 # IDE
 .vscode/
 .idea/
