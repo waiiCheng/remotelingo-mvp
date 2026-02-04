@@ -1,22 +1,24 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { KOREAN_PAGE_SCHEMA, ORGANIZATION_SCHEMA } from '@/lib/korean-page-schema'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: '한국어 하나로 시작하는 유럽 글로벌 커리어 | 디지털 미디어 & IT',
-  description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원. 프리미엄 글로벌 커리어 매칭 플랫폼.',
-  keywords: '해외취업, 유럽취업, IT채용, 미디어산업, 글로벌커리어, 비자지원, 해외이직, 프리미엄채용',
+  title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용 (비자/숙소 지원)',
+  description: '몰타 취업, 키프로스 취업, 유럽 워킹홀리데이, 해외 인턴십, 비자 스폰서십, 게임 프리젠터. 삼성전자, CreedRoomz 등 유럽 현지 IT/미디어 기업 채용 정보. 한국어 가능자 모집, 항공권 및 숙소 100% 지원.',
+  keywords: '몰타 취업, 키프로스 취업, 유럽 워킹홀리데이, 해외 인턴십, 비자 스폰서십, 게임 프리젠터, 해외취업, 유럽취업, 한국어채용, 몰타 일자리, 키프로스 채용, 라이브 딜러, 온라인 카지노 채용',
   openGraph: {
-    title: '한국어 하나로 시작하는 유럽 글로벌 커리어',
-    description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원.',
+    title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용',
+    description: '몰타, 키프로스, 유럽 전역의 한국어 채용 정보. 비자/항공/숙소 100% 지원.',
     type: 'website',
     locale: 'ko_KR',
+    url: 'https://remotelingo.com/ko',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '한국어 하나로 시작하는 유럽 글로벌 커리어',
-    description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원.',
+    title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용',
+    description: '몰타, 키프로스, 유럽 전역의 한국어 채용 정보. 비자/항공/숙소 100% 지원.',
   },
   icons: {
     icon: [
@@ -35,6 +37,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        {/* JSON-LD Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(KOREAN_PAGE_SCHEMA),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(ORGANIZATION_SCHEMA),
+          }}
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )

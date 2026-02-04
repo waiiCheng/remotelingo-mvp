@@ -7,6 +7,7 @@ import JOBS_DATA from '@/lib/jobsData';
 import { translations, Language } from '@/lib/translations';
 import { getLocalizedJob } from '@/lib/jobTranslations';
 import CandidatePipelineStats from '@/components/CandidatePipelineStats';
+import SEOAccordion from '@/components/SEOAccordion';
 
 
 // --- Constants ---
@@ -1221,6 +1222,9 @@ export default function RemoteLingoMVP() {
           </div>
         </main>
       </div>
+
+      {/* --- SEO Accordion Section (Hidden Keywords for Google) --- */}
+      <SEOAccordion />
 
       {/* --- Footer & Manifesto --- */}
       <footer className="bg-white border-t border-slate-200 mt-12">
