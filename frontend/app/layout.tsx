@@ -1,8 +1,12 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { KOREAN_PAGE_SCHEMA, ORGANIZATION_SCHEMA } from '@/lib/korean-page-schema'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
+
+// Google Analytics ID - Replace with your actual GA4 ID
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
 
 export const metadata = {
   title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용 (비자/숙소 지원)',
@@ -38,6 +42,26 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+
         {/* JSON-LD Schema for SEO */}
         <script
           type="application/ld+json"
