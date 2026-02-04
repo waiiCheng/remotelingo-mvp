@@ -16,6 +16,14 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Googlebot-Image',
         allow: '/',
       },
+      {
+        userAgent: 'Yeti',
+        allow: '/',
+      },
+      {
+        userAgent: 'Daumoa',
+        allow: '/',
+      },
     ],
     sitemap: 'https://remotelingo.com/sitemap.xml',
   };

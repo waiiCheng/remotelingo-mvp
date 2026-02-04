@@ -4,8 +4,20 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'RemoteLingo - Monetize Your Language Skills',
-  description: 'AI-curated multilingual remote jobs. Precision matched by AI. Zero spam.',
+  title: '한국어 하나로 시작하는 유럽 글로벌 커리어 | 디지털 미디어 & IT',
+  description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원. 프리미엄 글로벌 커리어 매칭 플랫폼.',
+  keywords: '해외취업, 유럽취업, IT채용, 미디어산업, 글로벌커리어, 비자지원, 해외이직, 프리미엄채용',
+  openGraph: {
+    title: '한국어 하나로 시작하는 유럽 글로벌 커리어',
+    description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원.',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '한국어 하나로 시작하는 유럽 글로벌 커리어',
+    description: '삼성전자, CreedRoomz 등 유럽 Top-tier 미디어/IT 기업 공식 파트너. 비자/항공/숙소 100% 지원.',
+  },
   icons: {
     icon: [
       {
@@ -22,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={inter.className}>{children}</body>
     </html>
   )

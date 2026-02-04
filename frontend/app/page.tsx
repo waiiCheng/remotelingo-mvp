@@ -893,11 +893,11 @@ export default function RemoteLingoMVP() {
       {/* --- Hero Section --- */}
       <div className="bg-white relative overflow-hidden border-b border-slate-200">
         <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-[size:20px_20px]" />
-        <div className="max-w-4xl mx-auto px-4 pt-16 pb-12 relative z-10 text-center">
+        <div className="hero-container px-4 pt-16 pb-12 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6 border border-blue-100 animate-fade-in-up">
             <Bot size={12} /> {t.aiVerified}
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
             {t.heroTitle}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">

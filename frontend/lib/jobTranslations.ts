@@ -74,7 +74,16 @@ export function getLocalizedJob(job: Job, lang: Language): Job {
   // ========================================
   // 2. FORCE-TRANSLATE OTHER iGAMING ROLES
   // ========================================
-  if (title.includes('vip') || title.includes('account manager')) {
+  // IMPORTANT: Exclude FAANG/Tech companies from iGaming translations
+  const isFAANG = job.tags?.some(tag =>
+    tag.toLowerCase().includes('faang') ||
+    tag.toLowerCase().includes('cloud') ||
+    tag.toLowerCase().includes('enterprise')
+  ) || ['Amazon', 'Google', 'Microsoft', 'Apple', 'Meta', 'Netflix'].some(company =>
+    job.company.includes(company)
+  );
+
+  if (!isFAANG && (title.includes('vip') || title.includes('account manager'))) {
     return {
       ...job,
       title: '【iGaming】VIPアカウントマネージャー（高額インセンティブ）',
