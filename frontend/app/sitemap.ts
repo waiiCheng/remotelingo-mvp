@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import JOBS_DATA from '@/lib/jobsData';
+import { getAllLandingPageSlugs } from '@/config/seo-landing-pages';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://remotelingo.com';
@@ -34,6 +35,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: job.featured ? 0.9 : 0.8, // Featured jobs get higher priority
   }));
 
+  // SEO Landing Pages - Korean market
+  const landingPageSlugs = getAllLandingPageSlugs();
+  const landingPages: MetadataRoute.Sitemap = landingPageSlugs.map((slug) => ({
+    url: `${baseUrl}/ko/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85, // High priority for SEO landing pages
+  }));
+
   // Combine all pages
-  return [...staticPages, ...jobPages];
+  return [...staticPages, ...jobPages, ...landingPages];
 }
