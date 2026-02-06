@@ -9,20 +9,20 @@ const inter = Inter({ subsets: ['latin'] })
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
 
 export const metadata = {
-  title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용 (비자/숙소 지원)',
-  description: '몰타 취업, 키프로스 취업, 유럽 워킹홀리데이, 해외 인턴십, 비자 스폰서십, 게임 프리젠터. 삼성전자, CreedRoomz 등 유럽 현지 IT/미디어 기업 채용 정보. 한국어 가능자 모집, 항공권 및 숙소 100% 지원.',
-  keywords: '몰타 취업, 키프로스 취업, 유럽 워킹홀리데이, 해외 인턴십, 비자 스폰서십, 게임 프리젠터, 해외취업, 유럽취업, 한국어채용, 몰타 일자리, 키프로스 채용, 라이브 딜러, 온라인 카지노 채용',
+  title: 'RemoteLingo | 유럽 글로벌 미디어 전문가 커리어 (정규직·비자·숙식 제공)',
+  description: '몰타·키프로스·아르메니아 유럽 게이밍 그룹 정규직 채용. 비자 스폰서십, 항공권, 숙식 제공. 영어 실력 향상, 세금 혜택, 워라밸 보장. 한국보다 빠른 자산 축적.',
+  keywords: '유럽 워킹홀리데이, 해외 취업, 유럽 생활, 몰타 취업, 키프로스 취업, 아르메니아 취업, 숙식 제공, 항공권 지원, 글로벌 미디어 전문가, 유럽 게이밍 그룹, 영어 실력 향상, 세금 혜택, 워라밸, 비자 스폰서십, 정규직, 커리어 발전, 자산 축적',
   openGraph: {
-    title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용',
-    description: '몰타, 키프로스, 유럽 전역의 한국어 채용 정보. 비자/항공/숙소 100% 지원.',
+    title: 'RemoteLingo | 유럽 글로벌 미디어 전문가 커리어',
+    description: '몰타·키프로스·아르메니아 유럽 게이밍 그룹 정규직. 비자/항공/숙식 제공. 영어 실력 향상, 세금 혜택, 워라밸 보장.',
     type: 'website',
     locale: 'ko_KR',
     url: 'https://remotelingo.com/ko',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RemoteLingo | 유럽 해외취업 & 한국어 정규직 채용',
-    description: '몰타, 키프로스, 유럽 전역의 한국어 채용 정보. 비자/항공/숙소 100% 지원.',
+    title: 'RemoteLingo | 유럽 글로벌 미디어 전문가 커리어',
+    description: '몰타·키프로스·아르메니아 유럽 게이밍 그룹 정규직. 비자/항공/숙식 제공.',
   },
   icons: {
     icon: [
