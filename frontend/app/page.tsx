@@ -577,49 +577,35 @@ export default function RemoteLingoMVP() {
 
   // --- Action Handlers ---
   const handleApply = (job) => {
-    // Check if this is an iGaming / gambling industry position OR premium FX/Finance position
-    const title = job.title.toLowerCase();
-    const company = job.company.toLowerCase();
-    const tags = job.tags.map(t => t.toLowerCase()).join(' ');
-    const combined = `${title} ${company} ${tags}`;
+    // FIXED ROUTING LOGIC: Two distinct flows
 
-    const isGamblingJob =
-      combined.includes('game presenter') ||
-      combined.includes('game host') ||
-      combined.includes('casino') ||
-      combined.includes('igaming') ||
-      combined.includes('dealer') ||
-      combined.includes('live game') ||
-      combined.includes('broadcasting host') ||
-      combined.includes('creedroomz');
+    // Type A: External Jobs (Amazon, YouTube, LV, etc.)
+    const isExternalJob =
+      job.status === 'external' ||
+      (job.apply_url &&
+       !job.apply_url.includes('tally.so') &&
+       !job.apply_url.includes('/apply') &&
+       (job.apply_url.startsWith('http://') || job.apply_url.startsWith('https://')));
 
-    const isPremiumFinanceJob =
-      combined.includes('exness') ||
-      combined.includes('xm') ||
-      combined.includes('ic markets') ||
-      combined.includes('fx trading') ||
-      combined.includes('forex') ||
-      combined.includes('fx broker') ||
-      combined.includes('retention agent') ||
-      (combined.includes('account manager') && combined.includes('financial')) ||
-      (combined.includes('relationship manager') && combined.includes('fintech'));
+    // Type B: Internal/Exclusive Jobs (RemoteLingo, Gaming, Samsung)
+    const isInternalJob =
+      job.status === 'priority' ||
+      (job.apply_url && job.apply_url.includes('tally.so'));
 
-    if (isGamblingJob || isPremiumFinanceJob) {
-      // iGaming & Premium Finance positions: Redirect to custom application form
+    if (isInternalJob) {
+      // Internal/Exclusive: Go to confirmation page first
       const params = new URLSearchParams({
         job: job.title,
         company: job.company,
         url: job.apply_url
       });
       window.location.href = `/apply-info?${params.toString()}`;
+    } else if (isExternalJob) {
+      // External: Go directly to external URL
+      window.open(job.apply_url, '_blank');
     } else {
-      // All other positions: Redirect to original job URL
-      if (job.apply_url && job.apply_url !== '/apply') {
-        window.open(job.apply_url, '_blank');
-      } else {
-        // Fallback if no valid URL
-        showToastMessage('No application URL available', 'error');
-      }
+      // Fallback if no valid URL
+      showToastMessage('No application URL available', 'error');
     }
   };
 
