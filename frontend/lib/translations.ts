@@ -34,6 +34,12 @@ export const translations = {
 
     // Job Card
     applyNow: "Apply Now",
+    viewDetails: "View Details",
+    searchJobs: "Search Jobs",
+    salary: "Salary",
+    jobDescription: "Job Description",
+    requirements: "Requirements",
+    benefits: "Benefits",
     matchScore: "Match Score",
     source: "Source",
 
@@ -178,6 +184,12 @@ export const translations = {
 
     // Job Card
     applyNow: "今すぐ応募",
+    viewDetails: "詳細を見る",
+    searchJobs: "求人を検索",
+    salary: "想定年収",
+    jobDescription: "募集要項",
+    requirements: "応募資格",
+    benefits: "福利厚生",
     matchScore: "マッチ度",
     source: "ソース",
 
@@ -578,6 +590,12 @@ export const translations = {
 
     // Job Card
     applyNow: "지원하기",
+    viewDetails: "상세 보기",
+    searchJobs: "채용 공고 검색",
+    salary: "급여",
+    jobDescription: "채용 정보",
+    requirements: "지원 자격",
+    benefits: "복리후생",
     matchScore: "매치도",
     source: "출처",
 

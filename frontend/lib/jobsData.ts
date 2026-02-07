@@ -425,6 +425,93 @@ const JOBS_DATA = [
       kr: "한국어·일본어 바이링구얼 필수. 연봉 €45,000-€60,000."
     },
     apply_url: "https://tally.so/r/zxjRGR?ref=samsung-interpreter"
+  },
+
+  // === TIER 3: AGENCY MODEL - EVERGREEN POSITIONS ===
+  // These are permanent "shadow jobs" that collect CVs for our BPO partners
+
+  {
+    id: 901,
+    title: "Japanese Customer Support (Europe Relocation)",
+    company: "Global BPO Partner (Confidential)",
+    logoBg: "bg-slate-700",
+    initials: "BPO",
+    languages: ["Japanese", "English"],
+    level: "Entry Level",
+    salary_min: 1500,
+    salary_max: 2000,
+    currency: "EUR",
+    location: "Lisbon / Athens / Malta (Your Choice)",
+    type: "Full-time",
+    tags: ["Japanese", "Customer Support", "Relocation Package", "Flight Included", "Housing Support"],
+    posted_at: "Always Open",
+    featured: true,
+    ai_verified: true,
+    status: "priority",
+    source: "RemoteLingo Exclusive",
+    match_score: 95,
+    summary: {
+      en: "Permanent role for Japanese speakers. Flight ticket, 2 weeks accommodation, and visa support included. Multiple positions available across Europe. Apply now and we'll match you with the best opportunity.",
+      jp: "日本語話者向けの正社員ポジション。航空券、2週間の宿泊、ビザサポート付き。ヨーロッパ全域で複数のポジションあり。今すぐ応募して、最適な機会をマッチングします。",
+      kr: "일본어 구사자를 위한 정규직 포지션. 항공권, 2주 숙박, 비자 지원 포함. 유럽 전역에 여러 포지션 있음. 지금 지원하시면 최적의 기회를 매칭해 드립니다."
+    },
+    apply_url: "https://tally.so/r/zxjRGR?ref=bpo-japanese-europe"
+  },
+
+  {
+    id: 902,
+    title: "Korean Content Moderator (Social Media Project)",
+    company: "Major Social Platform (Confidential)",
+    logoBg: "bg-slate-700",
+    initials: "SM",
+    languages: ["Korean", "English"],
+    level: "Entry Level",
+    salary_min: 1400,
+    salary_max: 1800,
+    currency: "EUR",
+    location: "Lisbon, Portugal",
+    type: "Full-time",
+    tags: ["Korean", "Content Moderation", "Social Media", "Performance Bonus", "Relocation Support"],
+    posted_at: "Always Open",
+    featured: true,
+    ai_verified: true,
+    status: "priority",
+    source: "RemoteLingo Exclusive",
+    match_score: 94,
+    summary: {
+      en: "Review Korean content for major social media platform. €1,400-€1,800 base + performance bonus. Full relocation package to Lisbon. Native Korean required. Apply now for immediate consideration.",
+      jp: "大手SNSプラットフォームの韓国語コンテンツ審査。€1,400-€1,800基本給 + 業績ボーナス。リスボンへの完全移住パッケージ。韓国語ネイティブ必須。",
+      kr: "주요 소셜 미디어 플랫폼의 한국어 콘텐츠 검토. €1,400-€1,800 기본급 + 성과 보너스. 리스본으로의 완전한 이주 패키지. 한국어 원어민 필수. 즉시 검토를 위해 지금 지원하세요."
+    },
+    apply_url: "https://tally.so/r/zxjRGR?ref=bpo-korean-content"
+  },
+
+  {
+    id: 903,
+    title: "Japanese Technical Game Support (Gaming Project)",
+    company: "Leading Gaming Company (Confidential)",
+    logoBg: "bg-slate-700",
+    initials: "GM",
+    languages: ["Japanese", "English"],
+    level: "Entry Level",
+    salary_min: 1600,
+    salary_max: 2200,
+    currency: "EUR",
+    location: "Athens, Greece",
+    type: "Full-time",
+    tags: ["Japanese", "Gaming", "Technical Support", "Visa Sponsored", "Career Growth"],
+    posted_at: "Always Open",
+    featured: true,
+    ai_verified: true,
+    status: "priority",
+    source: "RemoteLingo Exclusive",
+    match_score: 96,
+    summary: {
+      en: "Technical support for Japanese gamers. €1,600-€2,200 + bonuses. Gaming industry experience preferred but not required. Full training provided. Visa sponsorship and relocation to Athens included.",
+      jp: "日本人ゲーマー向けの技術サポート。€1,600-€2,200 + ボーナス。ゲーム業界経験優遇（必須ではない）。完全研修提供。ビザスポンサーとアテネへの移住サポート付き。",
+      kr: "일본 게이머를 위한 기술 지원. €1,600-€2,200 + 보너스. 게임 업계 경험 우대(필수 아님). 완전한 교육 제공. 비자 후원 및 아테네 이주 포함."
+    },
+    apply_url: "https://tally.so/r/zxjRGR?ref=bpo-japanese-gaming"
   }
 ];
 
