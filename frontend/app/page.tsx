@@ -1210,7 +1210,7 @@ export default function RemoteLingoMVP() {
       </div>
 
       {/* --- SEO Accordion Section (Hidden Keywords for Google) --- */}
-      <SEOAccordion />
+      <SEOAccordion language={language} />
 
       {/* --- Footer & Manifesto --- */}
       <footer className="bg-white border-t border-slate-200 mt-12">
